@@ -1,0 +1,16 @@
+.next
+out
+build
+coverage
+node_modules
+.turbo
+.vercel
+.cache
+.claude
+.agents
+AGENTS.md
+CLAUDE.md
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+*.log
