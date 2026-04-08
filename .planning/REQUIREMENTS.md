@@ -97,64 +97,64 @@
 
 ## Traceability
 
-| Requirement | Phase     | Status  |
-| ----------- | --------- | ------- |
-| ORG-01      | Phase TBD | Pending |
-| ORG-02      | Phase TBD | Pending |
-| ORG-03      | Phase TBD | Pending |
-| ORG-04      | Phase TBD | Pending |
-| ORG-05      | Phase TBD | Pending |
-| ORG-06      | Phase TBD | Pending |
-| ORG-07      | Phase TBD | Pending |
-| ORG-08      | Phase TBD | Pending |
-| ORG-09      | Phase TBD | Pending |
-| ORG-10      | Phase TBD | Pending |
-| ORG-11      | Phase TBD | Pending |
-| DEPT-01     | Phase TBD | Pending |
-| DEPT-02     | Phase TBD | Pending |
-| DEPT-03     | Phase TBD | Pending |
-| DEPT-04     | Phase TBD | Pending |
-| DEPT-05     | Phase TBD | Pending |
-| DEPT-06     | Phase TBD | Pending |
-| DEPT-07     | Phase TBD | Pending |
-| DEPT-08     | Phase TBD | Pending |
-| DEPT-09     | Phase TBD | Pending |
-| DEPT-10     | Phase TBD | Pending |
-| DEPT-11     | Phase TBD | Pending |
-| MEM-01      | Phase TBD | Pending |
-| MEM-02      | Phase TBD | Pending |
-| MEM-03      | Phase TBD | Pending |
-| MEM-04      | Phase TBD | Pending |
-| MEM-05      | Phase TBD | Pending |
-| MEM-06      | Phase TBD | Pending |
-| MEM-07      | Phase TBD | Pending |
-| MEM-08      | Phase TBD | Pending |
-| MEM-09      | Phase TBD | Pending |
-| MEM-10      | Phase TBD | Pending |
-| MEM-11      | Phase TBD | Pending |
-| MEM-12      | Phase TBD | Pending |
-| UX-01       | Phase TBD | Pending |
-| UX-02       | Phase TBD | Pending |
-| UX-03       | Phase TBD | Pending |
-| UX-04       | Phase TBD | Pending |
-| UX-05       | Phase TBD | Pending |
-| UX-06       | Phase TBD | Pending |
-| UX-07       | Phase TBD | Pending |
-| ARCH-01     | Phase TBD | Pending |
-| ARCH-02     | Phase TBD | Pending |
-| ARCH-03     | Phase TBD | Pending |
-| ARCH-04     | Phase TBD | Pending |
-| ARCH-05     | Phase TBD | Pending |
-| ARCH-06     | Phase TBD | Pending |
-| ARCH-07     | Phase TBD | Pending |
+| Requirement | Phase   | Status  |
+| ----------- | ------- | ------- |
+| ORG-01      | Phase 2 | Pending |
+| ORG-02      | Phase 2 | Pending |
+| ORG-03      | Phase 2 | Pending |
+| ORG-04      | Phase 2 | Pending |
+| ORG-05      | Phase 2 | Pending |
+| ORG-06      | Phase 2 | Pending |
+| ORG-07      | Phase 2 | Pending |
+| ORG-08      | Phase 2 | Pending |
+| ORG-09      | Phase 2 | Pending |
+| ORG-10      | Phase 2 | Pending |
+| ORG-11      | Phase 2 | Pending |
+| DEPT-01     | Phase 3 | Pending |
+| DEPT-02     | Phase 3 | Pending |
+| DEPT-03     | Phase 3 | Pending |
+| DEPT-04     | Phase 3 | Pending |
+| DEPT-05     | Phase 3 | Pending |
+| DEPT-06     | Phase 3 | Pending |
+| DEPT-07     | Phase 3 | Pending |
+| DEPT-08     | Phase 3 | Pending |
+| DEPT-09     | Phase 3 | Pending |
+| DEPT-10     | Phase 3 | Pending |
+| DEPT-11     | Phase 3 | Pending |
+| MEM-01      | Phase 4 | Pending |
+| MEM-02      | Phase 4 | Pending |
+| MEM-03      | Phase 4 | Pending |
+| MEM-04      | Phase 4 | Pending |
+| MEM-05      | Phase 4 | Pending |
+| MEM-06      | Phase 4 | Pending |
+| MEM-07      | Phase 4 | Pending |
+| MEM-08      | Phase 4 | Pending |
+| MEM-09      | Phase 4 | Pending |
+| MEM-10      | Phase 4 | Pending |
+| MEM-11      | Phase 4 | Pending |
+| MEM-12      | Phase 4 | Pending |
+| UX-01       | Phase 5 | Pending |
+| UX-02       | Phase 1 | Pending |
+| UX-03       | Phase 5 | Pending |
+| UX-04       | Phase 5 | Pending |
+| UX-05       | Phase 5 | Pending |
+| UX-06       | Phase 1 | Pending |
+| UX-07       | Phase 1 | Pending |
+| ARCH-01     | Phase 1 | Pending |
+| ARCH-02     | Phase 1 | Pending |
+| ARCH-03     | Phase 1 | Pending |
+| ARCH-04     | Phase 1 | Pending |
+| ARCH-05     | Phase 1 | Pending |
+| ARCH-06     | Phase 6 | Pending |
+| ARCH-07     | Phase 6 | Pending |
 
 **Coverage:**
 
 - v1 requirements: 48 total
-- Mapped to phases: 0
-- Unmapped: 48 ⚠️
+- Mapped to phases: 48
+- Unmapped: 0
 
 ---
 
 _Requirements defined: 2026-04-08_
-_Last updated: 2026-04-08 after initial definition_
+_Last updated: 2026-04-08 after roadmap creation_
