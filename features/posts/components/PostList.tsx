@@ -30,10 +30,7 @@ export function PostList({
     return (
       <div className="grid gap-4">
         {Array.from({ length: 4 }).map((_, index) => (
-          <Card
-            key={index}
-            className="rounded-[1.5rem] border-zinc-200/70 bg-white/90 ring-0"
-          >
+          <Card key={index} className="border-[#dbcdb0]/70 bg-white/82 ring-0">
             <CardHeader>
               <Skeleton className="h-4 w-24" />
               <Skeleton className="h-7 w-2/3" />
@@ -51,9 +48,9 @@ export function PostList({
 
   if (!posts.length) {
     return (
-      <Card className="rounded-[1.5rem] border-dashed border-zinc-300 bg-white/70 ring-0">
+      <Card className="border-dashed border-[#d6c8ac] bg-white/72 ring-0">
         <CardContent className="flex flex-col items-center gap-3 py-10 text-center">
-          <div className="flex size-12 items-center justify-center rounded-full bg-zinc-100 text-zinc-600">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#f4ecde] text-[#8c7550]">
             <FileText className="size-5" />
           </div>
           <div>
@@ -70,21 +67,21 @@ export function PostList({
   return (
     <div className="grid gap-4">
       {posts.map((post) => (
-        <Card
-          key={post.id}
-          className="rounded-[1.5rem] border-zinc-200/70 bg-white/90 ring-0"
-        >
+        <Card key={post.id} className="border-[#dbcdb0]/70 bg-white/82 ring-0">
           <CardHeader className="gap-3">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="space-y-2">
-                <Badge variant="outline" className="rounded-full">
+                <Badge
+                  variant="outline"
+                  className="rounded-full border-[#d6c8ac] text-[#8c7550]"
+                >
                   Bài viết #{post.id}
                 </Badge>
                 <CardTitle className="text-xl leading-8 text-zinc-950">
                   {post.title}
                 </CardTitle>
               </div>
-              <Badge variant="secondary" className="rounded-full">
+              <Badge className="rounded-full bg-[#f4ecde] text-[#8c7550] hover:bg-[#f4ecde]">
                 Tác giả {post.userId}
               </Badge>
             </div>
@@ -103,7 +100,7 @@ export function PostList({
               <Button
                 type="button"
                 variant="outline"
-                className="rounded-full px-5"
+                className="rounded-full border-[#d6c8ac] bg-white/75 px-5"
                 disabled={deletingPostId === post.id}
                 onClick={() => onDelete(post.id)}
               >

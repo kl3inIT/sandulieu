@@ -1,4 +1,4 @@
-import { Database } from "lucide-react";
+import { Database, Orbit } from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
 
@@ -12,31 +12,42 @@ export function SiteMark({ className, inverted = false }: SiteMarkProps) {
     <div className={cn("flex items-center gap-3", className)}>
       <div
         className={cn(
-          "flex size-11 items-center justify-center rounded-2xl border shadow-sm",
+          "relative flex size-12 items-center justify-center overflow-hidden rounded-2xl border shadow-[0_18px_40px_-24px_rgba(15,23,42,0.35)]",
           inverted
-            ? "border-white/15 bg-white/10 text-white"
-            : "border-zinc-200 bg-white text-zinc-900"
+            ? "border-[#d8c79a]/30 bg-white/8 text-[#f6e8bf]"
+            : "border-[#d8c79a] bg-[linear-gradient(180deg,#fffdfa_0%,#f3ead6_100%)] text-[#0f172a]"
         )}
       >
-        <Database className="size-5" />
+        <Orbit className="absolute size-7 opacity-30" />
+        <Database className="relative size-4.5" />
       </div>
       <div className="space-y-0.5">
         <p
           className={cn(
-            "text-xs font-medium uppercase tracking-[0.24em]",
-            inverted ? "text-zinc-400" : "text-zinc-500"
+            "text-[11px] font-medium uppercase tracking-[0.3em]",
+            inverted ? "text-[#d8c79a]" : "text-[#8c7550]"
           )}
         >
-          Sandulieu
+          Trung tâm Dữ liệu Quốc gia
         </p>
-        <p
-          className={cn(
-            "text-sm font-semibold",
-            inverted ? "text-white" : "text-zinc-950"
-          )}
-        >
-          Data Platform
-        </p>
+        <div className="space-y-0.5">
+          <p
+            className={cn(
+              "text-sm font-semibold tracking-[0.01em]",
+              inverted ? "text-white" : "text-[#0f172a]"
+            )}
+          >
+            Sàn Dữ liệu Quốc gia
+          </p>
+          <p
+            className={cn(
+              "text-xs",
+              inverted ? "text-slate-400" : "text-slate-500"
+            )}
+          >
+            Nền tảng dữ liệu chính thống
+          </p>
+        </div>
       </div>
     </div>
   );

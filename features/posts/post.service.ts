@@ -5,7 +5,7 @@ import {
   getPostsApi,
   updatePostApi,
   type PostApiResponse,
-} from "@/app/api/post.api";
+} from "@/shared/api/post.api";
 import type { PostModel } from "@/shared/model/post.model";
 
 import type {

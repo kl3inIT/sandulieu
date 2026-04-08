@@ -23,12 +23,12 @@ export function PortalSidebar({
   items,
 }: PortalSidebarProps) {
   return (
-    <aside className="flex h-full flex-col border-r border-white/10 bg-[#09111f] px-5 py-6 text-white">
+    <aside className="flex h-full flex-col border-r border-white/8 bg-[linear-gradient(180deg,#08111d_0%,#0d1625_100%)] px-5 py-6 text-white">
       <Link href="/">
         <SiteMark inverted />
       </Link>
-      <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.03] p-4">
-        <p className="text-xs font-medium uppercase tracking-[0.24em] text-cyan-200">
+      <div className="mt-8 rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-4 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.65)]">
+        <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#d9c48d]">
           {portalLabel}
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-400">{portalHint}</p>
@@ -42,13 +42,13 @@ export function PortalSidebar({
               key={`${item.label}-${index}`}
               href={item.href}
               className={cn(
-                "flex items-start gap-3 rounded-2xl border px-4 py-3 transition",
+                "flex items-start gap-3 rounded-[1.3rem] border px-4 py-3 transition",
                 index === 0
-                  ? "border-cyan-400/30 bg-cyan-400/10"
+                  ? "border-[#d9c48d]/30 bg-[#d9c48d]/10"
                   : "border-transparent bg-white/[0.03] hover:border-white/10 hover:bg-white/[0.06]"
               )}
             >
-              <div className="mt-0.5 flex size-9 items-center justify-center rounded-xl bg-white/10">
+              <div className="mt-0.5 flex size-9 items-center justify-center rounded-xl bg-white/10 text-[#f3dfab]">
                 <Icon className="size-4" />
               </div>
               <div className="space-y-1">
@@ -61,9 +61,9 @@ export function PortalSidebar({
           );
         })}
       </div>
-      <div className="mt-auto rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+      <div className="mt-auto rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-4">
         <div className="flex items-center gap-3">
-          <div className="flex size-11 items-center justify-center rounded-2xl bg-cyan-400/15 text-cyan-200">
+          <div className="flex size-11 items-center justify-center rounded-2xl bg-[#d9c48d]/15 text-[#f6e8bf]">
             <ShieldCheck className="size-5" />
           </div>
           <div>

@@ -59,23 +59,27 @@ export default function AdminPostsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="rounded-[1.75rem] border-zinc-200/70 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.14),transparent_34%),linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] ring-0">
+      <Card className="border-[#dbcdb0]/80 bg-[linear-gradient(180deg,#fffdfa_0%,#f5efe4_100%)] ring-0">
         <CardHeader className="gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <Badge variant="secondary" className="rounded-full">
+            <Badge className="rounded-full bg-[#d9c48d]/14 text-[#8c7550] hover:bg-[#d9c48d]/14">
               Quản lý bài viết
             </Badge>
-            <Badge variant="outline" className="rounded-full">
+            <Badge
+              variant="outline"
+              className="rounded-full border-[#d6c8ac] text-[#8c7550]"
+            >
               Danh sách và cập nhật nhanh
             </Badge>
           </div>
           <div className="space-y-3">
             <CardTitle className="text-3xl tracking-tight sm:text-4xl">
-              Theo dõi và cập nhật bài viết dễ dàng hơn
+              Theo dõi nội dung và cập nhật bài viết trong cùng một luồng quản
+              trị.
             </CardTitle>
             <CardDescription className="max-w-3xl text-sm leading-7 sm:text-base">
-              Xem danh sách bài viết, tạo nội dung mới và chuyển nhanh sang
-              trang chi tiết để chỉnh sửa khi cần.
+              Danh sách bên trái giúp rà nhanh nội dung hiện có, còn khung tạo
+              mới bên phải đóng vai trò composer để bổ sung bài viết khi cần.
             </CardDescription>
           </div>
         </CardHeader>
@@ -101,10 +105,10 @@ export default function AdminPostsPage() {
           />
         </div>
 
-        <Card className="rounded-[1.5rem] border-zinc-200/70 bg-white/90 ring-0">
+        <Card className="border-[#dbcdb0]/70 bg-white/82 ring-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
-              <PlusCircle className="size-4 text-cyan-700" />
+              <PlusCircle className="size-4 text-[#8c7550]" />
               Tạo bài viết mới
             </CardTitle>
             <CardDescription>

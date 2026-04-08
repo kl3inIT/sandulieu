@@ -60,13 +60,17 @@ export default function AdminPostDetailPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="rounded-[1.75rem] border-zinc-200/70 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] ring-0">
+      <Card className="border-[#dbcdb0]/80 bg-[linear-gradient(180deg,#fffdfa_0%,#f5efe4_100%)] ring-0">
         <CardHeader className="gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <Badge variant="secondary" className="rounded-full">
+            <Badge className="rounded-full bg-[#d9c48d]/14 text-[#8c7550] hover:bg-[#d9c48d]/14">
               Chi tiết bài viết
             </Badge>
-            <Button asChild variant="outline" className="rounded-full px-5">
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-full border-[#d6c8ac] bg-white/80 px-5"
+            >
               <Link href="/admin/posts">
                 <ArrowLeft />
                 Quay lại danh sách
@@ -78,7 +82,7 @@ export default function AdminPostDetailPage() {
               Cập nhật bài viết #{postId}
             </CardTitle>
             <CardDescription className="max-w-3xl text-sm leading-7 sm:text-base">
-              Xem lại nội dung hiện tại, chỉnh sửa thông tin cần thiết hoặc xóa
+              Kiểm tra nội dung hiện tại, chỉnh sửa thông tin cần thiết hoặc xóa
               bài viết khi không còn sử dụng.
             </CardDescription>
           </div>
@@ -126,10 +130,10 @@ export default function AdminPostDetailPage() {
         <section className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
           <PostDetailCard post={postDetailQuery.data} />
 
-          <Card className="rounded-[1.5rem] border-zinc-200/70 bg-white/90 ring-0">
+          <Card className="border-[#dbcdb0]/70 bg-white/82 ring-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <FilePenLine className="size-4 text-cyan-700" />
+                <FilePenLine className="size-4 text-[#8c7550]" />
                 Chỉnh sửa thông tin
               </CardTitle>
               <CardDescription>

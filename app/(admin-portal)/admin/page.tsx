@@ -1,13 +1,13 @@
+import Link from "next/link";
 import {
+  Activity,
   ArrowUpRight,
   BadgeCheck,
-  Clock3,
+  ChartNoAxesCombined,
   Database,
-  FolderKanban,
   ShieldCheck,
   Users,
 } from "lucide-react";
-import Link from "next/link";
 
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
@@ -18,237 +18,281 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
-import { Separator } from "@/shared/components/ui/separator";
 
 const metrics = [
   {
-    label: "Người dùng đang hoạt động",
-    value: "12.480",
-    change: "+8,2%",
-    tone: "text-emerald-600",
+    label: "Giao dịch hôm nay",
+    value: "4.812",
+    detail: "+18,2% so với hôm qua",
+    icon: Activity,
   },
   {
-    label: "Bản ghi vừa đồng bộ",
-    value: "2,4M",
-    change: "+14,1%",
-    tone: "text-cyan-700",
-  },
-  {
-    label: "Tỷ lệ xử lý thành công",
-    value: "99,2%",
-    change: "+0,6%",
-    tone: "text-violet-700",
-  },
-];
-
-const tasks = [
-  "Kiểm tra luồng duyệt seller mới.",
-  "Đối soát dữ liệu buyer với báo cáo trong ngày.",
-  "Rà soát quyền truy cập dashboard theo vai trò.",
-];
-
-const activities = [
-  {
-    title: "Batch import seller mới",
-    detail: "1.284 bản ghi đã được đưa vào staging trong 15 phút gần nhất.",
-    icon: Database,
-  },
-  {
-    title: "Cập nhật quyền quản trị",
-    detail: "3 tài khoản nội bộ vừa được cấp thêm quyền xem dashboard.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Buyer mới tham gia",
-    detail: "27 tài khoản buyer đã hoàn tất onboarding trong hôm nay.",
+    label: "Tổng tài khoản",
+    value: "12.847",
+    detail: "+424 tuần này",
     icon: Users,
   },
-];
-
-const quickActions = [
   {
-    title: "Xem bài viết",
-    description:
-      "Mở nhanh danh sách bài viết để kiểm tra và cập nhật nội dung.",
-    icon: FolderKanban,
-  },
-  {
-    title: "Theo dõi dữ liệu",
-    description: "Kiểm tra tiến độ đồng bộ và các bản ghi cần chú ý.",
+    label: "Dịch vụ dữ liệu",
+    value: "662 + 247",
+    detail: "CQNN + thương mại",
     icon: Database,
   },
   {
-    title: "Kiểm tra bảo mật",
-    description: "Rà soát hoạt động truy cập và những thay đổi quan trọng.",
-    icon: BadgeCheck,
+    label: "GMV tháng 4/2026",
+    value: "48,42 tỷ ₫",
+    detail: "+28,4% so với tháng trước",
+    icon: ChartNoAxesCombined,
   },
+];
+
+const systemHealth = [
+  ["API Gateway", "99,98%", "18,4M / ngày"],
+  ["Liên thông DMDC", "99,82%", "Sync 2.4K/h"],
+  ["VNeID Integration", "99,99%", "68M user KYC"],
+  ["Cổng thanh toán", "98,45%", "142 giao dịch/phút"],
+];
+
+const summaries = [
+  "Theo dõi tín hiệu hệ thống và chất lượng vận hành theo thời gian thực.",
+  "Giữ bài viết là khu vực thao tác thật trong phase rebuild đầu tiên.",
+  "Các nhóm chức năng khác được dựng lại theo cấu trúc mới để mở rộng dần.",
 ];
 
 export default function AdminDashboardPage() {
   return (
     <div className="flex flex-col gap-6">
-      <section className="grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
-        <Card className="overflow-hidden rounded-[1.75rem] border-zinc-200/70 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.14),transparent_34%),linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] ring-0">
+      <section className="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
+        <Card className="border-[#d9e0e7] bg-[linear-gradient(180deg,#ffffff_0%,#f7f9fb_100%)] ring-0">
           <CardHeader className="gap-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <Badge variant="secondary" className="w-fit rounded-full">
-                Dashboard quản trị
-              </Badge>
-              <Badge
-                variant="outline"
-                className="w-fit rounded-full border-emerald-200 bg-emerald-50 text-emerald-700"
-              >
-                Hệ thống đang ổn định
+              <div>
+                <p className="text-xs uppercase tracking-[0.24em] text-slate-500">
+                  Trung tâm điều hành
+                </p>
+                <CardTitle className="mt-2 text-3xl tracking-tight text-[#0f172a] sm:text-4xl">
+                  Tổng quan vận hành Sàn Dữ liệu Quốc gia
+                </CardTitle>
+              </div>
+              <Badge className="w-fit rounded-full bg-emerald-100 text-emerald-700 hover:bg-emerald-100">
+                Hệ thống ổn định · 99,98%
               </Badge>
             </div>
-            <div className="space-y-3">
-              <CardTitle className="max-w-3xl text-3xl tracking-tight sm:text-4xl">
-                Nắm nhanh tình hình vận hành để ưu tiên đúng việc cần xử lý.
-              </CardTitle>
-              <CardDescription className="max-w-2xl text-sm leading-7 sm:text-base">
-                Đây là màn hình tổng quan giúp bạn theo dõi số liệu chính, việc
-                cần làm và những cập nhật mới nhất trong khu vực quản trị.
-              </CardDescription>
-            </div>
+            <CardDescription className="max-w-3xl text-sm leading-7 sm:text-base">
+              Màn hình này tái cấu trúc khu vực quản trị theo hướng nhiều lớp rõ
+              ràng hơn: điều hành, dữ liệu, cảnh báo và các lối vào nghiệp vụ.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button asChild className="rounded-full px-5">
               <Link href="/admin/posts">Quản lý bài viết</Link>
             </Button>
-            <Button variant="outline" className="rounded-full px-5">
-              Xem người dùng
+            <Button asChild variant="outline" className="rounded-full px-5">
+              <Link href="/">Xem trang public</Link>
             </Button>
           </CardContent>
         </Card>
 
-        <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
-          {metrics.map((metric) => (
-            <Card
-              key={metric.label}
-              className="rounded-[1.5rem] border-zinc-200/70 bg-white/90 ring-0"
-            >
-              <CardHeader>
-                <CardDescription>{metric.label}</CardDescription>
-                <CardTitle className="text-3xl">{metric.value}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex items-center justify-between gap-3">
-                <Badge
-                  variant="outline"
-                  className={`rounded-full ${metric.tone}`}
-                >
-                  {metric.change}
-                </Badge>
-                <ArrowUpRight className="size-4 text-muted-foreground" />
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <Card className="border-[#d9e0e7] bg-[#0b1524] text-white ring-0">
+          <CardHeader>
+            <Badge className="w-fit rounded-full bg-[#d8c79a]/14 text-[#f4dfab] hover:bg-[#d8c79a]/14">
+              Tóm tắt điều phối
+            </Badge>
+            <CardTitle className="text-2xl text-white">
+              Giữ nhịp vận hành, vẫn bảo toàn luồng Post CRUD hiện có
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-3">
+            {summaries.map((item, index) => (
+              <div
+                key={item}
+                className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
+              >
+                <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-white text-xs font-semibold text-[#0f172a]">
+                  {index + 1}
+                </div>
+                <p className="text-sm leading-6 text-slate-300">{item}</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </section>
 
-      <section className="grid gap-4 xl:grid-cols-[0.78fr_1.22fr]">
-        <div className="grid gap-4">
-          <Card className="rounded-[1.5rem] border-zinc-200/70 bg-white/90 ring-0">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Clock3 className="size-4" />
-                Việc nên ưu tiên hôm nay
-              </CardTitle>
-              <CardDescription>
-                Những đầu việc cần theo dõi sớm để vận hành trơn tru hơn.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-3">
-              {tasks.map((task, index) => (
-                <Card
-                  key={task}
-                  size="sm"
-                  className="rounded-2xl border border-zinc-200/80 bg-zinc-50 ring-0"
-                >
-                  <CardContent className="flex items-start gap-3 pt-3">
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-zinc-950 text-xs font-semibold text-white">
-                      {index + 1}
-                    </div>
-                    <p className="text-sm leading-6 text-zinc-700">{task}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </CardContent>
-          </Card>
+      <section className="grid gap-4 xl:grid-cols-4">
+        {metrics.map((metric) => {
+          const Icon = metric.icon;
 
-          <Card className="rounded-[1.5rem] border-zinc-200/70 bg-zinc-950 text-white ring-0">
-            <CardHeader>
-              <Badge className="w-fit rounded-full bg-white/10 text-white hover:bg-white/10">
-                Tác vụ nhanh
-              </Badge>
-              <CardTitle className="text-2xl text-white">
-                Một vài lối tắt để bạn thao tác thuận tiện hơn.
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="grid gap-3">
-              {quickActions.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="rounded-3xl border border-white/10 bg-white/5 p-4"
-                  >
-                    <div className="flex size-10 items-center justify-center rounded-2xl bg-white/10">
-                      <Icon className="size-4" />
-                    </div>
-                    <p className="mt-4 font-semibold text-white">
-                      {item.title}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-zinc-300">
-                      {item.description}
-                    </p>
+          return (
+            <Card
+              key={metric.label}
+              className="border-[#d9e0e7] bg-white ring-0"
+            >
+              <CardHeader>
+                <div className="flex items-center justify-between gap-3">
+                  <CardDescription>{metric.label}</CardDescription>
+                  <div className="flex size-10 items-center justify-center rounded-2xl bg-[#eef3f8] text-[#0f172a]">
+                    <Icon className="size-4" />
                   </div>
-                );
-              })}
-            </CardContent>
-          </Card>
-        </div>
+                </div>
+                <CardTitle className="text-3xl text-[#0f172a]">
+                  {metric.value}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-slate-500">{metric.detail}</p>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </section>
 
-        <Card className="rounded-[1.5rem] border-zinc-200/70 bg-white/90 ring-0">
+      <section className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
+        <Card className="border-[#d9e0e7] bg-white ring-0">
           <CardHeader>
             <div className="flex items-center justify-between gap-3">
               <div>
-                <CardTitle className="text-xl">Hoạt động gần đây</CardTitle>
+                <CardTitle className="text-xl text-[#0f172a]">
+                  Lưu lượng và tín hiệu chính
+                </CardTitle>
                 <CardDescription>
-                  Những thay đổi mới nhất để bạn nắm tình hình nhanh hơn.
+                  Giao diện tổng quan được tổ chức lại theo kiểu command center.
                 </CardDescription>
               </div>
-              <Badge variant="outline" className="rounded-full">
-                Cập nhật liên tục
-              </Badge>
+              <ArrowUpRight className="size-4 text-slate-400" />
             </div>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            {activities.map((activity, index) => {
-              const Icon = activity.icon;
-
-              return (
-                <div key={activity.title} className="flex flex-col gap-4">
-                  <div className="flex items-start gap-4 rounded-3xl border border-zinc-200/70 bg-zinc-50/80 p-4">
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-white text-zinc-900 shadow-sm ring-1 ring-zinc-200/80">
-                      <Icon className="size-4" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="font-semibold text-zinc-950">
-                          {activity.title}
-                        </p>
-                        <ArrowUpRight className="size-4 shrink-0 text-muted-foreground" />
-                      </div>
-                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                        {activity.detail}
-                      </p>
-                    </div>
-                  </div>
-                  {index < activities.length - 1 ? <Separator /> : null}
+          <CardContent className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="rounded-[1.75rem] bg-[#f4f7fa] p-5">
+              <p className="text-sm text-slate-500">Tổng giao dịch</p>
+              <p className="mt-2 text-4xl font-semibold text-[#0f172a]">
+                142.847
+              </p>
+              <p className="mt-2 text-sm text-emerald-700">+23% MoM</p>
+              <div className="mt-6 grid gap-3 text-sm text-slate-600">
+                <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3">
+                  <span>API calls</span>
+                  <strong className="text-[#0f172a]">18,4M</strong>
                 </div>
-              );
-            })}
+                <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3">
+                  <span>Tài khoản hoạt động</span>
+                  <strong className="text-[#0f172a]">8.412</strong>
+                </div>
+                <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3">
+                  <span>GMV</span>
+                  <strong className="text-[#0f172a]">48,4B₫</strong>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-[1.75rem] border border-dashed border-[#d9e0e7] bg-[#fbfcfd] p-5">
+              <p className="text-sm text-slate-500">Phân bố theo lĩnh vực</p>
+              <div className="mt-5 grid gap-3 text-sm">
+                {[
+                  ["Dân cư", "124"],
+                  ["Doanh nghiệp", "98"],
+                  ["Tài chính", "76"],
+                  ["Y tế & BHXH", "64"],
+                  ["Giao thông", "52"],
+                  ["Giáo dục", "48"],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-slate-600"
+                  >
+                    <span>{label}</span>
+                    <strong className="text-[#0f172a]">{value}</strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-[#d9e0e7] bg-white ring-0">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl text-[#0f172a]">
+              <ShieldCheck className="size-4" />
+              Tình trạng hệ thống
+            </CardTitle>
+            <CardDescription>
+              Giám sát các thành phần tích hợp và dịch vụ cốt lõi.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-3">
+            {systemHealth.map(([label, score, detail]) => (
+              <div key={label} className="rounded-2xl bg-[#f4f7fa] px-4 py-4">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-medium text-[#0f172a]">{label}</p>
+                  <Badge
+                    variant="outline"
+                    className="rounded-full border-emerald-200 bg-white text-emerald-700"
+                  >
+                    {score}
+                  </Badge>
+                </div>
+                <p className="mt-2 text-sm text-slate-500">{detail}</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </section>
+
+      <section className="grid gap-4 lg:grid-cols-3">
+        <Card className="border-[#d9e0e7] bg-white ring-0">
+          <CardHeader>
+            <CardTitle className="text-xl text-[#0f172a]">
+              Tác vụ nhanh
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-3">
+            <Button
+              asChild
+              variant="outline"
+              className="justify-between rounded-2xl"
+            >
+              <Link href="/admin/posts">
+                Mở khu vực bài viết
+                <ArrowUpRight className="size-4" />
+              </Link>
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              className="justify-between rounded-2xl"
+            >
+              Xem báo cáo CQNN
+              <ArrowUpRight className="size-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              className="justify-between rounded-2xl"
+            >
+              Kiểm tra cảnh báo
+              <ArrowUpRight className="size-4" />
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="border-[#d9e0e7] bg-white ring-0 lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl text-[#0f172a]">
+              <BadgeCheck className="size-4" />
+              Ghi chú triển khai phase đầu
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-3 text-sm leading-7 text-slate-600">
+            <p>
+              Đã dựng lại trang chủ, đăng nhập và dashboard quản trị theo cấu
+              trúc mới.
+            </p>
+            <p>
+              Khu vực bài viết được giữ nguyên logic CRUD để tránh ảnh hưởng
+              luồng dữ liệu hiện có.
+            </p>
+            <p>
+              Các nhóm chức năng admin khác hiện mới đóng vai trò khung định
+              hướng cho các phase tiếp theo.
+            </p>
           </CardContent>
         </Card>
       </section>

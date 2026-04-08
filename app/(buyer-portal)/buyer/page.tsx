@@ -14,16 +14,17 @@ export default function BuyerPortalPage() {
   return (
     <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
       <section className="space-y-6">
-        <article className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(56,189,248,0.18),rgba(255,255,255,0.03))] p-6">
-          <p className="text-sm uppercase tracking-[0.22em] text-cyan-200">
+        <article className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(14,165,233,0.2),rgba(255,255,255,0.03))] p-6 shadow-[0_30px_90px_-55px_rgba(8,15,30,0.9)]">
+          <p className="text-sm uppercase tracking-[0.22em] text-[#d9c48d]">
             Buyer overview
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight">
-            Buyer portal đã được tách riêng để bạn thêm features theo domain.
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">
+            Không gian buyer được tối ưu cho theo dõi nhu cầu mua và danh mục dữ
+            liệu.
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
-            Từ đây bạn có thể đưa React Query, bảng đơn hàng, pricing workflow
-            và các module tìm kiếm sản phẩm vào đúng scope buyer.
+            Đây là lớp giao diện sẵn để nối tiếp đơn mua, báo giá, catalog và
+            các dashboard khai thác dữ liệu theo vai trò bên mua.
           </p>
         </article>
 
@@ -31,10 +32,12 @@ export default function BuyerPortalPage() {
           {buyerStats.map((stat) => (
             <article
               key={stat.label}
-              className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5"
+              className="rounded-[1.7rem] border border-white/10 bg-white/[0.04] p-5"
             >
               <p className="text-sm text-slate-400">{stat.label}</p>
-              <p className="mt-4 text-3xl font-semibold">{stat.value}</p>
+              <p className="mt-4 text-3xl font-semibold text-white">
+                {stat.value}
+              </p>
               <p className="mt-2 text-sm text-slate-400">{stat.note}</p>
             </article>
           ))}
@@ -42,7 +45,9 @@ export default function BuyerPortalPage() {
       </section>
 
       <article className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
-        <h3 className="text-lg font-semibold">Danh sách cần xử lý</h3>
+        <h3 className="text-lg font-semibold text-white">
+          Danh sách cần xử lý
+        </h3>
         <div className="mt-5 space-y-3">
           {buyerQueue.map((task) => (
             <div

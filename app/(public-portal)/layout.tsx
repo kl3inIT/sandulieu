@@ -7,7 +7,7 @@ export default function PublicPortalLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.12),transparent_28%),linear-gradient(180deg,#f8fbfc_0%,#eef4f7_36%,#ffffff_100%)]">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#07101d_0%,#0b1524_10%,#eef2f6_10.1%,#f7f8fa_100%)]">
       <PublicHeader />
       <main>{children}</main>
       <PublicFooter />
