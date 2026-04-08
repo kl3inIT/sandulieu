@@ -33,8 +33,16 @@ Decimal phases appear between their surrounding integers in numeric order.
 2. Directory create and edit forms use the same TanStack Form validation and submission behavior across entity types.
 3. Directory table screens use a consistent TanStack Table pattern that supports server-shaped pagination, sorting, and filtering.
 4. Organization, Department, and Member data flows through separate feature modules and shared API/service contracts with stable identifiers and parent-qualified query keys.
-   **Plans**: TBD
-   **UI hint**: yes
+
+**Plans:** 5 plans
+Plans:
+
+- [ ] 01-01-PLAN.md — Shared contracts, stable identifiers, and raw mock API boundaries
+- [ ] 01-02-PLAN.md — Shared URL-state, scope, manual table-state, and query-key foundations
+- [ ] 01-03-PLAN.md — Organization and department feature skeletons with query-service boundaries
+- [ ] 01-04-PLAN.md — Member feature skeleton with full parent-qualified query boundaries
+- [ ] 01-05-PLAN.md — TanStack Form proof and route-level URL/scope consumption proof
+      **UI hint**: yes
 
 ### Phase 2: Organization Management
 
@@ -112,7 +120,7 @@ Phases execute in numeric order: 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 
 | Phase                                          | Plans Complete | Status      | Completed |
 | ---------------------------------------------- | -------------- | ----------- | --------- |
-| 1. Directory Foundations & Contracts           | 0/TBD          | Not started | -         |
+| 1. Directory Foundations & Contracts           | 0/5            | Not started | -         |
 | 2. Organization Management                     | 0/TBD          | Not started | -         |
 | 3. Department Management in Organization Scope | 0/TBD          | Not started | -         |
 | 4. Member Management & Bulk Operations         | 0/TBD          | Not started | -         |
