@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { ArrowLeft, Building2, FilePenLine } from "lucide-react";
 
 import { DepartmentDetailSummary } from "@/features/departments/components/DepartmentDetailSummary";
+import { DepartmentMemberSummary } from "@/features/departments/components/DepartmentMemberSummary";
 import { useDepartmentDetailQuery } from "@/features/departments/department.query-hooks";
 import {
   Alert,
@@ -137,7 +138,12 @@ export default function AdminDepartmentDetailPage() {
       ) : null}
 
       {departmentDetailQuery.data ? (
-        <DepartmentDetailSummary department={departmentDetailQuery.data} />
+        <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
+          <DepartmentDetailSummary department={departmentDetailQuery.data} />
+          <DepartmentMemberSummary
+            summary={departmentDetailQuery.data.memberSummary}
+          />
+        </div>
       ) : null}
     </div>
   );
