@@ -128,7 +128,7 @@ export function SellerDemandsPage() {
         {demands.map((demand) => (
           <Card
             key={demand.id}
-            className="rounded-2xl border-border/70 shadow-sm"
+            className="rounded-xl border-border/70 shadow-sm"
           >
             <CardHeader className="pb-3">
               <div className="flex items-start gap-4">

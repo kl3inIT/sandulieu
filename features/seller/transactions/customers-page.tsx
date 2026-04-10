@@ -239,7 +239,7 @@ export function SellerCustomersPage() {
         />
       </div>
 
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="rounded-xl border-border/70 shadow-sm">
         <CardHeader className="gap-3 pb-3">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div>
@@ -254,7 +254,7 @@ export function SellerCustomersPage() {
                 className="w-full sm:w-56"
               />
               <Select defaultValue="all">
-                <SelectTrigger className="h-9 w-full rounded-xl text-sm sm:w-40">
+                <SelectTrigger className="h-9 w-full rounded-md text-sm sm:w-40">
                   <SelectValue placeholder="Tất cả segments" />
                 </SelectTrigger>
                 <SelectContent>

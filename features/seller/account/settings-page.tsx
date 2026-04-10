@@ -78,7 +78,7 @@ export function SellerSettingsPage() {
           ))}
         </div>
 
-        <Card className="rounded-2xl border-border/70 shadow-sm">
+        <Card className="rounded-xl border-border/70 shadow-sm">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm">
               Hồ sơ nhà cung cấp dữ liệu
@@ -106,7 +106,7 @@ export function SellerSettingsPage() {
                 <FieldContent>
                   <Input
                     id="seller-name"
-                    className="h-10 rounded-xl"
+                    className="h-10 rounded-md"
                     defaultValue="CTCP Dữ liệu Tài chính Việt"
                   />
                 </FieldContent>
@@ -118,7 +118,7 @@ export function SellerSettingsPage() {
                   <div className="flex items-center gap-2">
                     <Input
                       id="seller-tax-id"
-                      className="h-10 rounded-xl"
+                      className="h-10 rounded-md"
                       defaultValue="0316789012"
                     />
                     <Badge className="bg-emerald-100 text-emerald-700">
@@ -133,7 +133,7 @@ export function SellerSettingsPage() {
                 <FieldContent>
                   <Input
                     id="seller-website"
-                    className="h-10 rounded-xl"
+                    className="h-10 rounded-md"
                     defaultValue="https://dltc.vn"
                   />
                 </FieldContent>
@@ -145,7 +145,7 @@ export function SellerSettingsPage() {
                   <Select defaultValue="finance">
                     <SelectTrigger
                       id="seller-sector"
-                      className="h-10 rounded-xl"
+                      className="h-10 rounded-md"
                     >
                       <SelectValue />
                     </SelectTrigger>
@@ -170,7 +170,7 @@ export function SellerSettingsPage() {
                   <Textarea
                     id="seller-summary"
                     rows={5}
-                    className="rounded-xl"
+                    className="rounded-md"
                     defaultValue="CTCP Dữ liệu Tài chính Việt là nhà cung cấp dữ liệu hàng đầu về tài chính - ngân hàng - chứng khoán tại Việt Nam với hơn 18 sản phẩm dữ liệu được chứng nhận Gold bởi Hội đồng thẩm định SDL."
                   />
                 </FieldContent>

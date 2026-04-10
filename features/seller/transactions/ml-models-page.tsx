@@ -205,7 +205,7 @@ export function SellerMlModelsPage() {
         {mlModels.map((model) => (
           <Card
             key={model.id}
-            className="rounded-2xl border-border/70 shadow-sm"
+            className="rounded-xl border-border/70 shadow-sm"
           >
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-3">
@@ -282,7 +282,7 @@ export function SellerMlModelsPage() {
         {mlTools.map((tool) => (
           <Card
             key={tool.name}
-            className="rounded-2xl border-border/70 shadow-sm"
+            className="rounded-xl border-border/70 shadow-sm"
           >
             <CardHeader className="pb-3">
               <div className="flex size-10 items-center justify-center rounded-xl bg-muted">
@@ -305,7 +305,7 @@ export function SellerMlModelsPage() {
         ))}
       </div>
 
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="rounded-xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Hiệu suất models</CardTitle>
           <CardDescription className="text-xs">

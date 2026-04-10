@@ -151,7 +151,7 @@ export function SellerAwardsPage() {
           {achievements.map((achievement) => (
             <Card
               key={achievement.title}
-              className="rounded-2xl border-border/70 shadow-sm"
+              className="rounded-xl border-border/70 shadow-sm"
             >
               <CardHeader className="pb-3">
                 <div
@@ -187,7 +187,7 @@ export function SellerAwardsPage() {
         </div>
       </section>
 
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="rounded-xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">
             Chứng nhận quốc tế & tuân thủ
