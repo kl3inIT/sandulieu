@@ -91,7 +91,7 @@ export function SellerShell({ children }: SellerShellProps) {
                 <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   className="h-8 rounded-xl bg-card pl-10 text-[13px] shadow-none"
-                  placeholder="Tìm catalog, đơn hàng, giao dịch..."
+                  placeholder="Tìm dịch vụ, bộ dữ liệu, giao dịch..."
                 />
               </div>
 

@@ -1,41 +1,15 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import {
-  ArrowRight,
   Bell,
-  CheckCheck,
-  ChevronRight,
-  CircleAlert,
-  Clock3,
-  Database,
-  Download,
-  FileSpreadsheet,
-  Filter,
-  Settings,
+  ChartNoAxesColumn,
+  CircleDollarSign,
+  FileText,
+  Save,
+  ShieldCheck,
+  Sparkles,
   TrendingUp,
 } from "lucide-react";
 
-import {
-  sellerComplianceItems,
-  sellerHomeAlerts,
-  sellerHomeMetrics,
-  sellerNotificationFilters,
-  sellerNotifications,
-  sellerQuickActions,
-  sellerTopEndpoints,
-  sellerUsageStats,
-} from "@/features/seller/data";
-import {
-  AnalyticsHeatmapCard,
-  EndpointListCard,
-  HeaderButton,
-  HeaderLinkButton,
-  MetricGrid,
-  SellerPageHeader,
-  SearchInput,
-  StatusPill,
-  SummaryCard,
-  UsageOverviewCard,
-} from "@/features/seller/shared";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -45,54 +19,98 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
+import { Input } from "@/shared/components/ui/input";
 import { Progress } from "@/shared/components/ui/progress";
-import { cn } from "@/shared/lib/utils";
+import { Separator } from "@/shared/components/ui/separator";
 
 export function SellerHomePage() {
   return (
-    <div className="flex flex-col gap-4">
-      <SellerPageHeader
-        title={
-          <>
-            Xin chào, Nguyễn Văn Bán <span className="inline-block">👋</span>
-          </>
-        }
-        description="Tổng quan hoạt động bán dữ liệu, catalog và giao dịch trong 30 ngày qua."
-        actions={
-          <>
-            <HeaderButton variant="outline" icon={FileSpreadsheet}>
-              Xuất báo cáo
-            </HeaderButton>
-            <HeaderButton icon={Database}>Quản lý catalog</HeaderButton>
-          </>
-        }
-      />
+    <div className="space-y-4">
+      <header className="flex flex-col gap-3 rounded-2xl border bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-primary">
+            Chào mừng trở lại, Trần Thị Mai
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Trang chủ seller theo cấu trúc mới, tối giản và chỉ dùng shadcn UI.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button asChild variant="outline">
+            <Link href="/seller/analytics">Mở báo cáo</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/seller/notifications">Mở thông báo</Link>
+          </Button>
+          <Button>
+            <Save className="mr-2 size-4" />
+            Lưu
+          </Button>
+        </div>
+      </header>
 
-      <MetricGrid metrics={sellerHomeMetrics} />
-
-      <div className="grid gap-3 xl:grid-cols-[1.75fr_0.9fr]">
-        <UsageOverviewCard
-          eyebrow="30 ngày gần nhất · Tất cả catalog"
-          title="Lưu lượng tương tác"
-          total="168.420"
-          unit="interactions · 30 ngày"
-          badge="99,6% uptime"
-          stats={sellerUsageStats}
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <StatCard
+          title="Doanh thu tháng"
+          value="1.284.500.000 đ"
+          note="+32,8%"
+          icon={CircleDollarSign}
         />
-        <EndpointListCard
-          title="Danh mục nổi bật"
-          description="Theo số lượt tương tác"
-          items={sellerTopEndpoints}
+        <StatCard
+          title="Sản phẩm đang bán"
+          value="18"
+          note="+12,5%"
+          icon={ChartNoAxesColumn}
+        />
+        <StatCard
+          title="Khách hàng hoạt động"
+          value="142"
+          note="+18,4%"
+          icon={TrendingUp}
+        />
+        <StatCard
+          title="Đánh giá trung bình"
+          value="4,82"
+          note="+2,1%"
+          icon={Sparkles}
         />
       </div>
 
-      <div className="grid gap-3 xl:grid-cols-[1.2fr_0.8fr_0.75fr]">
-        <RecentCatalogCard />
-        <HomeAlertsCard />
-        <div className="flex flex-col gap-3">
-          <ComplianceCard />
-          <QuickActionsCard />
-        </div>
+      <div className="grid gap-3 xl:grid-cols-[1.55fr_0.95fr]">
+        <Card>
+          <CardHeader>
+            <CardTitle>Doanh thu 12 tháng gần nhất</CardTitle>
+            <CardDescription>
+              Giữ cấu trúc khối chính theo markdown mẫu
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-4xl font-semibold text-primary">
+              9.842.000.000 đ
+            </p>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <MiniStat label="Tổng giao dịch" value="2.847" />
+              <MiniStat label="Giá trị TB" value="3.458.000 đ" />
+              <MiniStat label="Khách hàng quay lại" value="68%" />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Sản phẩm bán chạy</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <ProgressRow label="Báo cáo tín dụng DN" value={100} amount="420" />
+            <ProgressRow label="Chỉ số thị trường CK" value={78} amount="310" />
+            <ProgressRow
+              label="Dữ liệu tỷ giá realtime"
+              value={56}
+              amount="245"
+            />
+            <ProgressRow label="DS DN niêm yết" value={42} amount="186" />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
@@ -100,52 +118,114 @@ export function SellerHomePage() {
 
 export function SellerAnalyticsPage() {
   return (
-    <div className="flex flex-col gap-4">
-      <SellerPageHeader
-        title="Phân tích doanh số"
-        description="Theo dõi lưu lượng, hiệu suất catalog và biến động doanh thu theo dịch vụ"
-        actions={
-          <>
-            <HeaderButton variant="outline" icon={Filter}>
-              Bộ lọc
-            </HeaderButton>
-            <HeaderButton icon={Download}>Xuất CSV</HeaderButton>
-          </>
-        }
-      />
+    <div className="space-y-4">
+      <header className="flex flex-col gap-3 rounded-2xl border bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-primary">
+            Doanh thu & Báo cáo tài chính
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Khung trang báo cáo mới, tối giản theo đúng 3 trang yêu cầu.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="outline">Năm 2026</Button>
+          <Button>
+            <FileText className="mr-2 size-4" />
+            Xuất báo cáo
+          </Button>
+        </div>
+      </header>
 
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-        <SummaryCard
-          label="Doanh thu tháng"
-          value="48.900.000 ₫"
-          icon={Database}
-          tone="blue"
+        <StatCard
+          title="Doanh thu 2026"
+          value="9.842.000.000 đ"
+          note="+128,4%"
+          icon={CircleDollarSign}
         />
-        <SummaryCard
-          label="Lượt tương tác"
-          value="168.420"
+        <StatCard
+          title="Doanh thu thuần"
+          value="8.613.000.000 đ"
+          note="+31,2%"
           icon={TrendingUp}
-          tone="emerald"
         />
-        <SummaryCard
-          label="Tỷ lệ chuyển đổi"
-          value="3,8%"
-          icon={CheckCheck}
-          tone="amber"
+        <StatCard
+          title="Số giao dịch"
+          value="2.847"
+          note="+42,1%"
+          icon={ChartNoAxesColumn}
         />
-        <SummaryCard label="Cảnh báo mở" value="5" icon={Bell} tone="violet" />
+        <StatCard
+          title="Khách hàng quay lại"
+          value="68%"
+          note="+12,4%"
+          icon={ShieldCheck}
+        />
       </div>
 
-      <div className="grid gap-3 xl:grid-cols-[1.65fr_0.9fr]">
-        <AnalyticsHeatmapCard
-          title="Lưu lượng theo giờ"
-          description="Biểu đồ 30 ngày gần nhất · Peak: 9.840 interactions/ngày"
-        />
-        <EndpointListCard
-          title="Phân bố theo catalog"
-          description="Top 5 dịch vụ được xem nhiều nhất"
-          items={sellerTopEndpoints}
-        />
+      <Card>
+        <CardHeader>
+          <CardTitle>Biểu đồ doanh thu theo tháng</CardTitle>
+          <CardDescription>
+            Giữ cấu trúc section chính, chỉ để placeholder dữ liệu
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-12 gap-2">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="space-y-1">
+                <div className="h-20 rounded-md bg-muted" />
+                <p className="text-center text-[11px] text-muted-foreground">
+                  T{i + 1}
+                </p>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="grid gap-3 xl:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Doanh thu theo sản phẩm</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <ProgressRow
+              label="Báo cáo tín dụng DN"
+              value={96}
+              amount="2.840"
+            />
+            <ProgressRow
+              label="Chỉ số thị trường CK"
+              value={72}
+              amount="1.920"
+            />
+            <ProgressRow
+              label="Dữ liệu tỷ giá realtime"
+              value={58}
+              amount="1.480"
+            />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Top khách hàng</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <CustomerRow
+              index={1}
+              name="Ngân hàng TMCP Việt Nam"
+              value="1.240.000.000 đ"
+            />
+            <CustomerRow
+              index={2}
+              name="CTCP Chứng khoán SSI"
+              value="980.000.000 đ"
+            />
+            <CustomerRow index={3} name="VietinBank" value="820.000.000 đ" />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
@@ -153,409 +233,218 @@ export function SellerAnalyticsPage() {
 
 export function SellerNotificationsPage() {
   return (
-    <div className="flex flex-col gap-4">
-      <SellerPageHeader
-        title="Trung tâm thông báo"
-        description="Tất cả sự kiện, cảnh báo và cập nhật từ buyer, hệ thống và đấu giá"
-        actions={
-          <>
-            <HeaderButton variant="outline" icon={CheckCheck}>
-              Đánh dấu tất cả đã đọc
-            </HeaderButton>
-            <HeaderLinkButton
-              href="/seller/settings"
-              variant="outline"
-              icon={Settings}
-            >
-              Cấu hình
-            </HeaderLinkButton>
-          </>
-        }
-      />
+    <div className="space-y-4">
+      <header className="flex flex-col gap-3 rounded-2xl border bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-primary">
+            Trung tâm thông báo
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Tất cả cập nhật đơn hàng, đấu giá, RFQ và cảnh báo hệ thống.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="outline">Đánh dấu đã đọc</Button>
+          <Button>
+            <Save className="mr-2 size-4" />
+            Lưu
+          </Button>
+        </div>
+      </header>
 
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-        <SummaryCard label="Chưa đọc" value="5" icon={Bell} tone="amber" />
-        <SummaryCard
-          label="Quan trọng"
-          value="3"
-          icon={CircleAlert}
-          tone="rose"
+        <StatCard title="Chưa đọc" value="6" note="Mới" icon={Bell} />
+        <StatCard
+          title="Quan trọng"
+          value="4"
+          note="Ưu tiên"
+          icon={ShieldCheck}
         />
-        <SummaryCard label="Hôm nay" value="8" icon={TrendingUp} tone="blue" />
-        <SummaryCard
-          label="Tổng tháng này"
-          value="142"
-          icon={CheckCheck}
-          tone="violet"
+        <StatCard title="Hôm nay" value="6" note="Cập nhật" icon={TrendingUp} />
+        <StatCard
+          title="Tháng này"
+          value="284"
+          note="Tổng"
+          icon={ChartNoAxesColumn}
         />
       </div>
 
-      <div className="grid gap-3 xl:grid-cols-[220px_1fr]">
-        <Card className="rounded-3xl border-border/70 shadow-sm">
-          <CardContent className="space-y-3 p-4">
-            <SearchInput placeholder="Tìm thông báo…" />
-            <div className="space-y-1.5">
-              {sellerNotificationFilters.map((filter, index) => (
-                <button
-                  key={filter.label}
-                  type="button"
-                  className={cn(
-                    "flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm transition",
-                    index === 0
-                      ? "bg-primary text-primary-foreground"
-                      : "hover:bg-muted"
-                  )}
-                >
-                  <span>{filter.label}</span>
-                  <Badge
-                    variant={index === 0 ? "secondary" : "outline"}
-                    className={cn(
-                      "rounded-full px-2 py-0 text-[11px]",
-                      index === 0 &&
-                        "border-primary-foreground/15 bg-primary-foreground/10 text-primary-foreground"
-                    )}
-                  >
-                    {filter.value}
-                  </Badge>
-                </button>
-              ))}
-            </div>
+      <div className="grid gap-3 xl:grid-cols-[260px_1fr]">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Bộ lọc</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <Input placeholder="Tìm thông báo..." />
+            <Button className="w-full justify-start">Tất cả</Button>
+            <Button variant="ghost" className="w-full justify-start">
+              Chưa đọc
+            </Button>
+            <Button variant="ghost" className="w-full justify-start">
+              Quan trọng
+            </Button>
+            <Button variant="ghost" className="w-full justify-start">
+              Đấu giá
+            </Button>
           </CardContent>
         </Card>
 
-        <div className="space-y-3">
-          {sellerNotifications.map((item) => (
-            <NotificationCard key={item.id} {...item} />
-          ))}
-          <Button variant="outline" className="h-9 rounded-xl px-4 text-sm">
-            Tải thêm thông báo cũ hơn
-          </Button>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Danh sách thông báo</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <NotificationRow
+              title="Đơn hàng mới #ORD-2026-04-12847"
+              tag="Quan trọng"
+              time="2 phút trước"
+            />
+            <NotificationRow
+              title="Bid mới trên phiên AUC-2026-0412"
+              tag="Đấu giá"
+              time="15 phút trước"
+            />
+            <NotificationRow
+              title="RFQ mới phù hợp (AI Match 95%)"
+              tag="RFQ"
+              time="1 giờ trước"
+            />
+            <NotificationRow
+              title="Đăng nhập mới từ thiết bị khác"
+              tag="Bảo mật"
+              time="Hôm qua"
+            />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 }
 
 export function SellerCatalogPage() {
-  return (
-    <SimpleSectionPage
-      title="Catalog dịch vụ"
-      description="Quản lý danh mục đang bán, giá niêm yết và trạng thái xuất bản."
-    />
-  );
+  return <PlaceholderPage title="Catalog dịch vụ" />;
 }
 
 export function SellerSubscriptionsPage() {
-  return (
-    <SimpleSectionPage
-      title="Dịch vụ đã đăng ký"
-      description="Theo dõi buyer, hợp đồng và các gói dịch vụ đang hoạt động."
-    />
-  );
+  return <PlaceholderPage title="Dịch vụ đã đăng ký" />;
 }
 
 export function SellerApiKeysPage() {
+  return <PlaceholderPage title="API Keys & Token" />;
+}
+
+function PlaceholderPage({ title }: { title: string }) {
   return (
-    <SimpleSectionPage
-      title="API Keys & Token"
-      description="Quản lý khóa truy cập, token tích hợp và phạm vi quyền."
-    />
+    <Card>
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>
+          Phần nội dung cũ đã bỏ, chỉ giữ cấu trúc chung theo yêu cầu.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Button asChild variant="outline">
+          <Link href="/seller">Quay về Trang chủ</Link>
+        </Button>
+      </CardContent>
+    </Card>
   );
 }
 
-export function SellerSandboxPage() {
-  return (
-    <SimpleSectionPage
-      title="Sandbox & Clean Room"
-      description="Môi trường kiểm thử tích hợp và phân tích không sao chép dữ liệu gốc."
-    />
-  );
-}
-
-export function SellerAuctionsPage() {
-  return (
-    <SimpleSectionPage
-      title="Đấu giá dữ liệu"
-      description="Theo dõi các phiên đấu giá, bid mới và lịch sử phản hồi."
-    />
-  );
-}
-
-export function SellerSettingsPage() {
-  return (
-    <SimpleSectionPage
-      title="Cài đặt tài khoản"
-      description="Quản lý hồ sơ seller, workspace và các tuỳ chọn vận hành."
-    />
-  );
-}
-
-function SimpleSectionPage({
+function StatCard({
   title,
-  description,
+  value,
+  note,
+  icon: Icon,
 }: {
   title: string;
-  description: string;
+  value: string;
+  note: string;
+  icon: typeof Bell;
 }) {
   return (
-    <div className="flex flex-col gap-4">
-      <SellerPageHeader title={title} description={description} />
-      <div className="grid gap-3 md:grid-cols-3">
-        <Card className="rounded-3xl border-border/70 shadow-sm md:col-span-2">
-          <CardHeader>
-            <CardTitle className="text-xl text-primary">
-              Không gian đang được chuẩn hóa
-            </CardTitle>
-            <CardDescription>
-              Seller portal hiện đã chuyển sang cùng cấu trúc với buyer portal,
-              nên các trang con sẽ được mở rộng dần theo cùng pattern.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {sellerQuickActions.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-2xl border border-border/70 p-3"
-              >
-                <p className="text-sm font-medium text-primary">{item.label}</p>
-                <p className="text-sm text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-        <Card className="rounded-3xl border-border/70 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-xl text-primary">Gợi ý nhanh</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {sellerComplianceItems.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-2xl border border-border/70 p-3"
-              >
-                <p className="text-sm font-medium text-primary">{item.label}</p>
-                <p className="text-sm text-muted-foreground">{item.detail}</p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardDescription>{title}</CardDescription>
+        <Icon className="size-4 text-muted-foreground" />
+      </CardHeader>
+      <CardContent>
+        <p className="text-3xl font-semibold text-primary">{value}</p>
+        <p className="text-xs text-emerald-600">{note}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+function MiniStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border p-3">
+      <p className="text-xs text-muted-foreground">{label}</p>
+      <p className="text-sm font-semibold text-primary">{value}</p>
     </div>
   );
 }
 
-function RecentCatalogCard() {
+function ProgressRow({
+  label,
+  value,
+  amount,
+}: {
+  label: string;
+  value: number;
+  amount: string;
+}) {
   return (
-    <Card className="rounded-3xl border-border/70 shadow-sm">
-      <CardHeader className="flex flex-row items-start justify-between gap-3 pb-3">
-        <div>
-          <CardTitle className="text-[1.2rem] text-primary">
-            Catalog đã bán gần đây
-          </CardTitle>
-          <CardDescription>
-            Quản lý danh mục và các dịch vụ đang hoạt động
-          </CardDescription>
-        </div>
-        <Link
-          href="/seller/catalog"
-          className="inline-flex items-center text-sm font-medium text-primary"
-        >
-          Xem tất cả
-          <ChevronRight className="ml-1 size-4" />
-        </Link>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {sellerHomeMetrics.slice(0, 3).map((metric) => (
-          <div
-            key={metric.label}
-            className="rounded-2xl border border-border/70 p-3"
-          >
-            <div className="mb-2 flex items-start justify-between gap-3">
-              <div className="flex gap-3">
-                <div className="flex size-10 items-center justify-center rounded-2xl bg-primary text-chart-1">
-                  <Database className="size-5" />
-                </div>
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs">
-                    <span className="text-muted-foreground">
-                      {metric.label}
-                    </span>
-                    <StatusPill tone="emerald">Đang hoạt động</StatusPill>
-                  </div>
-                  <p className="mt-1 text-sm font-semibold text-primary">
-                    {metric.value}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {metric.detail}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Mức sử dụng</span>
-                <span className="font-medium text-primary">78%</span>
-              </div>
-              <Progress
-                value={78}
-                className="h-2.5 rounded-full bg-secondary"
-              />
-            </div>
-          </div>
-        ))}
-      </CardContent>
-    </Card>
+    <div className="space-y-1">
+      <div className="flex items-center justify-between text-sm">
+        <span>{label}</span>
+        <span className="font-medium">{amount}</span>
+      </div>
+      <Progress value={value} />
+    </div>
   );
 }
 
-function HomeAlertsCard() {
+function CustomerRow({
+  index,
+  name,
+  value,
+}: {
+  index: number;
+  name: string;
+  value: string;
+}) {
   return (
-    <Card className="rounded-3xl border-border/70 shadow-sm">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-[1.2rem] text-primary">
-          Cảnh báo & Thông báo
-        </CardTitle>
-        <CardDescription>
-          Các sự kiện cần ưu tiên xử lý trong hôm nay
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {sellerHomeAlerts.map((item) => (
-          <Link
-            key={item.title}
-            href={item.href}
-            className="block rounded-2xl border border-border/70 p-3 hover:border-primary/20"
-          >
-            <div className="mb-2 flex items-center justify-between gap-3">
-              <StatusPill tone={item.tone}>{item.time}</StatusPill>
-              <ArrowRight className="size-4 text-muted-foreground" />
-            </div>
-            <p className="text-sm font-semibold text-primary">{item.title}</p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {item.description}
-            </p>
-          </Link>
-        ))}
-      </CardContent>
-    </Card>
+    <div>
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-sm font-medium">
+          {index}. {name}
+        </p>
+        <p className="text-sm font-semibold text-emerald-700">{value}</p>
+      </div>
+      <Separator className="mt-2" />
+    </div>
   );
 }
 
-function ComplianceCard() {
-  return (
-    <Card className="rounded-3xl border-border/70 shadow-sm">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-[1.1rem] text-primary">
-          Trạng thái chuẩn hóa
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {sellerComplianceItems.map((item) => (
-          <div
-            key={item.label}
-            className="rounded-2xl border border-border/70 p-3"
-          >
-            <div className="mb-1 flex items-center justify-between gap-3">
-              <p className="text-sm font-medium text-primary">{item.label}</p>
-              <p className="text-sm font-semibold text-primary">{item.value}</p>
-            </div>
-            <p className="text-sm text-muted-foreground">{item.detail}</p>
-          </div>
-        ))}
-      </CardContent>
-    </Card>
-  );
-}
-
-function QuickActionsCard() {
-  return (
-    <Card className="rounded-3xl border-border/70 shadow-sm">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-[1.1rem] text-primary">
-          Thao tác nhanh
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-2">
-        {sellerQuickActions.map((item) => (
-          <Button
-            key={item.label}
-            asChild
-            variant="outline"
-            className="h-auto w-full justify-between rounded-2xl px-3 py-3 text-left"
-          >
-            <Link href={item.href}>
-              <div>
-                <p className="text-sm font-medium text-primary">{item.label}</p>
-                <p className="text-sm text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
-              <ChevronRight className="size-4 text-muted-foreground" />
-            </Link>
-          </Button>
-        ))}
-      </CardContent>
-    </Card>
-  );
-}
-
-function NotificationCard({
+function NotificationRow({
   title,
-  description,
-  category,
+  tag,
   time,
-  tone,
-  unread,
-  href,
 }: {
   title: string;
-  description: string;
-  category: string;
+  tag: string;
   time: string;
-  tone: "amber" | "blue" | "rose";
-  unread?: boolean;
-  href: string;
 }) {
-  const iconMap = {
-    amber: Clock3,
-    blue: TrendingUp,
-    rose: CircleAlert,
-  } satisfies Record<string, typeof Clock3>;
-  const Icon = iconMap[tone];
-
   return (
-    <Link href={href} className="block">
-      <Card className="rounded-3xl border-border/70 shadow-sm transition hover:border-primary/20">
-        <CardContent className="flex gap-3 p-4">
-          <div
-            className={cn(
-              "flex size-10 items-center justify-center rounded-2xl",
-              tone === "amber"
-                ? "bg-amber-50 text-amber-600"
-                : tone === "blue"
-                  ? "bg-blue-50 text-blue-600"
-                  : "bg-rose-50 text-rose-600"
-            )}
-          >
-            <Icon className="size-5" />
-          </div>
-          <div className="min-w-0 flex-1 space-y-2">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-              <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-sm font-semibold text-primary">{title}</h3>
-                {unread ? (
-                  <span className="size-2 rounded-full bg-blue-500" />
-                ) : null}
-                <StatusPill tone={tone}>{category}</StatusPill>
-              </div>
-              <p className="text-sm text-muted-foreground">{time}</p>
-            </div>
-            <p className="text-sm text-muted-foreground">{description}</p>
-          </div>
-        </CardContent>
-      </Card>
-    </Link>
+    <div className="rounded-lg border p-3">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <p className="text-sm font-medium text-primary">{title}</p>
+          <Badge variant="outline">{tag}</Badge>
+        </div>
+        <p className="text-xs text-muted-foreground">{time}</p>
+      </div>
+    </div>
   );
 }
