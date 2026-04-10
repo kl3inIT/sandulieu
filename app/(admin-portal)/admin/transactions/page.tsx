@@ -10,6 +10,8 @@ import {
   TrendingUp,
 } from "lucide-react";
 
+import { AdminPageHeader } from "@/shared/components/admin/admin-page-header";
+import { AdminStatCard } from "@/shared/components/admin/admin-stat-card";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -160,114 +162,88 @@ export default function AdminTransactionsPage() {
     { rank: "#5", name: "Vingroup JSC", amount: "1.240.000.000 ₫" },
   ];
 
+  const summaryCards = [
+    {
+      title: "Giao dịch hôm nay",
+      value: "4.812",
+      icon: Activity,
+      iconClassName: "size-9 bg-[#eff6ff] text-[#3b82f6]",
+      meta: (
+        <div className="mt-3 flex items-center text-[0.8rem] font-medium text-[#64748b]">
+          <span className="mr-1 flex items-center text-[#10b981]">
+            <TrendingUp className="mr-1 size-3.5" /> +18.2%
+          </span>
+          <span>so với hôm qua</span>
+        </div>
+      ),
+    },
+    {
+      title: "GMV hôm nay",
+      value: (
+        <>
+          842.000.000.000 <span className="text-[1.8rem]">₫</span>
+        </>
+      ),
+      meta: (
+        <div className="mt-3 flex items-center text-[0.8rem] font-medium text-[#64748b]">
+          <span className="mr-1 flex items-center text-[#10b981]">
+            <TrendingUp className="mr-1 size-3.5" /> +24.5%
+          </span>
+        </div>
+      ),
+    },
+    {
+      title: "Flagged cần review",
+      value: "12",
+      icon: AlertTriangle,
+      iconClassName:
+        "size-9 border border-[#fca5a5] bg-[#fef2f2] text-[#ef4444]",
+    },
+    {
+      title: "Tỷ lệ hoàn tất",
+      value: "98,4%",
+      icon: CheckCircle2,
+      iconClassName:
+        "size-9 border border-[#fde68a] bg-[#fffbeb] text-[#d97706]",
+    },
+  ] as const;
+
   return (
     <div className="flex flex-col gap-6 p-1">
-      {/* Header */}
-      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-        <div>
-          <h1 className="text-[1.8rem] font-semibold tracking-tight text-[#0b2e5c] sm:text-[2rem]">
-            Giám sát đơn hàng toàn sàn
-          </h1>
-          <p className="mt-1 text-[0.95rem] text-[#607694]">
-            Oversight mọi giao dịch mua bán trên sàn · Phát hiện bất thường ·
-            Can thiệp khi cần
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
-            className="h-10 rounded-[0.8rem] border-[#d9e0e7] bg-white px-4 text-[#0b2e5c] hover:bg-slate-50"
-          >
-            <Filter className="mr-2 size-4" />
-            Bộ lọc nâng cao
-          </Button>
-          <Button
-            variant="outline"
-            className="h-10 rounded-[0.8rem] border-[#d9e0e7] bg-white px-4 text-[#0b2e5c] hover:bg-slate-50"
-          >
-            <Download className="mr-2 size-4" />
-            Xuất dữ liệu
-          </Button>
-        </div>
-      </div>
+      <AdminPageHeader
+        title="Giám sát đơn hàng toàn sàn"
+        description="Oversight mọi giao dịch mua bán trên sàn · Phát hiện bất thường · Can thiệp khi cần"
+        actions={
+          <>
+            <Button
+              variant="outline"
+              className="h-10 rounded-[0.8rem] border-[#d9e0e7] bg-white px-4 text-[#0b2e5c] hover:bg-slate-50"
+            >
+              <Filter className="mr-2 size-4" />
+              Bộ lọc nâng cao
+            </Button>
+            <Button
+              variant="outline"
+              className="h-10 rounded-[0.8rem] border-[#d9e0e7] bg-white px-4 text-[#0b2e5c] hover:bg-slate-50"
+            >
+              <Download className="mr-2 size-4" />
+              Xuất dữ liệu
+            </Button>
+          </>
+        }
+      />
 
-      {/* Summary Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Giao dịch hôm nay */}
-        <Card className="rounded-[1.2rem] border-[#d9e0e7] bg-white shadow-sm ring-0">
-          <CardContent className="p-5 md:py-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-[0.9rem] font-medium text-[#64748b]">
-                Giao dịch hôm nay
-              </p>
-              <div className="p-2 bg-[#eff6ff] rounded-[0.6rem] text-[#3b82f6]">
-                <Activity className="size-5" />
-              </div>
-            </div>
-            <p className="text-[2rem] font-bold text-[#0b2e5c] leading-none mb-3">
-              4.812
-            </p>
-            <div className="flex items-center text-[0.8rem] font-medium text-[#64748b]">
-              <span className="text-[#10b981] flex items-center mr-1">
-                <TrendingUp className="mr-1 size-3.5" /> +18.2%
-              </span>
-              <span>so với hôm qua</span>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* GMV hôm nay */}
-        <Card className="rounded-[1.2rem] border-[#d9e0e7] bg-white shadow-sm ring-0">
-          <CardContent className="p-5 md:py-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-[0.9rem] font-medium text-[#64748b]">
-                GMV hôm nay
-              </p>
-            </div>
-            <p className="text-[2rem] font-bold text-[#0b2e5c] leading-none mb-3">
-              842.000.000.000 <span className="text-[1.8rem]">₫</span>
-            </p>
-            <div className="flex items-center text-[0.8rem] font-medium text-[#64748b]">
-              <span className="text-[#10b981] flex items-center mr-1">
-                <TrendingUp className="mr-1 size-3.5" /> +24.5%
-              </span>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Flagged */}
-        <Card className="rounded-[1.2rem] border-[#d9e0e7] bg-white shadow-sm ring-0">
-          <CardContent className="p-5 md:py-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-[0.9rem] font-medium text-[#64748b]">
-                Flagged cần review
-              </p>
-              <div className="p-2 border border-[#fca5a5] bg-[#fef2f2] rounded-[0.6rem] text-[#ef4444]">
-                <AlertTriangle className="size-5" />
-              </div>
-            </div>
-            <p className="text-[2rem] font-bold text-[#0b2e5c] leading-none mb-3">
-              12
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Tỷ lệ hoàn tất */}
-        <Card className="rounded-[1.2rem] border-[#d9e0e7] bg-white shadow-sm ring-0">
-          <CardContent className="p-5 md:py-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-[0.9rem] font-medium text-[#64748b]">
-                Tỷ lệ hoàn tất
-              </p>
-              <div className="p-2 border border-[#fde68a] bg-[#fffbeb] rounded-[0.6rem] text-[#d97706]">
-                <CheckCircle2 className="size-5" />
-              </div>
-            </div>
-            <p className="text-[2rem] font-bold text-[#0b2e5c] leading-none mb-3">
-              98,4%
-            </p>
-          </CardContent>
-        </Card>
+        {summaryCards.map((card) => (
+          <AdminStatCard
+            key={card.title}
+            title={card.title}
+            value={card.value}
+            icon={card.icon}
+            iconClassName={card.iconClassName}
+            meta={card.meta}
+          />
+        ))}
       </div>
 
       {/* Main Layout Grid */}

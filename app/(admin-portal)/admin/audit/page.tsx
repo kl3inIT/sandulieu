@@ -1,19 +1,17 @@
 import {
   Activity,
-  ArrowRight,
   ArrowDownToLine,
-  Clock3,
   Eye,
   FileText,
   Filter,
   Shield,
   ShieldAlert,
-  ShieldCheck,
   Sparkles,
-  UserCog,
   Users,
 } from "lucide-react";
 
+import { AdminPageHeader } from "@/shared/components/admin/admin-page-header";
+import { AdminStatCard } from "@/shared/components/admin/admin-stat-card";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -195,62 +193,49 @@ export default function AdminAuditPage() {
   return (
     <div className="flex flex-col gap-4 rounded-[1.6rem] bg-[#f2f6fb] px-4 py-4 text-[#0c2853] sm:px-5 lg:px-6">
       <section className="flex flex-col gap-5 rounded-[1.5rem] bg-[linear-gradient(180deg,#f7faff_0%,#eef4fb_100%)] px-4 py-4 shadow-[0_1px_0_rgba(13,43,88,0.04),0_12px_28px_rgba(11,46,92,0.06)] ring-1 ring-[#d8e0ea] sm:px-5">
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
-          <div className="space-y-2">
-            <h1 className="text-[1.9rem] font-semibold tracking-tight text-[#0a2e5c] sm:text-[2.5rem] sm:leading-[1.02]">
-              Nhật ký kiểm toán toàn hệ thống
-            </h1>
-            <p className="max-w-4xl text-[0.95rem] leading-6 text-[#6a7f99] sm:text-[1rem]">
-              Tra cứu/lọc/xuất nhật ký · Ghi chuỗi NDACchain · Lưu trữ 7 năm
-              theo Nghị định 13/2023
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-            <Button
-              variant="outline"
-              className="h-10 rounded-[0.95rem] border-[#d8e0ea] bg-white px-4 text-[#0a2e5c] shadow-none hover:bg-[#f8fbff]"
-            >
-              <Filter className="mr-2 size-4" />
-              Bộ lọc nâng cao
-            </Button>
-            <Button
-              variant="outline"
-              className="h-10 rounded-[0.95rem] border-[#d8e0ea] bg-white px-4 text-[#0a2e5c] shadow-none hover:bg-[#f8fbff]"
-            >
-              <ArrowDownToLine className="mr-2 size-4" />
-              Export CSV / JSON
-            </Button>
-          </div>
-        </div>
+        <AdminPageHeader
+          className="xl:items-start xl:justify-between"
+          contentClassName="space-y-2"
+          titleClassName="text-[1.9rem] text-[#0a2e5c] sm:text-[2.5rem] sm:leading-[1.02]"
+          descriptionClassName="max-w-4xl leading-6 text-[#6a7f99] sm:text-[1rem]"
+          actionsClassName="flex-col gap-2 sm:flex-row sm:items-center"
+          title="Nhật ký kiểm toán toàn hệ thống"
+          description="Tra cứu/lọc/xuất nhật ký · Ghi chuỗi NDACchain · Lưu trữ 7 năm theo Nghị định 13/2023"
+          actions={
+            <>
+              <Button
+                variant="outline"
+                className="h-10 rounded-[0.95rem] border-[#d8e0ea] bg-white px-4 text-[#0a2e5c] shadow-none hover:bg-[#f8fbff]"
+              >
+                <Filter className="mr-2 size-4" />
+                Bộ lọc nâng cao
+              </Button>
+              <Button
+                variant="outline"
+                className="h-10 rounded-[0.95rem] border-[#d8e0ea] bg-white px-4 text-[#0a2e5c] shadow-none hover:bg-[#f8fbff]"
+              >
+                <ArrowDownToLine className="mr-2 size-4" />
+                Export CSV / JSON
+              </Button>
+            </>
+          }
+        />
 
         <section className="grid gap-3 xl:grid-cols-4">
-          {overviewCards.map((card) => {
-            const Icon = card.icon;
-
-            return (
-              <Card
-                key={card.title}
-                className="rounded-[1.15rem] border-[#d8e0ea] bg-white shadow-[0_1px_0_rgba(13,43,88,0.04),0_8px_18px_rgba(11,46,92,0.05)] ring-0"
-              >
-                <CardContent className="flex items-start justify-between gap-3 px-4 py-5">
-                  <div className="space-y-2">
-                    <p className="text-[0.92rem] text-[#7187a2]">
-                      {card.title}
-                    </p>
-                    <p className="text-[2rem] leading-none font-semibold tracking-tight text-[#091f40] sm:text-[2.15rem]">
-                      {card.value}
-                    </p>
-                  </div>
-                  <div
-                    className={`flex size-11 items-center justify-center rounded-[0.95rem] ${card.iconClassName}`}
-                  >
-                    <Icon className="size-5" />
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {overviewCards.map((card) => (
+            <AdminStatCard
+              key={card.title}
+              title={card.title}
+              value={card.value}
+              icon={card.icon}
+              cardClassName="rounded-[1.15rem] border-[#d8e0ea] shadow-[0_1px_0_rgba(13,43,88,0.04),0_8px_18px_rgba(11,46,92,0.05)]"
+              contentClassName="px-4 py-5"
+              headerClassName="items-start gap-3"
+              titleClassName="text-[0.92rem] text-[#7187a2]"
+              valueClassName="text-[2rem] font-semibold tracking-tight text-[#091f40] sm:text-[2.15rem]"
+              iconClassName={`size-11 rounded-[0.95rem] ${card.iconClassName}`}
+            />
+          ))}
         </section>
       </section>
 

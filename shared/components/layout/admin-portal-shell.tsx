@@ -1,6 +1,12 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import {
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import {
   Bell,
   ChevronDown,
@@ -33,6 +39,7 @@ const DRAWER_EASING = "cubic-bezier(0.22,1,0.36,1)";
 const DRAWER_DURATION = 440;
 const DESKTOP_DRAWER_CLOSE_DELAY = 180;
 const SIDEBAR_MODE_STORAGE_KEY = "admin-sidebar-mode";
+const SIDEBAR_MODE_EVENT = "admin-sidebar-mode-change";
 
 type DesktopSidebarMode = "static" | "slim" | "drawer" | "overlay";
 
@@ -63,25 +70,48 @@ const sidebarModeOptions: Array<{
   },
 ];
 
+function parseDesktopMode(value: string | null): DesktopSidebarMode | null {
+  if (
+    value === "static" ||
+    value === "slim" ||
+    value === "drawer" ||
+    value === "overlay"
+  ) {
+    return value;
+  }
+
+  return null;
+}
+
 function getStoredDesktopMode(): DesktopSidebarMode {
   if (typeof window === "undefined") {
     return "slim";
   }
 
-  const storedMode = window.localStorage.getItem(
-    SIDEBAR_MODE_STORAGE_KEY
-  ) as DesktopSidebarMode | null;
+  return (
+    parseDesktopMode(window.localStorage.getItem(SIDEBAR_MODE_STORAGE_KEY)) ??
+    "slim"
+  );
+}
 
-  if (
-    storedMode === "static" ||
-    storedMode === "slim" ||
-    storedMode === "drawer" ||
-    storedMode === "overlay"
-  ) {
-    return storedMode;
+function subscribeToDesktopMode(onStoreChange: () => void) {
+  if (typeof window === "undefined") {
+    return () => {};
   }
 
-  return "slim";
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === null || event.key === SIDEBAR_MODE_STORAGE_KEY) {
+      onStoreChange();
+    }
+  };
+
+  window.addEventListener("storage", handleStorage);
+  window.addEventListener(SIDEBAR_MODE_EVENT, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener(SIDEBAR_MODE_EVENT, onStoreChange);
+  };
 }
 
 export function AdminPortalShell({
@@ -89,14 +119,25 @@ export function AdminPortalShell({
 }: Readonly<{ children: ReactNode }>) {
   const isMobile = useIsMobile();
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [desktopMode, setDesktopMode] =
-    useState<DesktopSidebarMode>(getStoredDesktopMode);
+  const storedDesktopMode = useSyncExternalStore(
+    subscribeToDesktopMode,
+    getStoredDesktopMode,
+    () => "slim"
+  );
+  const [desktopModeOverride, setDesktopModeOverride] =
+    useState<DesktopSidebarMode | null>(null);
   const [isDesktopDrawerOpen, setIsDesktopDrawerOpen] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const desktopMode = desktopModeOverride ?? storedDesktopMode;
 
   useEffect(() => {
+    if (desktopModeOverride === null) {
+      return;
+    }
+
     window.localStorage.setItem(SIDEBAR_MODE_STORAGE_KEY, desktopMode);
-  }, [desktopMode]);
+    window.dispatchEvent(new Event(SIDEBAR_MODE_EVENT));
+  }, [desktopMode, desktopModeOverride]);
 
   useEffect(() => {
     return () => {
@@ -176,7 +217,9 @@ export function AdminPortalShell({
 
     clearCloseTimer();
     setIsDesktopDrawerOpen(false);
-    setDesktopMode((prev) => (prev === "slim" ? "static" : "slim"));
+    setDesktopModeOverride((prev) =>
+      (prev ?? storedDesktopMode) === "slim" ? "static" : "slim"
+    );
   };
 
   const handleSidebarModeChange = (nextMode: string) => {
@@ -191,7 +234,7 @@ export function AdminPortalShell({
 
     clearCloseTimer();
     setIsDesktopDrawerOpen(false);
-    setDesktopMode(nextMode);
+    setDesktopModeOverride(nextMode);
   };
 
   const showOverlay =

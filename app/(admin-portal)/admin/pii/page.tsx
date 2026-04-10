@@ -8,6 +8,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { AdminPageHeader } from "@/shared/components/admin/admin-page-header";
+import { AdminStatCard } from "@/shared/components/admin/admin-stat-card";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -257,68 +259,46 @@ export default function AdminPiiPage() {
 
   return (
     <div className="flex flex-col gap-6 p-1">
-      {/* Header */}
-      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-        <div>
-          <h1 className="text-[1.8rem] font-semibold tracking-tight text-[#0b2e5c] sm:text-[2rem]">
-            Giám sát dữ liệu cá nhân (PII)
-          </h1>
-          <p className="mt-1 text-[0.95rem] text-[#607694]">
-            Phát hiện và giám sát dữ liệu cá nhân trên toàn sàn · Tuân thủ Nghị
-            định 13/2023
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            className="h-10 rounded-[0.8rem] px-4 text-[#0b2e5c] hover:bg-slate-100 font-semibold"
-          >
-            <Settings className="mr-2 size-4 text-[#64748b]" />
-            Cấu hình quy tắc
-          </Button>
-          <Button className="h-10 rounded-[0.8rem] bg-[#0b2e5c] px-4 text-white hover:bg-[#163b6d] font-semibold">
-            <RefreshCw className="mr-2 size-4" />
-            Quét toàn sàn ngay
-          </Button>
-        </div>
-      </div>
-
-      {/* Stat Cards */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {statCards.map((item) => {
-          const Icon = item.icon;
-          return (
-            <Card
-              key={item.label}
-              className="rounded-[1.2rem] border-[#d9e0e7] bg-white shadow-sm ring-0"
+      <AdminPageHeader
+        title="Giám sát dữ liệu cá nhân (PII)"
+        description="Phát hiện và giám sát dữ liệu cá nhân trên toàn sàn · Tuân thủ Nghị định 13/2023"
+        actions={
+          <>
+            <Button
+              variant="ghost"
+              className="h-10 rounded-[0.8rem] px-4 font-semibold text-[#0b2e5c] hover:bg-slate-100"
             >
-              <CardContent className="flex flex-col justify-between p-5 md:py-6">
-                <div className="flex items-center justify-between mb-4">
-                  <p className="text-[0.9rem] font-medium text-[#64748b] whitespace-pre-wrap flex-1 mr-2">
-                    {item.label}
-                  </p>
-                  <div
-                    className={`flex size-10 shrink-0 items-center justify-center rounded-[0.8rem] ${item.tone}`}
-                  >
-                    <Icon className="size-5" />
-                  </div>
-                </div>
-                <div>
-                  <p className="font-bold leading-none tracking-tight text-[#0b2e5c] text-[2rem]">
-                    {item.value}
-                  </p>
-                  {item.sub && (
-                    <p
-                      className={`mt-2 text-[0.8rem] font-bold ${item.subTone}`}
-                    >
-                      {item.sub}
-                    </p>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+              <Settings className="mr-2 size-4 text-[#64748b]" />
+              Cấu hình quy tắc
+            </Button>
+            <Button className="h-10 rounded-[0.8rem] bg-[#0b2e5c] px-4 font-semibold text-white hover:bg-[#163b6d]">
+              <RefreshCw className="mr-2 size-4" />
+              Quét toàn sàn ngay
+            </Button>
+          </>
+        }
+      />
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {statCards.map((item) => (
+          <AdminStatCard
+            key={item.label}
+            title={item.label}
+            value={item.value}
+            icon={item.icon}
+            contentClassName="flex flex-col justify-between p-5 md:py-6"
+            titleClassName="mr-2 flex-1 whitespace-pre-wrap"
+            valueClassName="text-[2rem] font-bold tracking-tight text-[#0b2e5c]"
+            iconClassName={`size-10 shrink-0 ${item.tone}`}
+            meta={
+              item.sub ? (
+                <p className={`mt-2 text-[0.8rem] font-bold ${item.subTone}`}>
+                  {item.sub}
+                </p>
+              ) : null
+            }
+          />
+        ))}
       </div>
 
       {/* Cảnh báo PII đang mở Series */}

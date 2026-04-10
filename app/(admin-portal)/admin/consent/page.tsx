@@ -1,6 +1,5 @@
 import {
   ArrowDownToLine,
-  ArrowRight,
   CircleCheck,
   CircleX,
   Eye,
@@ -8,11 +7,11 @@ import {
   Shield,
   ShieldAlert,
   ShieldCheck,
-  Sparkles,
   UserCheck,
   Users,
 } from "lucide-react";
 
+import { AdminStatCard } from "@/shared/components/admin/admin-stat-card";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -162,18 +161,6 @@ const transparencyCards = [
   },
 ] as const;
 
-function SectionIcon({ tone }: { tone: "green" | "gold" }) {
-  return tone === "green" ? (
-    <div className="flex size-14 items-center justify-center rounded-[0.95rem] bg-[#091f40] text-[#f1b62c] shadow-[0_2px_10px_rgba(9,31,64,0.08)]">
-      <Shield className="size-7" />
-    </div>
-  ) : (
-    <div className="flex size-14 items-center justify-center rounded-[0.95rem] bg-[#ffb11a] text-[#091f40] shadow-[0_2px_10px_rgba(9,31,64,0.08)]">
-      <Sparkles className="size-7" />
-    </div>
-  );
-}
-
 export default function AdminConsentPage() {
   return (
     <div className="flex flex-col gap-4 rounded-[1.6rem] bg-[#f2f6fb] px-4 py-4 text-[#0c2853] sm:px-5 lg:px-6">
@@ -249,37 +236,29 @@ export default function AdminConsentPage() {
       </section>
 
       <section className="grid gap-3 xl:grid-cols-4">
-        {overviewCards.map((card) => {
-          const Icon = card.icon;
-
-          return (
-            <Card
-              key={card.title}
-              className="rounded-[1.15rem] border-[#d8e0ea] bg-white shadow-[0_1px_0_rgba(13,43,88,0.04),0_8px_18px_rgba(11,46,92,0.05)] ring-0"
-            >
-              <CardContent className="flex items-start justify-between gap-3 px-4 py-5">
-                <div className="space-y-2">
-                  <p className="text-[0.92rem] text-[#7187a2]">{card.title}</p>
-                  <p className="text-[2rem] leading-none font-semibold tracking-tight text-[#091f40] sm:text-[2.15rem]">
-                    {card.value}
-                  </p>
-                  {card.delta ? (
-                    <Badge
-                      className={`rounded-full px-2.5 py-0.5 text-[0.76rem] font-medium hover:bg-current/0 ${card.deltaClassName}`}
-                    >
-                      {card.delta}
-                    </Badge>
-                  ) : null}
-                </div>
-                <div
-                  className={`flex size-11 items-center justify-center rounded-[0.95rem] ${card.iconClassName}`}
+        {overviewCards.map((card) => (
+          <AdminStatCard
+            key={card.title}
+            title={card.title}
+            value={card.value}
+            icon={card.icon}
+            cardClassName="rounded-[1.15rem] border-[#d8e0ea] shadow-[0_1px_0_rgba(13,43,88,0.04),0_8px_18px_rgba(11,46,92,0.05)]"
+            contentClassName="px-4 py-5"
+            headerClassName="items-start gap-3"
+            titleClassName="text-[0.92rem] text-[#7187a2]"
+            valueClassName="text-[2rem] font-semibold tracking-tight text-[#091f40] sm:text-[2.15rem]"
+            iconClassName={`size-11 rounded-[0.95rem] ${card.iconClassName}`}
+            meta={
+              card.delta ? (
+                <Badge
+                  className={`mt-2 rounded-full px-2.5 py-0.5 text-[0.76rem] font-medium hover:bg-current/0 ${card.deltaClassName}`}
                 >
-                  <Icon className="size-5" />
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+                  {card.delta}
+                </Badge>
+              ) : null
+            }
+          />
+        ))}
       </section>
 
       <section className="grid gap-4 xl:grid-cols-[1fr_0.9fr]">
