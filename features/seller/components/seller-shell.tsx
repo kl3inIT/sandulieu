@@ -24,6 +24,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/components/ui/dropdown-menu";
@@ -48,7 +49,7 @@ export function SellerShell({ children }: SellerShellProps) {
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#f7fafd_0%,#eef4fa_100%)] text-foreground">
       <div className="grid min-h-screen lg:grid-cols-[254px_1fr]">
-        <aside className="hidden border-r border-border/70 bg-card lg:flex">
+        <aside className="hidden border-r border-border/70 bg-card lg:sticky lg:top-0 lg:flex lg:h-screen lg:overflow-hidden">
           <SellerSidebar pathname={pathname} />
         </aside>
 
@@ -107,28 +108,44 @@ export function SellerShell({ children }: SellerShellProps) {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    variant="outline"
-                    className="h-9 rounded-xl px-3 sm:min-w-52 sm:justify-between"
+                    variant="ghost"
+                    className="h-auto gap-2 rounded-xl px-2 py-1.5 hover:bg-muted"
                   >
-                    <div className="flex items-center gap-3">
-                      <Avatar className="bg-primary text-primary-foreground">
-                        <AvatarFallback className="bg-primary text-primary-foreground">
-                          {sellerUser.initials}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="hidden text-left sm:block">
-                        <p className="text-sm font-semibold text-foreground">
-                          {sellerUser.name}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {sellerUser.company}
-                        </p>
-                      </div>
+                    <Avatar className="size-8 bg-primary text-primary-foreground">
+                      <AvatarFallback className="size-8 bg-primary text-sm font-semibold text-primary-foreground">
+                        {sellerUser.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="hidden flex-col items-start text-left sm:flex">
+                      <span className="text-sm font-semibold leading-tight text-foreground">
+                        {sellerUser.name}
+                      </span>
+                      <span className="text-xs leading-tight text-muted-foreground">
+                        {sellerUser.companyShort}
+                      </span>
                     </div>
-                    <ChevronDown className="hidden text-muted-foreground sm:block" />
+                    <ChevronDown className="hidden size-3.5 shrink-0 text-muted-foreground sm:block" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-64">
+                  <DropdownMenuLabel className="p-0 font-normal">
+                    <div className="flex items-center gap-3 px-3 py-2.5">
+                      <Avatar className="size-9 bg-primary text-primary-foreground">
+                        <AvatarFallback className="size-9 bg-primary text-sm font-semibold text-primary-foreground">
+                          {sellerUser.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex min-w-0 flex-col gap-0.5">
+                        <span className="truncate text-sm font-semibold text-foreground">
+                          {sellerUser.name}
+                        </span>
+                        <span className="truncate text-xs text-muted-foreground">
+                          {sellerUser.company}
+                        </span>
+                      </div>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
                       <UserRound />
