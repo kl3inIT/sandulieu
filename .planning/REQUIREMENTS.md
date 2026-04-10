@@ -25,13 +25,13 @@
 - [ ] **DEPT-02**: User can search departments by name or code
 - [ ] **DEPT-03**: User can filter departments by parent organization and status
 - [ ] **DEPT-04**: User can sort departments by defined table columns
-- [ ] **DEPT-05**: User can create a department under a specific organization with required validation
-- [ ] **DEPT-06**: User can view a department detail page with parent organization context and related member summary
-- [ ] **DEPT-07**: User can edit a department and persist updated values
-- [ ] **DEPT-08**: User can soft-delete a department through a guarded confirmation flow
-- [ ] **DEPT-09**: User can see why a department cannot be deleted when dependent members still exist
-- [ ] **DEPT-10**: Department has a stable code/slug separate from display name
-- [ ] **DEPT-11**: Department has an explicit status field usable in badges and filters
+- [x] **DEPT-05**: User can create a department under a specific organization with required validation
+- [x] **DEPT-06**: User can view a department detail page with parent organization context and related member summary
+- [x] **DEPT-07**: User can edit a department and persist updated values
+- [x] **DEPT-08**: User can soft-delete a department through a guarded confirmation flow
+- [x] **DEPT-09**: User can see why a department cannot be deleted when dependent members still exist
+- [x] **DEPT-10**: Department has a stable code/slug separate from display name
+- [x] **DEPT-11**: Department has an explicit status field usable in badges and filters
 
 ### Members
 
@@ -114,13 +114,13 @@
 | DEPT-02     | Phase 3 | Pending  |
 | DEPT-03     | Phase 3 | Pending  |
 | DEPT-04     | Phase 3 | Pending  |
-| DEPT-05     | Phase 3 | Pending  |
-| DEPT-06     | Phase 3 | Pending  |
-| DEPT-07     | Phase 3 | Pending  |
-| DEPT-08     | Phase 3 | Pending  |
-| DEPT-09     | Phase 3 | Pending  |
-| DEPT-10     | Phase 3 | Pending  |
-| DEPT-11     | Phase 3 | Pending  |
+| DEPT-05     | Phase 3 | Complete |
+| DEPT-06     | Phase 3 | Complete |
+| DEPT-07     | Phase 3 | Complete |
+| DEPT-08     | Phase 3 | Complete |
+| DEPT-09     | Phase 3 | Complete |
+| DEPT-10     | Phase 3 | Complete |
+| DEPT-11     | Phase 3 | Complete |
 | MEM-01      | Phase 4 | Pending  |
 | MEM-02      | Phase 4 | Pending  |
 | MEM-03      | Phase 4 | Pending  |

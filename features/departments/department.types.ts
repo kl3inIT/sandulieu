@@ -1,5 +1,9 @@
 import type { OrganizationScope } from "@/shared/api/directory.contracts";
 import type {
+  DeleteDepartmentApiResponse,
+  DepartmentCreateApiInput,
+  DepartmentDeleteGuardApiResponse,
+  DepartmentDetailApiResponse,
   DepartmentFilters,
   DepartmentListQuery,
   DepartmentSortField,
@@ -19,3 +23,7 @@ export type DepartmentsListResponse = {
   pageCount: number;
 };
 export type DepartmentDetailResponse = Department;
+export type DepartmentMutationPayload = DepartmentCreateApiInput;
+export type DepartmentDeleteGuard = DepartmentDeleteGuardApiResponse;
+export type DepartmentDeleteResult = DeleteDepartmentApiResponse;
+export type DepartmentDetailApiContract = DepartmentDetailApiResponse;
