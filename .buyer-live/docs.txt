@@ -1,0 +1,289 @@
+### Page
+- Page URL: https://sandulieu.vercel.app/buyer/docs
+- Page Title: Sàn Dữ liệu Quốc gia — Trung tâm Dữ liệu Quốc gia
+### Snapshot
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link "Trung tâm Dữ liệu Quốc gia Sàn Dữ liệu Quốc gia" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]:
+          - img [ref=e8]
+          - generic [ref=e20]:
+            - generic [ref=e21]: Trung tâm Dữ liệu Quốc gia
+            - generic [ref=e22]: Sàn Dữ liệu Quốc gia
+      - navigation [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]: Tổng quan
+          - generic [ref=e26]:
+            - link "Trang chủ" [ref=e27] [cursor=pointer]:
+              - /url: /buyer
+              - img [ref=e28]
+              - generic [ref=e33]: Trang chủ
+            - link "Phân tích khai thác" [ref=e34] [cursor=pointer]:
+              - /url: /buyer/analytics
+              - img [ref=e35]
+              - generic [ref=e37]: Phân tích khai thác
+            - link "Thông báo 5" [ref=e38] [cursor=pointer]:
+              - /url: /buyer/notifications
+              - img [ref=e39]
+              - generic [ref=e42]: Thông báo
+              - generic [ref=e43]: "5"
+        - generic [ref=e44]:
+          - generic [ref=e45]: Khai thác dữ liệu
+          - generic [ref=e46]:
+            - link "Catalog dịch vụ 662" [ref=e47] [cursor=pointer]:
+              - /url: /buyer/catalog
+              - img [ref=e48]
+              - generic [ref=e51]: Catalog dịch vụ
+              - generic [ref=e52]: "662"
+            - link "Dịch vụ đã đăng ký 12" [ref=e53] [cursor=pointer]:
+              - /url: /buyer/subscriptions
+              - img [ref=e54]
+              - generic [ref=e58]: Dịch vụ đã đăng ký
+              - generic [ref=e59]: "12"
+            - link "API Keys & Token" [ref=e60] [cursor=pointer]:
+              - /url: /buyer/api-keys
+              - img [ref=e61]
+              - generic [ref=e64]: API Keys & Token
+            - link "Sandbox & Clean Room" [ref=e65] [cursor=pointer]:
+              - /url: /buyer/sandbox
+              - img [ref=e66]
+              - generic [ref=e68]: Sandbox & Clean Room
+            - link "Đấu giá dữ liệu 3" [ref=e69] [cursor=pointer]:
+              - /url: /buyer/auctions
+              - img [ref=e70]
+              - generic [ref=e76]: Đấu giá dữ liệu
+              - generic [ref=e77]: "3"
+        - generic [ref=e78]:
+          - generic [ref=e79]: Giao dịch
+          - generic [ref=e80]:
+            - link "Giỏ hàng 3" [ref=e81] [cursor=pointer]:
+              - /url: /buyer/cart
+              - img [ref=e82]
+              - generic [ref=e86]: Giỏ hàng
+              - generic [ref=e87]: "3"
+            - link "Nhu cầu mua của tôi 5" [ref=e88] [cursor=pointer]:
+              - /url: /buyer/demands
+              - img [ref=e89]
+              - generic [ref=e92]: Nhu cầu mua của tôi
+              - generic [ref=e93]: "5"
+            - link "Đơn hàng & Hợp đồng" [ref=e94] [cursor=pointer]:
+              - /url: /buyer/orders
+              - img [ref=e95]
+              - generic [ref=e98]: Đơn hàng & Hợp đồng
+            - link "Ví & Thanh toán" [ref=e99] [cursor=pointer]:
+              - /url: /buyer/wallet
+              - img [ref=e100]
+              - generic [ref=e103]: Ví & Thanh toán
+        - generic [ref=e104]:
+          - generic [ref=e105]: Quản lý cá nhân
+          - generic [ref=e106]:
+            - link "Đồng ý & Quyền riêng tư" [ref=e107] [cursor=pointer]:
+              - /url: /buyer/consent
+              - img [ref=e108]
+              - generic [ref=e111]: Đồng ý & Quyền riêng tư
+            - link "Hỗ trợ & Khiếu nại" [ref=e112] [cursor=pointer]:
+              - /url: /buyer/support
+              - img [ref=e113]
+              - generic [ref=e115]: Hỗ trợ & Khiếu nại
+            - link "Tài liệu & API Docs" [ref=e116] [cursor=pointer]:
+              - /url: /buyer/docs
+              - img [ref=e117]
+              - generic [ref=e119]: Tài liệu & API Docs
+            - link "Cài đặt tài khoản" [ref=e120] [cursor=pointer]:
+              - /url: /buyer/settings
+              - img [ref=e121]
+              - generic [ref=e124]: Cài đặt tài khoản
+      - generic [ref=e126]:
+        - generic [ref=e127]: NA
+        - generic [ref=e128]:
+          - generic [ref=e129]: Nguyễn Văn An
+          - generic [ref=e130]: Công ty TNHH FinTech Việt
+        - link [ref=e131] [cursor=pointer]:
+          - /url: /login
+          - img [ref=e132]
+    - generic [ref=e135]:
+      - banner [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e138]: BÊN MUA
+          - generic [ref=e139]: Sàn Dữ liệu Quốc gia
+        - generic [ref=e140]:
+          - img [ref=e141]
+          - textbox "Tìm dịch vụ, bộ dữ liệu, giao dịch…" [ref=e144]
+        - generic [ref=e145]:
+          - button [ref=e146]:
+            - img [ref=e147]
+          - button [ref=e150]:
+            - img [ref=e151]
+          - button [ref=e155]:
+            - img [ref=e156]
+          - generic [ref=e159]:
+            - generic [ref=e160]: NA
+            - generic [ref=e161]:
+              - generic [ref=e162]: Nguyễn Văn An
+              - generic [ref=e163]: Công ty TNHH FinTech Việt
+            - img [ref=e164]
+      - main [ref=e166]:
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - heading "Tài liệu & API Documentation" [level=1] [ref=e169]
+            - paragraph [ref=e170]: Hướng dẫn tích hợp, API reference (OpenAPI 3.0), SDK và code samples đầy đủ
+          - generic [ref=e171]:
+            - button "Swagger UI" [ref=e172] [cursor=pointer]:
+              - img [ref=e173]
+              - text: Swagger UI
+            - button "Interactive API" [ref=e177] [cursor=pointer]:
+              - img [ref=e178]
+              - text: Interactive API
+        - generic [ref=e182]:
+          - img [ref=e183]
+          - textbox "Tìm trong 760+ trang tài liệu, endpoints, SDK…" [ref=e186]
+        - generic [ref=e187]:
+          - button "Bắt đầu nhanh 12 bài viết" [ref=e188]:
+            - img [ref=e190]
+            - heading "Bắt đầu nhanh" [level=3] [ref=e192]
+            - paragraph [ref=e193]: 12 bài viết
+          - button "Xác thực & Token 8 bài viết" [ref=e194]:
+            - img [ref=e196]
+            - heading "Xác thực & Token" [level=3] [ref=e200]
+            - paragraph [ref=e201]: 8 bài viết
+          - button "API Reference 662 bài viết" [ref=e202]:
+            - img [ref=e204]
+            - heading "API Reference" [level=3] [ref=e208]
+            - paragraph [ref=e209]: 662 bài viết
+          - button "Bảo mật & Compliance 18 bài viết" [ref=e210]:
+            - img [ref=e212]
+            - heading "Bảo mật & Compliance" [level=3] [ref=e214]
+            - paragraph [ref=e215]: 18 bài viết
+          - button "SDK & Libraries 6 bài viết" [ref=e216]:
+            - img [ref=e218]
+            - heading "SDK & Libraries" [level=3] [ref=e222]
+            - paragraph [ref=e223]: 6 bài viết
+          - button "Webhooks & Events 14 bài viết" [ref=e224]:
+            - img [ref=e226]
+            - heading "Webhooks & Events" [level=3] [ref=e229]
+            - paragraph [ref=e230]: 14 bài viết
+        - generic [ref=e231]:
+          - generic [ref=e232]:
+            - generic [ref=e233]:
+              - heading "Bắt đầu trong 5 phút" [level=3] [ref=e234]:
+                - img [ref=e235]
+                - text: Bắt đầu trong 5 phút
+              - paragraph [ref=e237]: 3 bước đơn giản để gọi API đầu tiên
+            - generic [ref=e238]:
+              - generic [ref=e239]:
+                - generic [ref=e240]:
+                  - generic [ref=e241]: "1"
+                  - generic [ref=e242]: Tạo API Key
+                - generic [ref=e243]: "# Vào trang /buyer/api-keys và nhấn \"Tạo API Key mới\" # Lưu key an toàn - chỉ hiển thị 1 lần SDL_API_KEY=sdl_live_7f4a8b2c9d3e1f5a6b8c9d0e1f2a3b4c"
+              - generic [ref=e244]:
+                - generic [ref=e245]:
+                  - generic [ref=e246]: "2"
+                  - generic [ref=e247]: Gọi API đầu tiên (cURL)
+                - generic [ref=e248]: "curl -X POST https://api.sdl.gov.vn/v1/vneid/verify \\ -H \"Authorization: Bearer $SDL_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"cccd\": \"079123456789\", \"purpose\": \"KYC\" }'"
+              - generic [ref=e249]:
+                - generic [ref=e250]:
+                  - generic [ref=e251]: "3"
+                  - generic [ref=e252]: Nhận response
+                - generic [ref=e253]: "{ \"verified\": true, \"data\": { \"ho_ten\": \"NGUYEN VAN AN\", \"ngay_sinh\": \"1990-05-15\", \"quoc_tich\": \"Việt Nam\" }, \"consent_receipt\": \"CR-2026-04-0124\", \"rate_limit_remaining\": 982 }"
+          - generic [ref=e254]:
+            - generic [ref=e255]:
+              - heading "SDK chính thức" [level=3] [ref=e256]:
+                - img [ref=e257]
+                - text: SDK chính thức
+              - paragraph [ref=e261]: Được bảo trì bởi Trung tâm Dữ liệu Quốc gia
+            - generic [ref=e262]:
+              - generic [ref=e263]:
+                - generic [ref=e264]:
+                  - generic [ref=e265]: Node.js / TypeScript
+                  - generic [ref=e266]: "@sdl/node-sdk"
+                - generic [ref=e267]:
+                  - generic [ref=e268]: v2.4.1
+                  - button [ref=e269] [cursor=pointer]:
+                    - img [ref=e270]
+              - generic [ref=e273]:
+                - generic [ref=e274]:
+                  - generic [ref=e275]: Python
+                  - generic [ref=e276]: sdl-python
+                - generic [ref=e277]:
+                  - generic [ref=e278]: v2.3.8
+                  - button [ref=e279] [cursor=pointer]:
+                    - img [ref=e280]
+              - generic [ref=e283]:
+                - generic [ref=e284]:
+                  - generic [ref=e285]: Java
+                  - generic [ref=e286]: vn.sdl:sdl-java
+                - generic [ref=e287]:
+                  - generic [ref=e288]: v2.4.0
+                  - button [ref=e289] [cursor=pointer]:
+                    - img [ref=e290]
+              - generic [ref=e293]:
+                - generic [ref=e294]:
+                  - generic [ref=e295]: .NET / C#
+                  - generic [ref=e296]: SDL.VietNam
+                - generic [ref=e297]:
+                  - generic [ref=e298]: v2.3.5
+                  - button [ref=e299] [cursor=pointer]:
+                    - img [ref=e300]
+              - generic [ref=e303]:
+                - generic [ref=e304]:
+                  - generic [ref=e305]: Go
+                  - generic [ref=e306]: github.com/sdl/go-sdk
+                - generic [ref=e307]:
+                  - generic [ref=e308]: v2.4.2
+                  - button [ref=e309] [cursor=pointer]:
+                    - img [ref=e310]
+              - generic [ref=e313]:
+                - generic [ref=e314]:
+                  - generic [ref=e315]: PHP
+                  - generic [ref=e316]: sdl/php-sdk
+                - generic [ref=e317]:
+                  - generic [ref=e318]: v2.3.1
+                  - button [ref=e319] [cursor=pointer]:
+                    - img [ref=e320]
+        - generic [ref=e323]:
+          - generic [ref=e324]:
+            - heading "API Endpoints phổ biến" [level=3] [ref=e325]:
+              - img [ref=e326]
+              - text: API Endpoints phổ biến
+            - paragraph [ref=e331]: Top 5 endpoints được sử dụng nhiều nhất · Full reference trong Swagger UI
+          - generic [ref=e332]:
+            - generic [ref=e333]:
+              - generic [ref=e334]: POST
+              - code [ref=e335]: /api/v1/vneid/verify
+              - generic [ref=e336]: Xác thực danh tính qua VNeID
+              - generic [ref=e337]: DV-DC-001
+              - button [ref=e338] [cursor=pointer]:
+                - img [ref=e339]
+            - generic [ref=e343]:
+              - generic [ref=e344]: GET
+              - code [ref=e345]: "/api/v1/company/{mst}"
+              - generic [ref=e346]: Tra cứu thông tin doanh nghiệp
+              - generic [ref=e347]: DV-DN-042
+              - button [ref=e348] [cursor=pointer]:
+                - img [ref=e349]
+            - generic [ref=e353]:
+              - generic [ref=e354]: POST
+              - code [ref=e355]: /api/v1/tax/lookup
+              - generic [ref=e356]: Tra cứu mã số thuế cá nhân
+              - generic [ref=e357]: DV-TC-118
+              - button [ref=e358] [cursor=pointer]:
+                - img [ref=e359]
+            - generic [ref=e363]:
+              - generic [ref=e364]: GET
+              - code [ref=e365]: /api/v1/bhxh/history
+              - generic [ref=e366]: Lịch sử tham gia BHXH
+              - generic [ref=e367]: DV-BHXH-007
+              - button [ref=e368] [cursor=pointer]:
+                - img [ref=e369]
+            - generic [ref=e373]:
+              - generic [ref=e374]: GET
+              - code [ref=e375]: /api/v1/resident/info
+              - generic [ref=e376]: Thông tin cư trú theo CCCD
+              - generic [ref=e377]: DV-DC-002
+              - button [ref=e378] [cursor=pointer]:
+                - img [ref=e379]
+  - alert [ref=e383]
+```

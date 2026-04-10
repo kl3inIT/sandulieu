@@ -1,0 +1,349 @@
+### Page
+- Page URL: https://sandulieu.vercel.app/buyer
+- Page Title: Sàn Dữ liệu Quốc gia — Trung tâm Dữ liệu Quốc gia
+### Snapshot
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link "Trung tâm Dữ liệu Quốc gia Sàn Dữ liệu Quốc gia" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]:
+          - img [ref=e8]
+          - generic [ref=e20]:
+            - generic [ref=e21]: Trung tâm Dữ liệu Quốc gia
+            - generic [ref=e22]: Sàn Dữ liệu Quốc gia
+      - navigation [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]: Tổng quan
+          - generic [ref=e26]:
+            - link "Trang chủ" [ref=e27] [cursor=pointer]:
+              - /url: /buyer
+              - img [ref=e28]
+              - generic [ref=e33]: Trang chủ
+            - link "Phân tích khai thác" [ref=e34] [cursor=pointer]:
+              - /url: /buyer/analytics
+              - img [ref=e35]
+              - generic [ref=e37]: Phân tích khai thác
+            - link "Thông báo 5" [ref=e38] [cursor=pointer]:
+              - /url: /buyer/notifications
+              - img [ref=e39]
+              - generic [ref=e42]: Thông báo
+              - generic [ref=e43]: "5"
+        - generic [ref=e44]:
+          - generic [ref=e45]: Khai thác dữ liệu
+          - generic [ref=e46]:
+            - link "Catalog dịch vụ 662" [ref=e47] [cursor=pointer]:
+              - /url: /buyer/catalog
+              - img [ref=e48]
+              - generic [ref=e51]: Catalog dịch vụ
+              - generic [ref=e52]: "662"
+            - link "Dịch vụ đã đăng ký 12" [ref=e53] [cursor=pointer]:
+              - /url: /buyer/subscriptions
+              - img [ref=e54]
+              - generic [ref=e58]: Dịch vụ đã đăng ký
+              - generic [ref=e59]: "12"
+            - link "API Keys & Token" [ref=e60] [cursor=pointer]:
+              - /url: /buyer/api-keys
+              - img [ref=e61]
+              - generic [ref=e64]: API Keys & Token
+            - link "Sandbox & Clean Room" [ref=e65] [cursor=pointer]:
+              - /url: /buyer/sandbox
+              - img [ref=e66]
+              - generic [ref=e68]: Sandbox & Clean Room
+            - link "Đấu giá dữ liệu 3" [ref=e69] [cursor=pointer]:
+              - /url: /buyer/auctions
+              - img [ref=e70]
+              - generic [ref=e76]: Đấu giá dữ liệu
+              - generic [ref=e77]: "3"
+        - generic [ref=e78]:
+          - generic [ref=e79]: Giao dịch
+          - generic [ref=e80]:
+            - link "Giỏ hàng 3" [ref=e81] [cursor=pointer]:
+              - /url: /buyer/cart
+              - img [ref=e82]
+              - generic [ref=e86]: Giỏ hàng
+              - generic [ref=e87]: "3"
+            - link "Nhu cầu mua của tôi 5" [ref=e88] [cursor=pointer]:
+              - /url: /buyer/demands
+              - img [ref=e89]
+              - generic [ref=e92]: Nhu cầu mua của tôi
+              - generic [ref=e93]: "5"
+            - link "Đơn hàng & Hợp đồng" [ref=e94] [cursor=pointer]:
+              - /url: /buyer/orders
+              - img [ref=e95]
+              - generic [ref=e98]: Đơn hàng & Hợp đồng
+            - link "Ví & Thanh toán" [ref=e99] [cursor=pointer]:
+              - /url: /buyer/wallet
+              - img [ref=e100]
+              - generic [ref=e103]: Ví & Thanh toán
+        - generic [ref=e104]:
+          - generic [ref=e105]: Quản lý cá nhân
+          - generic [ref=e106]:
+            - link "Đồng ý & Quyền riêng tư" [ref=e107] [cursor=pointer]:
+              - /url: /buyer/consent
+              - img [ref=e108]
+              - generic [ref=e111]: Đồng ý & Quyền riêng tư
+            - link "Hỗ trợ & Khiếu nại" [ref=e112] [cursor=pointer]:
+              - /url: /buyer/support
+              - img [ref=e113]
+              - generic [ref=e115]: Hỗ trợ & Khiếu nại
+            - link "Tài liệu & API Docs" [ref=e116] [cursor=pointer]:
+              - /url: /buyer/docs
+              - img [ref=e117]
+              - generic [ref=e119]: Tài liệu & API Docs
+            - link "Cài đặt tài khoản" [ref=e120] [cursor=pointer]:
+              - /url: /buyer/settings
+              - img [ref=e121]
+              - generic [ref=e124]: Cài đặt tài khoản
+      - generic [ref=e126]:
+        - generic [ref=e127]: NA
+        - generic [ref=e128]:
+          - generic [ref=e129]: Nguyễn Văn An
+          - generic [ref=e130]: Công ty TNHH FinTech Việt
+        - link [ref=e131] [cursor=pointer]:
+          - /url: /login
+          - img [ref=e132]
+    - generic [ref=e135]:
+      - banner [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e138]: BÊN MUA
+          - generic [ref=e139]: Sàn Dữ liệu Quốc gia
+        - generic [ref=e140]:
+          - img [ref=e141]
+          - textbox "Tìm dịch vụ, bộ dữ liệu, giao dịch…" [ref=e144]
+        - generic [ref=e145]:
+          - button [ref=e146]:
+            - img [ref=e147]
+          - button [ref=e150]:
+            - img [ref=e151]
+          - button [ref=e155]:
+            - img [ref=e156]
+          - generic [ref=e159]:
+            - generic [ref=e160]: NA
+            - generic [ref=e161]:
+              - generic [ref=e162]: Nguyễn Văn An
+              - generic [ref=e163]: Công ty TNHH FinTech Việt
+            - img [ref=e164]
+      - main [ref=e166]:
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - heading "Xin chào, Nguyễn Văn An 👋" [level=1] [ref=e169]
+            - paragraph [ref=e170]: Tổng quan hoạt động khai thác dữ liệu của bạn trong 30 ngày qua.
+          - generic [ref=e171]:
+            - button "Xuất báo cáo" [ref=e172] [cursor=pointer]:
+              - img [ref=e173]
+              - text: Xuất báo cáo
+            - button "Tìm dịch vụ mới" [ref=e176] [cursor=pointer]:
+              - img [ref=e177]
+              - text: Tìm dịch vụ mới
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - generic [ref=e184]:
+                - generic [ref=e185]: Dịch vụ đang sử dụng
+                - generic [ref=e186]: "12"
+              - img [ref=e188]
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - img [ref=e194]
+                - text: +8.2%
+              - generic [ref=e197]: so với tháng trước
+          - generic [ref=e198]:
+            - generic [ref=e199]:
+              - generic [ref=e200]:
+                - generic [ref=e201]: Lượt gọi API (30 ngày)
+                - generic [ref=e202]: "248.512"
+              - img [ref=e204]
+            - generic [ref=e206]:
+              - generic [ref=e207]:
+                - img [ref=e208]
+                - text: +23.5%
+              - generic [ref=e211]: tăng trưởng
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - generic [ref=e214]:
+                - generic [ref=e215]: Dữ liệu tải về
+                - generic [ref=e216]: 47,2 GB
+              - img [ref=e218]
+            - generic [ref=e221]:
+              - generic [ref=e222]:
+                - img [ref=e223]
+                - text: "-4.1%"
+              - generic [ref=e226]: so với tháng trước
+          - generic [ref=e227]:
+            - generic [ref=e228]:
+              - generic [ref=e229]:
+                - generic [ref=e230]: Chi phí tháng này
+                - generic [ref=e231]: 28.450.000 ₫
+              - img [ref=e233]
+            - generic [ref=e236]:
+              - generic [ref=e237]:
+                - img [ref=e238]
+                - text: +12.3%
+              - generic [ref=e241]: so với tháng trước
+        - generic [ref=e242]:
+          - generic [ref=e243]:
+            - generic [ref=e245]:
+              - generic [ref=e246]:
+                - heading "Lưu lượng khai thác API" [level=3] [ref=e247]
+                - paragraph [ref=e248]: 30 ngày gần nhất · Tất cả dịch vụ
+              - generic [ref=e249]:
+                - img [ref=e250]
+                - text: 99,8% uptime
+            - generic [ref=e252]:
+              - generic [ref=e253]:
+                - generic [ref=e254]: "248.512"
+                - generic [ref=e255]: calls · 30 ngày
+              - img [ref=e257]
+              - generic [ref=e260]:
+                - generic [ref=e261]:
+                  - generic [ref=e262]: Đỉnh / ngày
+                  - generic [ref=e263]: "15.600"
+                - generic [ref=e264]:
+                  - generic [ref=e265]: Trung bình / ngày
+                  - generic [ref=e266]: "8.284"
+                - generic [ref=e267]:
+                  - generic [ref=e268]: Lỗi 4xx/5xx
+                  - generic [ref=e269]: 0,12%
+                - generic [ref=e270]:
+                  - generic [ref=e271]: Thời gian trả lời
+                  - generic [ref=e272]: 124ms
+          - generic [ref=e273]:
+            - generic [ref=e274]:
+              - heading "Dịch vụ sử dụng nhiều nhất" [level=3] [ref=e275]
+              - paragraph [ref=e276]: Theo số lượt gọi API
+            - generic [ref=e278]:
+              - generic [ref=e280]:
+                - generic [ref=e281]: DS tra cứu doanh nghiệp
+                - generic [ref=e282]: "82.400"
+              - generic [ref=e286]:
+                - generic [ref=e287]: Xác thực CCCD/VNeID
+                - generic [ref=e288]: "64.200"
+              - generic [ref=e292]:
+                - generic [ref=e293]: Mã số thuế cá nhân
+                - generic [ref=e294]: "48.100"
+              - generic [ref=e298]:
+                - generic [ref=e299]: BHXH tra cứu
+                - generic [ref=e300]: "32.600"
+              - generic [ref=e304]:
+                - generic [ref=e305]: Hộ tịch trực tuyến
+                - generic [ref=e306]: "21.200"
+        - generic [ref=e309]:
+          - generic [ref=e310]:
+            - generic [ref=e312]:
+              - generic [ref=e313]:
+                - heading "Dịch vụ đã đăng ký gần đây" [level=3] [ref=e314]
+                - paragraph [ref=e315]: Quản lý và khai thác các dịch vụ đang hoạt động
+              - link "Xem tất cả" [ref=e316] [cursor=pointer]:
+                - /url: /buyer/subscriptions
+                - text: Xem tất cả
+                - img [ref=e317]
+            - generic [ref=e319]:
+              - generic [ref=e320]:
+                - img [ref=e322]
+                - generic [ref=e326]:
+                  - generic [ref=e327]:
+                    - generic [ref=e328]: DV-TCKT-001
+                    - generic [ref=e329]: Đang hoạt động
+                  - generic [ref=e330]: Tra cứu thông tin doanh nghiệp
+                  - generic [ref=e331]: Tổng cục Thống kê
+                - generic [ref=e332]:
+                  - generic [ref=e333]: Hiệu lực đến
+                  - generic [ref=e334]: 15/08/2026
+                - generic [ref=e336]: 78%
+              - generic [ref=e339]:
+                - img [ref=e341]
+                - generic [ref=e345]:
+                  - generic [ref=e346]:
+                    - generic [ref=e347]: DV-DC-042
+                    - generic [ref=e348]: Đang hoạt động
+                  - generic [ref=e349]: Xác thực định danh VNeID
+                  - generic [ref=e350]: Cục Cảnh sát QLHC
+                - generic [ref=e351]:
+                  - generic [ref=e352]: Hiệu lực đến
+                  - generic [ref=e353]: 30/12/2026
+                - generic [ref=e355]: 54%
+              - generic [ref=e358]:
+                - img [ref=e360]
+                - generic [ref=e364]:
+                  - generic [ref=e365]:
+                    - generic [ref=e366]: DV-TC-118
+                    - generic [ref=e367]: Đang hoạt động
+                  - generic [ref=e368]: Dữ liệu hộ khẩu điện tử
+                  - generic [ref=e369]: Bộ Công an
+                - generic [ref=e370]:
+                  - generic [ref=e371]: Hiệu lực đến
+                  - generic [ref=e372]: 10/06/2026
+                - generic [ref=e374]: 92%
+              - generic [ref=e377]:
+                - img [ref=e379]
+                - generic [ref=e383]:
+                  - generic [ref=e384]:
+                    - generic [ref=e385]: DV-BHXH-007
+                    - generic [ref=e386]: Chờ duyệt
+                  - generic [ref=e387]: Tra cứu quá trình BHXH
+                  - generic [ref=e388]: Bảo hiểm Xã hội Việt Nam
+                - generic [ref=e389]:
+                  - generic [ref=e390]: Hiệu lực đến
+                  - generic [ref=e391]: Chờ duyệt
+                - generic [ref=e393]: 0%
+          - generic [ref=e395]:
+            - generic [ref=e396]:
+              - heading "Cảnh báo & Thông báo" [level=3] [ref=e398]:
+                - img [ref=e399]
+                - text: Cảnh báo & Thông báo
+              - generic [ref=e401]:
+                - generic [ref=e402]:
+                  - generic [ref=e403]: Hết hạn sắp tới
+                  - generic [ref=e404]: Dịch vụ DV-TC-118 hết hạn trong 14 ngày. Gia hạn ngay để không gián đoạn khai thác.
+                - generic [ref=e405]:
+                  - generic [ref=e406]: Quota API
+                  - generic [ref=e407]: Đã sử dụng 82% quota tháng trên DV-TCKT-001 (82.400 / 100.000 calls).
+                - generic [ref=e408]:
+                  - generic [ref=e409]: Dữ liệu mới
+                  - generic [ref=e410]: 3 dịch vụ dữ liệu y tế mới đã có trên catalog, phù hợp với lĩnh vực của bạn.
+            - generic [ref=e411]:
+              - heading "Trạng thái tuân thủ" [level=3] [ref=e413]:
+                - img [ref=e414]
+                - text: Trạng thái tuân thủ
+              - generic [ref=e417]:
+                - generic [ref=e418]:
+                  - generic [ref=e419]: Đồng ý dữ liệu cá nhân
+                  - generic [ref=e420]: Hợp lệ
+                - generic [ref=e421]:
+                  - generic [ref=e422]: Xác thực 2FA
+                  - generic [ref=e423]: Bật
+                - generic [ref=e424]:
+                  - generic [ref=e425]: Giấy phép kinh doanh
+                  - generic [ref=e426]: Xác minh
+                - generic [ref=e427]:
+                  - generic [ref=e428]: Cam kết bảo mật
+                  - generic [ref=e429]: Cần ký lại
+        - generic [ref=e430]:
+          - generic [ref=e431]:
+            - heading "Thao tác nhanh" [level=3] [ref=e432]
+            - paragraph [ref=e433]: Các chức năng thường dùng
+          - generic [ref=e435]:
+            - link "Tìm dịch vụ mới" [ref=e436] [cursor=pointer]:
+              - /url: /buyer/catalog
+              - img [ref=e438]
+              - generic [ref=e442]: Tìm dịch vụ mới
+              - img [ref=e443]
+            - link "Lịch sử giao dịch" [ref=e445] [cursor=pointer]:
+              - /url: /buyer/orders
+              - img [ref=e447]
+              - generic [ref=e450]: Lịch sử giao dịch
+              - img [ref=e451]
+            - link "Quản lý đồng ý" [ref=e453] [cursor=pointer]:
+              - /url: /buyer/consent
+              - img [ref=e455]
+              - generic [ref=e458]: Quản lý đồng ý
+              - img [ref=e459]
+            - link "Tạo API Token" [ref=e461] [cursor=pointer]:
+              - /url: /buyer/api-keys
+              - img [ref=e463]
+              - generic [ref=e465]: Tạo API Token
+              - img [ref=e466]
+  - alert [ref=e468]
+```

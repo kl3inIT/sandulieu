@@ -1,0 +1,266 @@
+### Page
+- Page URL: https://sandulieu.vercel.app/buyer/support
+- Page Title: Sàn Dữ liệu Quốc gia — Trung tâm Dữ liệu Quốc gia
+### Snapshot
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link "Trung tâm Dữ liệu Quốc gia Sàn Dữ liệu Quốc gia" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]:
+          - img [ref=e8]
+          - generic [ref=e20]:
+            - generic [ref=e21]: Trung tâm Dữ liệu Quốc gia
+            - generic [ref=e22]: Sàn Dữ liệu Quốc gia
+      - navigation [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]: Tổng quan
+          - generic [ref=e26]:
+            - link "Trang chủ" [ref=e27] [cursor=pointer]:
+              - /url: /buyer
+              - img [ref=e28]
+              - generic [ref=e33]: Trang chủ
+            - link "Phân tích khai thác" [ref=e34] [cursor=pointer]:
+              - /url: /buyer/analytics
+              - img [ref=e35]
+              - generic [ref=e37]: Phân tích khai thác
+            - link "Thông báo 5" [ref=e38] [cursor=pointer]:
+              - /url: /buyer/notifications
+              - img [ref=e39]
+              - generic [ref=e42]: Thông báo
+              - generic [ref=e43]: "5"
+        - generic [ref=e44]:
+          - generic [ref=e45]: Khai thác dữ liệu
+          - generic [ref=e46]:
+            - link "Catalog dịch vụ 662" [ref=e47] [cursor=pointer]:
+              - /url: /buyer/catalog
+              - img [ref=e48]
+              - generic [ref=e51]: Catalog dịch vụ
+              - generic [ref=e52]: "662"
+            - link "Dịch vụ đã đăng ký 12" [ref=e53] [cursor=pointer]:
+              - /url: /buyer/subscriptions
+              - img [ref=e54]
+              - generic [ref=e58]: Dịch vụ đã đăng ký
+              - generic [ref=e59]: "12"
+            - link "API Keys & Token" [ref=e60] [cursor=pointer]:
+              - /url: /buyer/api-keys
+              - img [ref=e61]
+              - generic [ref=e64]: API Keys & Token
+            - link "Sandbox & Clean Room" [ref=e65] [cursor=pointer]:
+              - /url: /buyer/sandbox
+              - img [ref=e66]
+              - generic [ref=e68]: Sandbox & Clean Room
+            - link "Đấu giá dữ liệu 3" [ref=e69] [cursor=pointer]:
+              - /url: /buyer/auctions
+              - img [ref=e70]
+              - generic [ref=e76]: Đấu giá dữ liệu
+              - generic [ref=e77]: "3"
+        - generic [ref=e78]:
+          - generic [ref=e79]: Giao dịch
+          - generic [ref=e80]:
+            - link "Giỏ hàng 3" [ref=e81] [cursor=pointer]:
+              - /url: /buyer/cart
+              - img [ref=e82]
+              - generic [ref=e86]: Giỏ hàng
+              - generic [ref=e87]: "3"
+            - link "Nhu cầu mua của tôi 5" [ref=e88] [cursor=pointer]:
+              - /url: /buyer/demands
+              - img [ref=e89]
+              - generic [ref=e92]: Nhu cầu mua của tôi
+              - generic [ref=e93]: "5"
+            - link "Đơn hàng & Hợp đồng" [ref=e94] [cursor=pointer]:
+              - /url: /buyer/orders
+              - img [ref=e95]
+              - generic [ref=e98]: Đơn hàng & Hợp đồng
+            - link "Ví & Thanh toán" [ref=e99] [cursor=pointer]:
+              - /url: /buyer/wallet
+              - img [ref=e100]
+              - generic [ref=e103]: Ví & Thanh toán
+        - generic [ref=e104]:
+          - generic [ref=e105]: Quản lý cá nhân
+          - generic [ref=e106]:
+            - link "Đồng ý & Quyền riêng tư" [ref=e107] [cursor=pointer]:
+              - /url: /buyer/consent
+              - img [ref=e108]
+              - generic [ref=e111]: Đồng ý & Quyền riêng tư
+            - link "Hỗ trợ & Khiếu nại" [ref=e112] [cursor=pointer]:
+              - /url: /buyer/support
+              - img [ref=e113]
+              - generic [ref=e115]: Hỗ trợ & Khiếu nại
+            - link "Tài liệu & API Docs" [ref=e116] [cursor=pointer]:
+              - /url: /buyer/docs
+              - img [ref=e117]
+              - generic [ref=e119]: Tài liệu & API Docs
+            - link "Cài đặt tài khoản" [ref=e120] [cursor=pointer]:
+              - /url: /buyer/settings
+              - img [ref=e121]
+              - generic [ref=e124]: Cài đặt tài khoản
+      - generic [ref=e126]:
+        - generic [ref=e127]: NA
+        - generic [ref=e128]:
+          - generic [ref=e129]: Nguyễn Văn An
+          - generic [ref=e130]: Công ty TNHH FinTech Việt
+        - link [ref=e131] [cursor=pointer]:
+          - /url: /login
+          - img [ref=e132]
+    - generic [ref=e135]:
+      - banner [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e138]: BÊN MUA
+          - generic [ref=e139]: Sàn Dữ liệu Quốc gia
+        - generic [ref=e140]:
+          - img [ref=e141]
+          - textbox "Tìm dịch vụ, bộ dữ liệu, giao dịch…" [ref=e144]
+        - generic [ref=e145]:
+          - button [ref=e146]:
+            - img [ref=e147]
+          - button [ref=e150]:
+            - img [ref=e151]
+          - button [ref=e155]:
+            - img [ref=e156]
+          - generic [ref=e159]:
+            - generic [ref=e160]: NA
+            - generic [ref=e161]:
+              - generic [ref=e162]: Nguyễn Văn An
+              - generic [ref=e163]: Công ty TNHH FinTech Việt
+            - img [ref=e164]
+      - main [ref=e166]:
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - heading "Hỗ trợ & Khiếu nại" [level=1] [ref=e169]
+            - paragraph [ref=e170]: Tạo yêu cầu hỗ trợ kỹ thuật, khiếu nại chất lượng dữ liệu và trò chuyện trực tiếp với Cán bộ sàn
+          - button "Tạo ticket mới" [ref=e172] [cursor=pointer]:
+            - img [ref=e173]
+            - text: Tạo ticket mới
+        - generic [ref=e174]:
+          - generic [ref=e176]:
+            - generic [ref=e177]:
+              - generic [ref=e178]: Ticket đang mở
+              - generic [ref=e179]: "2"
+            - img [ref=e181]
+          - generic [ref=e185]:
+            - generic [ref=e186]:
+              - generic [ref=e187]: Đã giải quyết
+              - generic [ref=e188]: "48"
+            - img [ref=e190]
+          - generic [ref=e194]:
+            - generic [ref=e195]:
+              - generic [ref=e196]: Thời gian phản hồi TB
+              - generic [ref=e197]: 1h 24m
+            - img [ref=e199]
+          - generic [ref=e202]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: Mức độ hài lòng
+              - generic [ref=e205]: 4,8 ★
+            - img [ref=e207]
+        - generic [ref=e210]:
+          - generic [ref=e212]:
+            - generic [ref=e214]:
+              - heading "Danh sách ticket" [level=3] [ref=e215]
+              - generic [ref=e216]:
+                - img [ref=e217]
+                - textbox "Tìm ticket…" [ref=e220]
+            - generic [ref=e221]:
+              - generic [ref=e222] [cursor=pointer]:
+                - img [ref=e224]
+                - generic [ref=e226]:
+                  - generic [ref=e227]:
+                    - generic [ref=e228]: TKT-2026-04-1284
+                    - generic [ref=e229]: Ưu tiên cao
+                    - generic [ref=e230]: Đang xử lý
+                  - generic [ref=e231]: Lỗi timeout khi gọi /v1/vneid/verify
+                  - generic [ref=e232]: "Dịch vụ: DV-DC-001 · Tạo 2 giờ trước · 3 phản hồi"
+              - generic [ref=e233] [cursor=pointer]:
+                - img [ref=e235]
+                - generic [ref=e237]:
+                  - generic [ref=e238]:
+                    - generic [ref=e239]: TKT-2026-04-1278
+                    - generic [ref=e240]: Trung bình
+                    - generic [ref=e241]: Chờ phản hồi
+                  - generic [ref=e242]: Yêu cầu tăng hạn mức lên 200K calls/tháng
+                  - generic [ref=e243]: "Dịch vụ: DV-TC-118 · Tạo 8 giờ trước · 1 phản hồi"
+              - generic [ref=e244] [cursor=pointer]:
+                - img [ref=e246]
+                - generic [ref=e249]:
+                  - generic [ref=e250]:
+                    - generic [ref=e251]: TKT-2026-04-1265
+                    - generic [ref=e252]: Ưu tiên cao
+                    - generic [ref=e253]: Đã giải quyết
+                  - generic [ref=e254]: Khiếu nại chất lượng dữ liệu doanh nghiệp
+                  - generic [ref=e255]: "Dịch vụ: DV-DN-042 · Tạo 2 ngày trước · 8 phản hồi"
+              - generic [ref=e256] [cursor=pointer]:
+                - img [ref=e258]
+                - generic [ref=e261]:
+                  - generic [ref=e262]:
+                    - generic [ref=e263]: TKT-2026-04-1258
+                    - generic [ref=e264]: Thấp
+                    - generic [ref=e265]: Đã giải quyết
+                  - generic [ref=e266]: Hướng dẫn tích hợp OAuth 2.0
+                  - generic [ref=e267]: "Dịch vụ: General · Tạo 3 ngày trước · 5 phản hồi"
+              - generic [ref=e268] [cursor=pointer]:
+                - img [ref=e270]
+                - generic [ref=e273]:
+                  - generic [ref=e274]:
+                    - generic [ref=e275]: TKT-2026-04-1242
+                    - generic [ref=e276]: Trung bình
+                    - generic [ref=e277]: Đã giải quyết
+                  - generic [ref=e278]: Xin cấp API key cho môi trường production
+                  - generic [ref=e279]: "Dịch vụ: General · Tạo 5 ngày trước · 4 phản hồi"
+          - generic [ref=e280]:
+            - generic [ref=e281]:
+              - heading "Liên hệ nhanh" [level=3] [ref=e283]
+              - generic [ref=e284]:
+                - link "Hotline 24/7 1900 0368" [ref=e285] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e287]
+                  - generic [ref=e289]:
+                    - generic [ref=e290]: Hotline 24/7
+                    - generic [ref=e291]: 1900 0368
+                - link "Email hỗ trợ support@sdl.gov.vn" [ref=e292] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e294]
+                  - generic [ref=e297]:
+                    - generic [ref=e298]: Email hỗ trợ
+                    - generic [ref=e299]: support@sdl.gov.vn
+                - link "Chat trực tuyến ● Đang hoạt động" [ref=e300] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e302]
+                  - generic [ref=e304]:
+                    - generic [ref=e305]: Chat trực tuyến
+                    - generic [ref=e306]: ● Đang hoạt động
+            - generic [ref=e307]:
+              - heading "Tạo ticket nhanh" [level=3] [ref=e309]
+              - generic [ref=e310]:
+                - combobox [ref=e311]:
+                  - option "Loại vấn đề..." [selected]
+                  - option "Lỗi kỹ thuật API"
+                  - option "Khiếu nại chất lượng"
+                  - option "Yêu cầu tăng hạn mức"
+                  - option "Hỗ trợ tích hợp"
+                - textbox "Tiêu đề ngắn gọn..." [ref=e312]
+                - textbox "Mô tả chi tiết vấn đề..." [ref=e313]
+                - button "Gửi ticket" [ref=e314] [cursor=pointer]:
+                  - img [ref=e315]
+                  - text: Gửi ticket
+            - generic [ref=e318]:
+              - heading "FAQ phổ biến" [level=3] [ref=e320]
+              - generic [ref=e321]:
+                - link "Cách tạo API Key?" [ref=e322] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e323]
+                  - text: Cách tạo API Key?
+                - link "Hạn mức hết làm sao?" [ref=e326] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e327]
+                  - text: Hạn mức hết làm sao?
+                - link "Lỗi 429 là gì?" [ref=e330] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e331]
+                  - text: Lỗi 429 là gì?
+                - link "Cách thu hồi consent?" [ref=e334] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e335]
+                  - text: Cách thu hồi consent?
+  - alert [ref=e338]
+```
