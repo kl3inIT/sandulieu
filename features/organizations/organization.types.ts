@@ -1,4 +1,6 @@
 import type {
+  DeleteOrganizationApiResponse,
+  OrganizationDeleteGuardApiResponse,
   OrganizationFilters,
   OrganizationListQuery,
   OrganizationSortField,
@@ -17,3 +19,9 @@ export type OrganizationsListResponse = {
   pageCount: number;
 };
 export type OrganizationDetailResponse = Organization;
+export type OrganizationMutationPayload = Pick<
+  Organization,
+  "id" | "code" | "name" | "status"
+>;
+export type OrganizationDeleteGuard = OrganizationDeleteGuardApiResponse;
+export type OrganizationDeleteResult = DeleteOrganizationApiResponse;
