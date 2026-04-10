@@ -6,7 +6,13 @@ import type {
 import { getMembersApi } from "@/shared/api/member.api";
 import type { DirectoryStatus } from "@/shared/model/directory-status.model";
 
-const ORGANIZATION_DIRECTORY = {
+type OrganizationDirectoryEntry = {
+  id: string;
+  name: string;
+  managePath: string;
+};
+
+const ORGANIZATION_DIRECTORY: Record<string, OrganizationDirectoryEntry> = {
   "org-acme": {
     id: "org-acme",
     name: "Tập đoàn ACME Việt Nam",
@@ -22,14 +28,7 @@ const ORGANIZATION_DIRECTORY = {
     name: "Thiên Long Manufacturing",
     managePath: "/admin/organizations/org-thien-long",
   },
-} satisfies Record<
-  string,
-  {
-    id: string;
-    name: string;
-    managePath: string;
-  }
->;
+};
 
 export type DepartmentParentContextApiResponse = {
   organizationId: string;
