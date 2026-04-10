@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { DepartmentDeleteDialog } from "@/features/departments/components/DepartmentDeleteDialog";
 import { Button } from "@/shared/components/ui/button";
 
 type DepartmentRowActionsProps = {
@@ -24,9 +25,16 @@ export function DepartmentRowActions({
       <Button asChild size="sm" variant="outline">
         <Link href={editHref}>Chỉnh sửa</Link>
       </Button>
-      <Button type="button" size="sm" variant="ghost" disabled>
-        Xoá ({departmentName})
-      </Button>
+      <DepartmentDeleteDialog
+        organizationId={organizationId}
+        departmentId={departmentId}
+        departmentName={departmentName}
+        trigger={
+          <Button type="button" size="sm" variant="outline">
+            Xoá
+          </Button>
+        }
+      />
     </div>
   );
 }

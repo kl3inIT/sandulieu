@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-directory-foundations-contracts-06-PLAN.md
-last_updated: "2026-04-10T08:25:19.912Z"
-last_activity: 2026-04-10 -- Phase 03 execution started
+stopped_at: Completed 03-department-management-in-organization-scope-01-PLAN.md
+last_updated: "2026-04-10T08:43:48.655Z"
+last_activity: 2026-04-10
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 15
-  completed_plans: 10
-  percent: 67
+  total_plans: 10
+  completed_plans: 11
+  percent: 100
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: D:/DTH/sandulieu/.planning/PROJECT.md (updated 2026-04-08)
 
 **Core value:** Deliver a realistic enterprise CRUD foundation that feels production-ready in structure and UX before real backend and identity integration are added.
-**Current focus:** Phase 03 — department-management-in-organization-scope
+**Current focus:** Phase 01 — directory-foundations-contracts
 
 ## Current Position
 
-Phase: 03 (department-management-in-organization-scope) — EXECUTING
-Plan: 1 of 5
-Status: Executing Phase 03
-Last activity: 2026-04-10 -- Phase 03 execution started
+Phase: 01 (directory-foundations-contracts) — EXECUTING
+Plan: 3 of 6
+Status: Ready to execute
+Last activity: 2026-04-10
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 
 _Updated after each plan completion_
 | Phase 01-directory-foundations-contracts P06 | 11min | 1 tasks | 1 files |
+| Phase 03-department-management-in-organization-scope P01 | 931 | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Recent decisions affecting current work:
 - [Phase 1]: Defer real Keycloak integration, RBAC, audit logs, and approval workflows until after the CRUD foundation.
 - [Phase 01-directory-foundations-contracts]: Embedded the existing OrganizationForm directly on /admin/organizations to close the UAT discoverability gap with the smallest possible surface change.
 - [Phase 01-directory-foundations-contracts]: Used lightweight page-local submit feedback so the proof remains runnable without introducing premature persistence behavior.
+- [Phase 03-department-management-in-organization-scope]: Department detail responses now carry parent organization context and member summary so Phase 3 routes do not need ad-hoc joins.
+- [Phase 03-department-management-in-organization-scope]: Department cache invalidation stays organization-qualified to avoid cross-organization collisions in nested admin routes.
+- [Phase 03-department-management-in-organization-scope]: Delete guard semantics use member data under organizationId plus departmentId scope and soft-delete departments instead of hard deletion.
 
 ### Pending Todos
 
@@ -80,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T02:45:10.871Z
-Stopped at: Completed 01-directory-foundations-contracts-06-PLAN.md
+Last session: 2026-04-10T08:43:48.651Z
+Stopped at: Completed 03-department-management-in-organization-scope-01-PLAN.md
 Resume file: None

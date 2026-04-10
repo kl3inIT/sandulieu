@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Building2, FilePenLine } from "lucide-react";
 
+import { DepartmentDeleteDialog } from "@/features/departments/components/DepartmentDeleteDialog";
 import { DepartmentDetailSummary } from "@/features/departments/components/DepartmentDetailSummary";
 import { DepartmentMemberSummary } from "@/features/departments/components/DepartmentMemberSummary";
 import { useDepartmentDetailQuery } from "@/features/departments/department.query-hooks";
@@ -25,6 +26,7 @@ import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export default function AdminDepartmentDetailPage() {
   const params = useParams<{ organizationId: string; departmentId: string }>();
+  const router = useRouter();
   const organizationId = params.organizationId;
   const departmentId = params.departmentId;
   const departmentDetailQuery = useDepartmentDetailQuery(
@@ -79,6 +81,22 @@ export default function AdminDepartmentDetailPage() {
                 Chỉnh sửa phòng ban
               </Link>
             </Button>
+
+            {departmentDetailQuery.data ? (
+              <DepartmentDeleteDialog
+                organizationId={organizationId}
+                departmentId={departmentId}
+                departmentName={departmentDetailQuery.data.name}
+                onDeleteSuccess={() => {
+                  router.push(departmentsPath);
+                }}
+                trigger={
+                  <Button type="button" variant="outline">
+                    Xoá phòng ban
+                  </Button>
+                }
+              />
+            ) : null}
           </div>
 
           {departmentDetailQuery.data ? (
