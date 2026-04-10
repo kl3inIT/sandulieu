@@ -703,7 +703,7 @@ export function SellerHomePage() {
               <CardTitle>Hạng seller</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
-              <div className="flex flex-col items-center gap-3 rounded-2xl bg-muted/30 px-4 py-5 text-center">
+              <div className="flex flex-col items-center gap-3 rounded-xl bg-muted/30 px-4 py-5 text-center">
                 <div className="flex size-14 items-center justify-center rounded-full bg-amber-100 text-amber-700">
                   <Trophy />
                 </div>

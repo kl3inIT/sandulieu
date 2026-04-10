@@ -223,7 +223,7 @@ function SellerSidebar({ pathname }: { pathname: string }) {
       </div>
 
       <div className="border-t border-border/70 p-3">
-        <div className="flex items-center gap-3 rounded-3xl border border-border/70 bg-muted/40 p-3">
+        <div className="flex items-center gap-3 rounded-xl border border-border/70 bg-muted/40 p-3">
           <Avatar className="bg-primary text-primary-foreground">
             <AvatarFallback className="bg-primary text-primary-foreground">
               {sellerUser.initials}

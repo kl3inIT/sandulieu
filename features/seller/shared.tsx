@@ -54,7 +54,7 @@ export function SellerKpiCard({
   tone: "emerald" | "rose" | "amber" | "blue" | "violet";
 }) {
   return (
-    <Card className="rounded-3xl border-border/70 shadow-sm">
+    <Card className="rounded-2xl border-border/70 shadow-sm">
       <CardHeader className="flex flex-row items-start justify-between gap-3 pb-2">
         <div className="space-y-1">
           <CardDescription className="text-[14px]">{label}</CardDescription>
