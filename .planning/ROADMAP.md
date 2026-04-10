@@ -13,7 +13,7 @@ This roadmap turns the existing brownfield Next.js admin shell into a hierarchy-
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Directory Foundations & Contracts** - Establish shared feature boundaries, backend-shaped mock contracts, and reusable URL/form/table foundations.
+- [x] **Phase 1: Directory Foundations & Contracts** - Establish shared feature boundaries, backend-shaped mock contracts, and reusable URL/form/table foundations. (completed 2026-04-10)
 - [ ] **Phase 2: Organization Management** - Deliver the first complete vertical slice for organization CRUD and guarded lifecycle behavior.
 - [ ] **Phase 3: Department Management in Organization Scope** - Add nested department CRUD with organization-qualified navigation, queries, and delete rules.
 - [ ] **Phase 4: Member Management & Bulk Operations** - Deliver the deepest hierarchy slice for members, including bulk actions and parent-aware assignment flows.
@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 3. Directory table screens use a consistent TanStack Table pattern that supports server-shaped pagination, sorting, and filtering.
 4. Organization, Department, and Member data flows through separate feature modules and shared API/service contracts with stable identifiers and parent-qualified query keys.
 
-**Plans:** 5 plans
+**Plans:** 6/6 plans complete
 Plans:
 
 - [ ] 01-01-PLAN.md — Shared contracts, stable identifiers, and raw mock API boundaries
@@ -118,11 +118,11 @@ Plans:
 **Execution Order:**
 Phases execute in numeric order: 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 
-| Phase                                          | Plans Complete | Status      | Completed |
-| ---------------------------------------------- | -------------- | ----------- | --------- |
-| 1. Directory Foundations & Contracts           | 0/5            | Not started | -         |
-| 2. Organization Management                     | 0/TBD          | Not started | -         |
-| 3. Department Management in Organization Scope | 0/TBD          | Not started | -         |
-| 4. Member Management & Bulk Operations         | 0/TBD          | Not started | -         |
-| 5. Cross-Entity Admin UX Consistency           | 0/TBD          | Not started | -         |
-| 6. Auth-Ready Boundary                         | 0/TBD          | Not started | -         |
+| Phase                                          | Plans Complete | Status      | Completed  |
+| ---------------------------------------------- | -------------- | ----------- | ---------- |
+| 1. Directory Foundations & Contracts           | 6/6            | Complete    | 2026-04-10 |
+| 2. Organization Management                     | 0/TBD          | Not started | -          |
+| 3. Department Management in Organization Scope | 0/TBD          | Not started | -          |
+| 4. Member Management & Bulk Operations         | 0/TBD          | Not started | -          |
+| 5. Cross-Entity Admin UX Consistency           | 0/TBD          | Not started | -          |
+| 6. Auth-Ready Boundary                         | 0/TBD          | Not started | -          |
