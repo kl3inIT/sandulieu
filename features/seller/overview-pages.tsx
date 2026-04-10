@@ -238,17 +238,17 @@ const HOME_TASKS: TaskItem[] = [
   {
     title: "3 sản phẩm chờ thẩm định",
     description: "Hội đồng thẩm định sẽ đánh giá trong 3 - 5 ngày",
-    className: "border-amber-200 bg-amber-50/80",
+    className: "ring-amber-200/60 bg-amber-50/80",
   },
   {
     title: "5 đơn hàng chờ bàn giao",
     description: "Xác minh bàn giao để nhận thanh toán",
-    className: "border-blue-200 bg-blue-50/80",
+    className: "ring-blue-200/60 bg-blue-50/80",
   },
   {
     title: "12 yêu cầu mua mới",
     description: "Doanh nghiệp đang tìm dữ liệu phù hợp",
-    className: "border-emerald-200 bg-emerald-50/80",
+    className: "ring-emerald-200/60 bg-emerald-50/80",
   },
 ];
 
@@ -418,7 +418,7 @@ const TAX_ITEMS: TaxItem[] = [
     label: "Thực nhận",
     value: "6.839.940.000 đ",
     detail: "Sau mọi khoản phí",
-    className: "border-emerald-200 bg-emerald-50/90",
+    className: "ring-emerald-200/60 bg-emerald-50/90",
     valueClassName: "text-emerald-700",
   },
 ];
@@ -471,7 +471,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     tag: "Quan trọng",
     icon: Package,
     iconClassName: "bg-emerald-100 text-emerald-700 ring-emerald-200",
-    rowClassName: "border-emerald-200 bg-emerald-50/70",
+    rowClassName: "ring-emerald-200/60 bg-emerald-50/70",
     tagClassName: "bg-rose-100 text-rose-700 hover:bg-rose-100",
   },
   {
@@ -482,7 +482,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     tag: "Quan trọng",
     icon: Gavel,
     iconClassName: "bg-orange-100 text-orange-700 ring-orange-200",
-    rowClassName: "border-orange-200 bg-orange-50/70",
+    rowClassName: "ring-orange-200/60 bg-orange-50/70",
     tagClassName: "bg-rose-100 text-rose-700 hover:bg-rose-100",
   },
   {
@@ -492,7 +492,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     time: "1 giờ trước",
     icon: Search,
     iconClassName: "bg-blue-100 text-blue-700 ring-blue-200",
-    rowClassName: "border-sky-200 bg-sky-50/70",
+    rowClassName: "ring-sky-200/60 bg-sky-50/70",
   },
   {
     title: "Hội đồng đã thẩm định SP-TC-005",
@@ -501,7 +501,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     time: "2 giờ trước",
     icon: ShieldCheck,
     iconClassName: "bg-amber-100 text-amber-700 ring-amber-200",
-    rowClassName: "border-amber-200 bg-amber-50/70",
+    rowClassName: "ring-amber-200/60 bg-amber-50/70",
   },
   {
     title: "Đánh giá mới 5★ từ SSI Securities",
@@ -510,7 +510,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     time: "3 giờ trước",
     icon: Star,
     iconClassName: "bg-yellow-100 text-yellow-700 ring-yellow-200",
-    rowClassName: "border-cyan-200 bg-cyan-50/70",
+    rowClassName: "ring-cyan-200/60 bg-cyan-50/70",
   },
   {
     title: "Khiếu nại mới từ Techcombank",
@@ -520,7 +520,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     tag: "Quan trọng",
     icon: CircleAlert,
     iconClassName: "bg-rose-100 text-rose-700 ring-rose-200",
-    rowClassName: "border-rose-200 bg-rose-50/70",
+    rowClassName: "ring-rose-200/60 bg-rose-50/70",
     tagClassName: "bg-rose-100 text-rose-700 hover:bg-rose-100",
   },
   {
@@ -530,7 +530,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     time: "Hôm qua",
     icon: Wallet,
     iconClassName: "bg-emerald-100 text-emerald-700 ring-emerald-200",
-    rowClassName: "border-emerald-200 bg-card",
+    rowClassName: "ring-emerald-200/60",
   },
   {
     title: "Doanh thu tháng 4/2026 +32% MoM",
@@ -539,7 +539,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     time: "Hôm qua",
     icon: ChartNoAxesColumn,
     iconClassName: "bg-blue-100 text-blue-700 ring-blue-200",
-    rowClassName: "border-blue-200 bg-blue-50/70",
+    rowClassName: "ring-blue-200/60 bg-blue-50/70",
   },
   {
     title: "Đăng nhập mới từ thiết bị khác",
@@ -549,7 +549,7 @@ const NOTIFICATIONS: NotificationItem[] = [
     tag: "Quan trọng",
     icon: CircleAlert,
     iconClassName: "bg-rose-100 text-rose-700 ring-rose-200",
-    rowClassName: "border-rose-200 bg-rose-50/60",
+    rowClassName: "ring-rose-200/60 bg-rose-50/60",
     tagClassName: "bg-rose-100 text-rose-700 hover:bg-rose-100",
   },
   {
@@ -559,38 +559,40 @@ const NOTIFICATIONS: NotificationItem[] = [
     time: "2 ngày trước",
     icon: Bell,
     iconClassName: "bg-slate-100 text-slate-700 ring-slate-200",
-    rowClassName: "border-slate-200 bg-card",
+    rowClassName: "ring-slate-200/60",
   },
 ];
 
 export function SellerHomePage() {
   return (
     <div className="flex flex-col gap-4">
-      <header className="flex flex-col gap-4 rounded-3xl border bg-card px-5 py-5 shadow-sm lg:flex-row lg:items-start lg:justify-between">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-            Chào mừng trở lại, Trần Thị Mai ✨
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Tổng quan hoạt động kinh doanh dữ liệu của CTCP Dữ liệu Tài chính
-            Việt.
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Button asChild size="sm" variant="outline">
-            <Link href="/seller/products">
-              <Store data-icon="inline-start" />
-              Xem cửa hàng
-            </Link>
-          </Button>
-          <Button asChild size="sm">
-            <Link href="/seller/create">
-              <FileText data-icon="inline-start" />
-              Đăng sản phẩm mới
-            </Link>
-          </Button>
-        </div>
-      </header>
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col gap-2">
+            <CardTitle className="text-3xl font-semibold tracking-tight">
+              Chào mừng trở lại, Trần Thị Mai ✨
+            </CardTitle>
+            <CardDescription>
+              Tổng quan hoạt động kinh doanh dữ liệu của CTCP Dữ liệu Tài chính
+              Việt.
+            </CardDescription>
+          </div>
+          <CardAction className="flex flex-wrap items-center gap-2 self-center">
+            <Button asChild size="sm" variant="outline">
+              <Link href="/seller/products">
+                <Store data-icon="inline-start" />
+                Xem cửa hàng
+              </Link>
+            </Button>
+            <Button asChild size="sm">
+              <Link href="/seller/create">
+                <FileText data-icon="inline-start" />
+                Đăng sản phẩm mới
+              </Link>
+            </Button>
+          </CardAction>
+        </CardHeader>
+      </Card>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {HOME_STATS.map((item) => (
@@ -757,34 +759,36 @@ export function SellerHomePage() {
 export function SellerAnalyticsPage() {
   return (
     <div className="flex flex-col gap-4">
-      <header className="flex flex-col gap-4 rounded-3xl border bg-card px-5 py-5 shadow-sm lg:flex-row lg:items-start lg:justify-between">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-            Doanh thu & Báo cáo tài chính
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Phân tích doanh thu chi tiết, thuế và dự báo dựa trên AI.
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Select defaultValue="2026">
-            <SelectTrigger aria-label="Chọn năm báo cáo" className="min-w-28">
-              <SelectValue placeholder="Năm 2026" />
-            </SelectTrigger>
-            <SelectContent position="popper">
-              <SelectGroup>
-                <SelectItem value="2026">Năm 2026</SelectItem>
-                <SelectItem value="2025">Năm 2025</SelectItem>
-                <SelectItem value="2024">Năm 2024</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <Button size="sm" variant="outline">
-            <FileText data-icon="inline-start" />
-            Xuất báo cáo
-          </Button>
-        </div>
-      </header>
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col gap-2">
+            <CardTitle className="text-3xl font-semibold tracking-tight">
+              Doanh thu & Báo cáo tài chính
+            </CardTitle>
+            <CardDescription>
+              Phân tích doanh thu chi tiết, thuế và dự báo dựa trên AI.
+            </CardDescription>
+          </div>
+          <CardAction className="flex flex-wrap items-center gap-2 self-center">
+            <Select defaultValue="2026">
+              <SelectTrigger aria-label="Chọn năm báo cáo" className="min-w-28">
+                <SelectValue placeholder="Năm 2026" />
+              </SelectTrigger>
+              <SelectContent position="popper">
+                <SelectGroup>
+                  <SelectItem value="2026">Năm 2026</SelectItem>
+                  <SelectItem value="2025">Năm 2025</SelectItem>
+                  <SelectItem value="2024">Năm 2024</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <Button size="sm" variant="outline">
+              <FileText data-icon="inline-start" />
+              Xuất báo cáo
+            </Button>
+          </CardAction>
+        </CardHeader>
+      </Card>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {ANALYTICS_STATS.map((item) => (
@@ -861,26 +865,28 @@ export function SellerAnalyticsPage() {
 export function SellerNotificationsPage() {
   return (
     <div className="flex flex-col gap-4">
-      <header className="flex flex-col gap-4 rounded-3xl border bg-card px-5 py-5 shadow-sm lg:flex-row lg:items-start lg:justify-between">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-            Trung tâm thông báo
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Tất cả cập nhật về đơn hàng, đấu giá, RFQ, thẩm định và khiếu nại.
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Button size="sm" variant="outline">
-            <CheckCheck data-icon="inline-start" />
-            Đánh dấu tất cả đã đọc
-          </Button>
-          <Button size="sm" variant="outline">
-            <Settings2 data-icon="inline-start" />
-            Cấu hình
-          </Button>
-        </div>
-      </header>
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col gap-2">
+            <CardTitle className="text-3xl font-semibold tracking-tight">
+              Trung tâm thông báo
+            </CardTitle>
+            <CardDescription>
+              Tất cả cập nhật về đơn hàng, đấu giá, RFQ, thẩm định và khiếu nại.
+            </CardDescription>
+          </div>
+          <CardAction className="flex flex-wrap items-center gap-2 self-center">
+            <Button size="sm" variant="outline">
+              <CheckCheck data-icon="inline-start" />
+              Đánh dấu tất cả đã đọc
+            </Button>
+            <Button size="sm" variant="outline">
+              <Settings2 data-icon="inline-start" />
+              Cấu hình
+            </Button>
+          </CardAction>
+        </CardHeader>
+      </Card>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {NOTIFICATION_STATS.map((item) => (
@@ -990,10 +996,12 @@ function MetricCard({
 
 function MiniStatTile({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col gap-1 rounded-2xl border bg-muted/20 px-4 py-3">
-      <p className="text-xs text-muted-foreground">{label}</p>
-      <p className="text-sm font-semibold text-foreground">{value}</p>
-    </div>
+    <Card className="bg-muted/20">
+      <CardContent className="flex flex-col gap-1 py-3">
+        <p className="text-xs text-muted-foreground">{label}</p>
+        <p className="text-sm font-semibold text-foreground">{value}</p>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -1031,53 +1039,54 @@ function AuctionRow({
   statusClassName,
 }: AuctionItem) {
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border bg-muted/20 p-4">
-      <div className="flex items-start gap-3">
-        <div
-          className={cn(
-            "flex size-11 shrink-0 items-center justify-center rounded-2xl",
-            iconClassName
-          )}
-        >
-          <Gavel />
-        </div>
-        <div className="flex min-w-0 flex-1 flex-col gap-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline">{code}</Badge>
-            <Badge className={statusClassName}>{status}</Badge>
+    <Card className="bg-muted/20">
+      <CardContent className="flex flex-col gap-4 py-4">
+        <div className="flex items-start gap-3">
+          <div
+            className={cn(
+              "flex size-11 shrink-0 items-center justify-center rounded-xl",
+              iconClassName
+            )}
+          >
+            <Gavel />
           </div>
-          <p className="font-medium text-foreground">{title}</p>
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="outline">{code}</Badge>
+              <Badge className={statusClassName}>{status}</Badge>
+            </div>
+            <p className="font-medium text-foreground">{title}</p>
+          </div>
         </div>
-      </div>
-      <div className="grid gap-3 md:grid-cols-3">
-        <MiniStatTile label="Giá khởi điểm" value={startingBid} />
-        <MiniStatTile label="Giá hiện tại" value={currentBid} />
-        <MiniStatTile label="Kết thúc sau" value={timeLeft} />
-      </div>
-    </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          <MiniStatTile label="Giá khởi điểm" value={startingBid} />
+          <MiniStatTile label="Giá hiện tại" value={currentBid} />
+          <MiniStatTile label="Kết thúc sau" value={timeLeft} />
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
 function TaskStrip({ title, description, className }: TaskItem) {
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-1 rounded-2xl border px-4 py-3",
-        className
-      )}
-    >
-      <p className="text-sm font-medium text-foreground">{title}</p>
-      <p className="text-xs text-muted-foreground">{description}</p>
-    </div>
+    <Card className={cn(className)}>
+      <CardContent className="flex flex-col gap-1 py-3">
+        <p className="text-sm font-medium text-foreground">{title}</p>
+        <p className="text-xs text-muted-foreground">{description}</p>
+      </CardContent>
+    </Card>
   );
 }
 
 function RankMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-2xl border bg-background px-4 py-3">
-      <span className="text-sm text-muted-foreground">{label}</span>
-      <span className="text-sm font-semibold text-foreground">{value}</span>
-    </div>
+    <Card>
+      <CardContent className="flex items-center justify-between gap-3 py-3">
+        <span className="text-sm text-muted-foreground">{label}</span>
+        <span className="text-sm font-semibold text-foreground">{value}</span>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -1138,23 +1147,20 @@ function TaxMetricTile({
   valueClassName,
 }: TaxItem) {
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-2 rounded-2xl border px-4 py-4",
-        className
-      )}
-    >
-      <p className="text-xs text-muted-foreground">{label}</p>
-      <p
-        className={cn(
-          "text-2xl font-semibold tracking-tight text-foreground",
-          valueClassName
-        )}
-      >
-        {value}
-      </p>
-      <p className="text-xs text-muted-foreground">{detail}</p>
-    </div>
+    <Card className={cn(className)}>
+      <CardContent className="flex flex-col gap-2 py-4">
+        <p className="text-xs text-muted-foreground">{label}</p>
+        <p
+          className={cn(
+            "text-2xl font-semibold tracking-tight text-foreground",
+            valueClassName
+          )}
+        >
+          {value}
+        </p>
+        <p className="text-xs text-muted-foreground">{detail}</p>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -1192,28 +1198,30 @@ function NotificationListItem({
   rowClassName,
 }: NotificationItem) {
   return (
-    <div className={cn("rounded-2xl border px-4 py-4", rowClassName)}>
-      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-        <div className="flex min-w-0 items-start gap-3">
-          <div
-            className={cn(
-              "flex size-11 shrink-0 items-center justify-center rounded-2xl ring-1",
-              iconClassName
-            )}
-          >
-            <Icon />
-          </div>
-          <div className="flex min-w-0 flex-1 flex-col gap-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="font-medium text-foreground">{title}</p>
-              {tag ? <Badge className={tagClassName}>{tag}</Badge> : null}
+    <Card className={cn(rowClassName)}>
+      <CardContent className="py-4">
+        <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+          <div className="flex min-w-0 items-start gap-3">
+            <div
+              className={cn(
+                "flex size-11 shrink-0 items-center justify-center rounded-xl ring-1",
+                iconClassName
+              )}
+            >
+              <Icon />
             </div>
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <div className="flex min-w-0 flex-1 flex-col gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="font-medium text-foreground">{title}</p>
+                {tag ? <Badge className={tagClassName}>{tag}</Badge> : null}
+              </div>
+              <p className="text-sm text-muted-foreground">{description}</p>
+            </div>
           </div>
+          <p className="shrink-0 pt-1 text-xs text-muted-foreground">{time}</p>
         </div>
-        <p className="shrink-0 pt-1 text-xs text-muted-foreground">{time}</p>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 

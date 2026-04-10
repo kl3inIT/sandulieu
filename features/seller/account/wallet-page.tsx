@@ -86,26 +86,28 @@ export function SellerWalletPage() {
         }
       />
 
-      <div className="rounded-2xl bg-[linear-gradient(135deg,#0d223f_0%,#153766_100%)] px-6 py-5 text-white shadow-sm">
-        <div className="grid gap-6 md:grid-cols-3">
-          <WalletHeroStat
-            label="Số dư khả dụng"
-            value="284.500.000 đ"
-            note="Có thể rút ngay"
-            highlight
-          />
-          <WalletHeroStat
-            label="Đang chờ về ví"
-            value="148.200.000 đ"
-            note="T+3 sau bàn giao"
-          />
-          <WalletHeroStat
-            label="Tổng thu 2026"
-            value="9.842.000.000 đ"
-            note="+28,4% YoY"
-          />
-        </div>
-      </div>
+      <Card className="bg-[linear-gradient(135deg,#0d223f_0%,#153766_100%)] ring-0 shadow-sm">
+        <CardContent className="px-6 py-5">
+          <div className="grid gap-6 md:grid-cols-3">
+            <WalletHeroStat
+              label="Số dư khả dụng"
+              value="284.500.000 đ"
+              note="Có thể rút ngay"
+              highlight
+            />
+            <WalletHeroStat
+              label="Đang chờ về ví"
+              value="148.200.000 đ"
+              note="T+3 sau bàn giao"
+            />
+            <WalletHeroStat
+              label="Tổng thu 2026"
+              value="9.842.000.000 đ"
+              note="+28,4% YoY"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <SellerKpiCard

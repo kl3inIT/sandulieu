@@ -11,6 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 
+import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
 import { Button } from "@/shared/components/ui/button";
 import {
   Card,
@@ -73,21 +74,25 @@ export function SellerSupportPage() {
         }
       />
 
-      <div className="rounded-2xl bg-[linear-gradient(135deg,#0d223f_0%,#153766_100%)] px-6 py-5 text-white shadow-sm">
-        <div className="flex items-center gap-4">
-          <div className="flex size-12 items-center justify-center rounded-2xl bg-amber-400/15 text-amber-300">
-            <Zap className="size-6" />
+      <Card className="bg-[linear-gradient(135deg,#0d223f_0%,#153766_100%)] ring-0 shadow-sm">
+        <CardContent className="px-6 py-5">
+          <div className="flex items-center gap-4">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-amber-400/15 text-amber-300">
+              <Zap className="size-6" />
+            </div>
+            <div>
+              <p className="text-sm text-slate-300">Dịch vụ Platinum</p>
+              <h2 className="text-2xl font-semibold text-white">
+                Priority Support 24/7
+              </h2>
+              <p className="text-sm text-slate-200">
+                Chuyên gia tư vấn định giá, hỗ trợ kỹ thuật cao cấp, SLA phản
+                hồi dưới 1 giờ
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="text-sm text-slate-300">Dịch vụ Platinum</p>
-            <h2 className="text-2xl font-semibold">Priority Support 24/7</h2>
-            <p className="text-sm text-slate-200">
-              Chuyên gia tư vấn định giá, hỗ trợ kỹ thuật cao cấp, SLA phản hồi
-              dưới 1 giờ
-            </p>
-          </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <SellerKpiCard
@@ -129,9 +134,11 @@ export function SellerSupportPage() {
           <CardContent className="flex flex-col gap-4">
             <div className="rounded-xl border border-border/70 p-4">
               <div className="flex items-center gap-3">
-                <div className="flex size-12 items-center justify-center rounded-full bg-amber-400 text-slate-950 font-semibold">
-                  HN
-                </div>
+                <Avatar className="size-12">
+                  <AvatarFallback className="bg-amber-400 text-sm font-semibold text-slate-950">
+                    HN
+                  </AvatarFallback>
+                </Avatar>
                 <div>
                   <p className="font-medium">Hoàng Thị Ngọc</p>
                   <p className="text-xs text-muted-foreground">

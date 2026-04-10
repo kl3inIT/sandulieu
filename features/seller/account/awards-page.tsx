@@ -113,35 +113,37 @@ export function SellerAwardsPage() {
         description="Hạng seller Platinum, 6 chứng nhận quốc tế và 18 huy hiệu thành tích"
       />
 
-      <div className="rounded-2xl bg-[linear-gradient(135deg,#0d223f_0%,#153766_100%)] px-6 py-5 text-white shadow-sm">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center gap-5">
-            <div className="flex size-20 items-center justify-center rounded-full bg-amber-400 text-slate-950">
-              <Trophy className="size-9" />
+      <Card className="bg-[linear-gradient(135deg,#0d223f_0%,#153766_100%)] ring-0 shadow-sm">
+        <CardContent className="px-6 py-5">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-center gap-5">
+              <div className="flex size-20 items-center justify-center rounded-full bg-amber-400 text-slate-950">
+                <Trophy className="size-9" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-300">Hạng seller hiện tại</p>
+                <h2 className="text-5xl font-semibold text-amber-300">
+                  Platinum
+                </h2>
+                <p className="mt-2 text-sm text-slate-200">
+                  Top 5% · 4,82/5 sao · Từ 03/2025
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-slate-300">Hạng seller hiện tại</p>
-              <h2 className="text-5xl font-semibold text-amber-300">
-                Platinum
-              </h2>
-              <p className="mt-2 text-sm text-slate-200">
-                Top 5% · 4,82/5 sao · Từ 03/2025
+            <div className="min-w-64 space-y-3">
+              <div className="flex items-center justify-between text-sm text-slate-200">
+                <span>Tiến trình lên Diamond</span>
+                <span>84/100</span>
+              </div>
+              <Progress value={84} className="h-2 rounded-full" />
+              <p className="text-xs text-slate-300">
+                Cần thêm: 200 đơn hàng thành công, duy trì 4,85+ sao trong 3
+                tháng nữa
               </p>
             </div>
           </div>
-          <div className="min-w-64 space-y-3">
-            <div className="flex items-center justify-between text-sm text-slate-200">
-              <span>Tiến trình lên Diamond</span>
-              <span>84/100</span>
-            </div>
-            <Progress value={84} className="h-2 rounded-full" />
-            <p className="text-xs text-slate-300">
-              Cần thêm: 200 đơn hàng thành công, duy trì 4,85+ sao trong 3 tháng
-              nữa
-            </p>
-          </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       <section className="space-y-3">
         <h2 className="text-sm font-semibold">Huy hiệu & Thành tích</h2>
