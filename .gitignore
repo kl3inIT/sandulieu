@@ -44,3 +44,6 @@ next-env.d.ts
 /.claude/worktrees/
 /.playwright-cli/
 /output/
+/.admin-live/
+/.buyer-live/
+/.idea/

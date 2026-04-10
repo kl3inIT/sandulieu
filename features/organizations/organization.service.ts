@@ -1,13 +1,20 @@
 import {
+  createOrganizationApi,
+  deleteOrganizationApi,
   getOrganizationByIdApi,
+  getOrganizationDeleteGuardApi,
   getOrganizationsApi,
   type OrganizationApiResponse,
+  updateOrganizationApi,
 } from "@/shared/api/organization.api";
 import type { OrganizationModel } from "@/shared/model/organization.model";
 
 import type {
+  OrganizationDeleteGuard,
+  OrganizationDeleteResult,
   OrganizationDetailResponse,
   OrganizationListParams,
+  OrganizationMutationPayload,
   OrganizationsListResponse,
 } from "./organization.types";
 
@@ -17,6 +24,9 @@ function mapOrganization(response: OrganizationApiResponse): OrganizationModel {
     code: response.code,
     name: response.name,
     status: response.status,
+    createdAt: response.createdAt,
+    updatedAt: response.updatedAt,
+    departmentSummary: response.departmentSummary,
   };
 }
 
@@ -36,4 +46,31 @@ export async function getOrganizationById(
 ): Promise<OrganizationDetailResponse> {
   const response = await getOrganizationByIdApi(organizationId);
   return mapOrganization(response);
+}
+
+export async function createOrganization(
+  payload: OrganizationMutationPayload
+): Promise<OrganizationDetailResponse> {
+  const response = await createOrganizationApi(payload);
+  return mapOrganization(response);
+}
+
+export async function updateOrganization(
+  organizationId: string,
+  payload: OrganizationMutationPayload
+): Promise<OrganizationDetailResponse> {
+  const response = await updateOrganizationApi(organizationId, payload);
+  return mapOrganization(response);
+}
+
+export async function getOrganizationDeleteGuard(
+  organizationId: string
+): Promise<OrganizationDeleteGuard> {
+  return getOrganizationDeleteGuardApi(organizationId);
+}
+
+export async function deleteOrganization(
+  organizationId: string
+): Promise<OrganizationDeleteResult> {
+  return deleteOrganizationApi(organizationId);
 }

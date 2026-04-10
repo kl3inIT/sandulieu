@@ -1,24 +1,26 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useMemo } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import type { DirectorySort } from "@/shared/api/directory.contracts";
+import type { DirectoryStatus } from "@/shared/model/directory-status.model";
 import {
   buildDirectoryTableState,
   getDefaultDirectoryListState,
   parseDirectoryListState,
+  serializeDirectoryListState,
   toDirectoryListQuery,
+  type DirectoryListState,
 } from "@/features/directory/shared";
-import { OrganizationForm } from "@/features/organizations/components/OrganizationForm";
-import type { OrganizationFormPayload } from "@/features/organizations/organization.form";
+import { OrganizationListFilters } from "@/features/organizations/components/OrganizationListFilters";
+import {
+  OrganizationListTable,
+  type OrganizationTableSortField,
+} from "@/features/organizations/components/OrganizationListTable";
 import { useOrganizationListQuery } from "@/features/organizations/organization.query-hooks";
 import type { OrganizationListSortField } from "@/features/organizations/organization.types";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/shared/components/ui/alert";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -33,6 +35,8 @@ const ORGANIZATION_SORT_FIELDS = [
   "code",
   "name",
   "status",
+  "createdAt",
+  "updatedAt",
 ] as const satisfies readonly OrganizationListSortField[];
 
 const defaultOrganizationListState = getDefaultDirectoryListState({
@@ -42,33 +46,94 @@ const defaultOrganizationListState = getDefaultDirectoryListState({
 
 function OrganizationsPageContent() {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
   const normalizedState = parseDirectoryListState(searchParams, {
     allowedSortFields: ORGANIZATION_SORT_FIELDS,
     defaultSort: defaultOrganizationListState.sort,
     defaultPageSize: defaultOrganizationListState.pageSize,
   });
+
+  const tableState = buildDirectoryTableState(normalizedState);
   const organizationQuery = useOrganizationListQuery(
     toDirectoryListQuery(normalizedState, {})
   );
-  const tableState = buildDirectoryTableState(normalizedState);
-  const [submittedOrganization, setSubmittedOrganization] =
-    useState<OrganizationFormPayload | null>(null);
 
-  const handleOrganizationSubmit = async (values: OrganizationFormPayload) => {
-    setSubmittedOrganization(values);
+  const rowCount = organizationQuery.data?.rowCount ?? 0;
+  const pageCount = organizationQuery.data?.pageCount ?? 0;
+  const organizations = organizationQuery.data?.items ?? [];
+
+  const summaryText = useMemo(() => {
+    if (normalizedState.statuses.length === 0) {
+      return "Tất cả trạng thái";
+    }
+
+    return normalizedState.statuses.join(", ");
+  }, [normalizedState.statuses]);
+
+  const updateListState = (
+    nextState: DirectoryListState<OrganizationListSortField>
+  ) => {
+    const nextSearchParams = serializeDirectoryListState(nextState);
+    const nextQuery = nextSearchParams.toString();
+
+    router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname);
   };
 
-  if (organizationQuery.isError) {
-    return (
-      <Alert variant="destructive">
-        <AlertTitle>Chưa tải được danh sách tổ chức</AlertTitle>
-        <AlertDescription>
-          {(organizationQuery.error as Error).message ||
-            "Đã có lỗi xảy ra khi lấy dữ liệu tổ chức."}
-        </AlertDescription>
-      </Alert>
-    );
-  }
+  const updatePartialState = (
+    partialState: Partial<DirectoryListState<OrganizationListSortField>>
+  ) => {
+    updateListState({
+      ...normalizedState,
+      ...partialState,
+    });
+  };
+
+  const handleSearchSubmit = (value: string) => {
+    updatePartialState({
+      search: value.trim(),
+      pageIndex: 0,
+    });
+  };
+
+  const handleStatusToggle = (status: DirectoryStatus) => {
+    const hasStatus = normalizedState.statuses.includes(status);
+    const nextStatuses = hasStatus
+      ? normalizedState.statuses.filter((item) => item !== status)
+      : [...normalizedState.statuses, status];
+
+    updatePartialState({
+      statuses: nextStatuses,
+      pageIndex: 0,
+    });
+  };
+
+  const handleClearFilters = () => {
+    updateListState(defaultOrganizationListState);
+  };
+
+  const handleSortChange = (field: OrganizationTableSortField) => {
+    const currentSort = normalizedState.sort[0];
+    let nextSort: DirectorySort<OrganizationListSortField>[];
+
+    if (!currentSort || currentSort.field !== field) {
+      nextSort = [{ field, direction: "asc" }];
+    } else if (currentSort.direction === "asc") {
+      nextSort = [{ field, direction: "desc" }];
+    } else {
+      nextSort = [...defaultOrganizationListState.sort];
+    }
+
+    updatePartialState({
+      sort: nextSort,
+      pageIndex: 0,
+    });
+  };
+
+  const handlePageChange = (pageIndex: number) => {
+    updatePartialState({ pageIndex });
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -76,119 +141,59 @@ function OrganizationsPageContent() {
         <CardHeader>
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="flex flex-col gap-1">
-              <Badge variant="outline">Proof URL-owned state</Badge>
-              <CardTitle>Danh sách tổ chức</CardTitle>
+              <Badge variant="outline">Danh mục tổ chức</Badge>
+              <CardTitle>Quản lý tổ chức</CardTitle>
               <CardDescription>
-                Search params đã được chuẩn hóa trước khi tạo query và table
-                state.
+                Tra cứu, lọc trạng thái, sắp xếp và phân trang danh sách tổ chức
+                bằng trạng thái URL dùng chung.
               </CardDescription>
             </div>
-            <div className="flex flex-col items-start gap-2 sm:items-end">
-              <Badge variant="secondary">
-                Trang {tableState.pagination.pageIndex + 1} / kích thước{" "}
-                {tableState.pagination.pageSize}
-              </Badge>
-              <Button asChild className="rounded-full px-5">
-                <Link href="#organization-form-proof">
-                  Đi tới proof form tổ chức
-                </Link>
-              </Button>
-            </div>
+            <Button asChild>
+              <Link href="/admin/organizations/new">Tạo tổ chức</Link>
+            </Button>
           </div>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
-            <span>Tìm kiếm: {normalizedState.search || "Không có"}</span>
-            <span>
-              Trạng thái: {normalizedState.statuses.join(", ") || "Tất cả"}
-            </span>
-            <span>
-              Sắp xếp:{" "}
-              {normalizedState.sort
-                .map((item) => `${item.field}:${item.direction}`)
-                .join(", ") || "Mặc định"}
-            </span>
-          </div>
-
-          {organizationQuery.isLoading ? (
-            <p className="text-sm text-muted-foreground">
-              Đang tải dữ liệu tổ chức...
-            </p>
-          ) : null}
-
-          <div className="flex flex-col gap-3">
-            {(organizationQuery.data?.items ?? []).map((organization) => (
-              <Card key={organization.id} size="sm">
-                <CardHeader>
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                      <CardTitle>{organization.name}</CardTitle>
-                      <CardDescription>
-                        {organization.code} · {organization.id}
-                      </CardDescription>
-                    </div>
-                    <Badge variant="outline">{organization.status}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <Link
-                    href={`/admin/organizations/${organization.id}/departments`}
-                    className="text-sm text-primary underline-offset-4 hover:underline"
-                  >
-                    Xem phòng ban của tổ chức này
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <CardContent className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+          <span>Tìm kiếm: {normalizedState.search || "Chưa nhập"}</span>
+          <span>Trạng thái: {summaryText}</span>
+          <span>
+            Sắp xếp:{" "}
+            {normalizedState.sort
+              .map((item) => `${item.field}:${item.direction}`)
+              .join(", ")}
+          </span>
+          <span>
+            Trang: {tableState.pagination.pageIndex + 1} · Kích thước trang:{" "}
+            {tableState.pagination.pageSize}
+          </span>
         </CardContent>
       </Card>
 
-      <Card id="organization-form-proof">
-        <CardHeader>
-          <div className="flex flex-col gap-1">
-            <Badge variant="outline">Proof TanStack Form</Badge>
-            <CardTitle>Proof form tổ chức</CardTitle>
-            <CardDescription>
-              Dùng form proof này để kiểm tra validate on-change và submit ngay
-              trên trang quản trị tổ chức.
-            </CardDescription>
-          </div>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <OrganizationForm
-            mode="create"
-            submitLabel="Chạy proof submit"
-            onSubmit={handleOrganizationSubmit}
-            onReset={() => setSubmittedOrganization(null)}
-          />
+      <OrganizationListFilters
+        searchValue={normalizedState.search}
+        selectedStatuses={normalizedState.statuses}
+        onSearchSubmit={handleSearchSubmit}
+        onStatusToggle={handleStatusToggle}
+        onClearFilters={handleClearFilters}
+      />
 
-          {submittedOrganization ? (
-            <Alert>
-              <AlertTitle>Proof submit thành công</AlertTitle>
-              <AlertDescription>
-                <div className="flex flex-col gap-2">
-                  <p>
-                    Đã nhận payload hợp lệ cho tổ chức{" "}
-                    <strong>{submittedOrganization.name}</strong>.
-                  </p>
-                  <div className="flex flex-wrap gap-2 text-sm">
-                    <Badge variant="secondary">
-                      ID: {submittedOrganization.id}
-                    </Badge>
-                    <Badge variant="secondary">
-                      Mã: {submittedOrganization.code}
-                    </Badge>
-                    <Badge variant="secondary">
-                      Trạng thái: {submittedOrganization.status}
-                    </Badge>
-                  </div>
-                </div>
-              </AlertDescription>
-            </Alert>
-          ) : null}
-        </CardContent>
-      </Card>
+      <OrganizationListTable
+        organizations={organizations}
+        isLoading={organizationQuery.isLoading}
+        isError={organizationQuery.isError}
+        errorMessage={
+          organizationQuery.error instanceof Error
+            ? organizationQuery.error.message
+            : undefined
+        }
+        sort={normalizedState.sort}
+        pageIndex={normalizedState.pageIndex}
+        pageSize={normalizedState.pageSize}
+        pageCount={pageCount}
+        rowCount={rowCount}
+        onSortChange={handleSortChange}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

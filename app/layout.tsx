@@ -26,8 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-background text-foreground">
+    <html
+      lang="vi"
+      className={`${inter.className} ${inter.variable} h-full antialiased`}
+    >
+      <body className="min-h-full bg-background font-sans text-foreground">
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

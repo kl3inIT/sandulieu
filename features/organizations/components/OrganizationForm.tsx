@@ -87,9 +87,12 @@ export function OrganizationForm({
                   onChange={(event) => field.handleChange(event.target.value)}
                   placeholder="org-acme"
                   aria-invalid={!field.state.meta.isValid}
+                  disabled={mode === "update"}
                 />
                 <FieldDescription>
-                  Dùng id ổn định cho route và liên kết dữ liệu cha - con.
+                  {mode === "create"
+                    ? "Dùng id ổn định cho route và liên kết dữ liệu cha - con."
+                    : "ID ổn định được giữ theo route hiện tại và không thể sửa ở màn cập nhật."}
                 </FieldDescription>
                 <FieldError errors={getFieldErrors(field.state.meta.errors)} />
               </FieldContent>
@@ -166,7 +169,8 @@ export function OrganizationForm({
                   <option value="archived">Lưu trữ</option>
                 </select>
                 <FieldDescription>
-                  Proof form này dùng chung contract để màn create và update tái sử dụng.
+                  Form này dùng chung contract kiểm tra dữ liệu cho cả màn tạo
+                  mới và cập nhật.
                 </FieldDescription>
                 <FieldError errors={getFieldErrors(field.state.meta.errors)} />
               </FieldContent>
@@ -175,7 +179,9 @@ export function OrganizationForm({
         </form.Field>
       </FieldGroup>
 
-      <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
+      <form.Subscribe
+        selector={(state) => [state.canSubmit, state.isSubmitting]}
+      >
         {([canSubmit, isSubmitting]) => (
           <div className="flex flex-wrap items-center gap-3">
             <Button
@@ -185,7 +191,10 @@ export function OrganizationForm({
             >
               {isPending ? (
                 <>
-                  <LoaderCircle className="animate-spin" data-icon="inline-start" />
+                  <LoaderCircle
+                    className="animate-spin"
+                    data-icon="inline-start"
+                  />
                   Đang lưu tổ chức
                 </>
               ) : (
