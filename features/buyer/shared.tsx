@@ -4,6 +4,7 @@ import { Search, type LucideIcon } from "lucide-react";
 
 import type { BuyerEndpoint, BuyerMetric } from "@/features/buyer/data";
 import { buyerHeatmapRows, buyerTrendBars } from "@/features/buyer/data";
+import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
   Card,
@@ -12,6 +13,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
+import {
+  Field as UiField,
+  FieldContent,
+  FieldLabel,
+} from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import { Progress } from "@/shared/components/ui/progress";
 import { cn } from "@/shared/lib/utils";
@@ -31,9 +37,13 @@ export function BuyerPageHeader({
         <h1 className="text-[1.55rem] font-semibold tracking-tight text-primary sm:text-[1.75rem]">
           {title}
         </h1>
-        <p className="max-w-4xl text-[14px] text-muted-foreground">{description}</p>
+        <p className="max-w-4xl text-[14px] text-muted-foreground">
+          {description}
+        </p>
       </div>
-      {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
+      {actions ? (
+        <div className="flex flex-wrap items-center gap-2">{actions}</div>
+      ) : null}
     </div>
   );
 }
@@ -86,7 +96,10 @@ export function SearchInput({
   return (
     <div className="relative">
       <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-      <Input placeholder={placeholder} className={cn("h-9 rounded-xl pl-10 text-sm", className)} />
+      <Input
+        placeholder={placeholder}
+        className={cn("h-9 rounded-xl pl-10 text-sm", className)}
+      />
     </div>
   );
 }
@@ -101,13 +114,22 @@ export function MetricGrid({ metrics }: { metrics: BuyerMetric[] }) {
   );
 }
 
-export function MetricCard({ label, value, delta, detail, tone, icon: Icon }: BuyerMetric) {
+export function MetricCard({
+  label,
+  value,
+  delta,
+  detail,
+  tone,
+  icon: Icon,
+}: BuyerMetric) {
   return (
     <Card className="rounded-3xl border-border/70 shadow-sm">
       <CardHeader className="flex flex-row items-start justify-between gap-3 pb-2">
         <div className="space-y-1">
           <CardDescription className="text-[14px]">{label}</CardDescription>
-          <CardTitle className="text-[1.6rem] leading-none text-primary">{value}</CardTitle>
+          <CardTitle className="text-[1.6rem] leading-none text-primary">
+            {value}
+          </CardTitle>
         </div>
         <IconSurface tone={tone}>
           <Icon className="size-5" />
@@ -116,10 +138,20 @@ export function MetricCard({ label, value, delta, detail, tone, icon: Icon }: Bu
       {delta ? (
         <CardContent>
           <div className="flex flex-wrap items-center gap-2">
-            <StatusPill tone={delta.startsWith("-") ? "rose" : tone === "amber" ? "emerald" : tone}>
+            <StatusPill
+              tone={
+                delta.startsWith("-")
+                  ? "rose"
+                  : tone === "amber"
+                    ? "emerald"
+                    : tone
+              }
+            >
               {delta}
             </StatusPill>
-            {detail ? <span className="text-sm text-muted-foreground">{detail}</span> : null}
+            {detail ? (
+              <span className="text-sm text-muted-foreground">{detail}</span>
+            ) : null}
           </div>
         </CardContent>
       ) : null}
@@ -143,7 +175,9 @@ export function SummaryCard({
       <CardHeader className="flex flex-row items-start justify-between gap-3 pb-4">
         <div className="space-y-2">
           <CardDescription className="text-[14px]">{label}</CardDescription>
-          <CardTitle className="text-[1.6rem] leading-none text-primary">{value}</CardTitle>
+          <CardTitle className="text-[1.6rem] leading-none text-primary">
+            {value}
+          </CardTitle>
         </div>
         <IconSurface tone={tone}>
           <Icon className="size-5" />
@@ -179,7 +213,9 @@ export function UsageOverviewCard({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex items-end gap-2">
-          <p className="text-[2.35rem] font-semibold tracking-tight text-primary">{total}</p>
+          <p className="text-[2.35rem] font-semibold tracking-tight text-primary">
+            {total}
+          </p>
           <p className="pb-1 text-sm text-muted-foreground">{unit}</p>
         </div>
         <TrendGraphic />
@@ -187,7 +223,12 @@ export function UsageOverviewCard({
           {stats.map((stat, index) => (
             <div key={stat.label} className="space-y-1">
               <p className="text-sm text-muted-foreground">{stat.label}</p>
-              <p className={cn("text-lg font-semibold text-primary", index === 2 && "text-emerald-700")}>
+              <p
+                className={cn(
+                  "text-lg font-semibold text-primary",
+                  index === 2 && "text-emerald-700"
+                )}
+              >
                 {stat.value}
               </p>
             </div>
@@ -222,7 +263,10 @@ export function EndpointListCard({
             </div>
             <Progress
               value={item.percent}
-              className={cn("h-2.5 rounded-full", endpointTrackClasses[item.tone])}
+              className={cn(
+                "h-2.5 rounded-full",
+                endpointTrackClasses[item.tone]
+              )}
             />
           </div>
         ))}
@@ -251,7 +295,10 @@ export function AnalyticsHeatmapCard({
         <TrendGraphic compact />
         <div className="grid gap-1">
           {buyerHeatmapRows.map((row, rowIndex) => (
-            <div key={rowIndex} className="grid grid-cols-12 gap-1 md:grid-cols-24">
+            <div
+              key={rowIndex}
+              className="grid grid-cols-12 gap-1 md:grid-cols-24"
+            >
               {row.map((value, columnIndex) => (
                 <div
                   key={`${rowIndex}-${columnIndex}`}
@@ -285,9 +332,15 @@ export function StatusPill({
   tone: "emerald" | "rose" | "amber" | "blue" | "violet";
 }) {
   return (
-    <span className={cn("inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium", toneBadgeClasses[tone])}>
+    <Badge
+      variant="secondary"
+      className={cn(
+        "h-auto rounded-full px-2.5 py-1 text-[11px] font-medium",
+        toneBadgeClasses[tone]
+      )}
+    >
       {children}
-    </span>
+    </Badge>
   );
 }
 
@@ -299,7 +352,12 @@ export function IconSurface({
   children: ReactNode;
 }) {
   return (
-    <div className={cn("flex size-10 items-center justify-center rounded-2xl", toneSurfaceClasses[tone])}>
+    <div
+      className={cn(
+        "flex size-10 items-center justify-center rounded-2xl",
+        toneSurfaceClasses[tone]
+      )}
+    >
       {children}
     </div>
   );
@@ -319,7 +377,10 @@ export function GhostIconButton({
       variant="ghost"
       size="icon"
       aria-label={label}
-      className={cn("size-8 rounded-lg", danger && "text-destructive hover:text-destructive")}
+      className={cn(
+        "size-8 rounded-lg",
+        danger && "text-destructive hover:text-destructive"
+      )}
     >
       <Icon className="size-4" />
     </Button>
@@ -341,7 +402,16 @@ export function StatBlock({
     <div className="space-y-2">
       <p className="text-sm text-muted-foreground">{label}</p>
       <p className="text-lg font-semibold text-primary">{value}</p>
-      {detail ? <p className={cn("text-sm text-muted-foreground", detailTone && toneTextClasses[detailTone])}>{detail}</p> : null}
+      {detail ? (
+        <p
+          className={cn(
+            "text-sm text-muted-foreground",
+            detailTone && toneTextClasses[detailTone]
+          )}
+        >
+          {detail}
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -361,7 +431,16 @@ export function StatMini({
     <div className="rounded-2xl border border-border/70 p-3">
       <p className="text-sm text-muted-foreground">{label}</p>
       <p className="mt-1 text-base font-semibold text-primary">{value}</p>
-      {detail ? <p className={cn("mt-1 text-sm text-muted-foreground", detailTone && toneTextClasses[detailTone])}>{detail}</p> : null}
+      {detail ? (
+        <p
+          className={cn(
+            "mt-1 text-sm text-muted-foreground",
+            detailTone && toneTextClasses[detailTone]
+          )}
+        >
+          {detail}
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -376,10 +455,12 @@ export function Field({
   className?: string;
 }) {
   return (
-    <div className={cn("space-y-2", className)}>
-      <p className="text-sm text-muted-foreground">{label}</p>
-      {children}
-    </div>
+    <UiField className={className}>
+      <FieldContent>
+        <FieldLabel>{label}</FieldLabel>
+        {children}
+      </FieldContent>
+    </UiField>
   );
 }
 

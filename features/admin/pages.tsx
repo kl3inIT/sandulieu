@@ -50,6 +50,11 @@ import {
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/shared/components/ui/alert";
+import {
   Card,
   CardContent,
   CardDescription,
@@ -58,6 +63,7 @@ import {
   CardTitle,
 } from "@/shared/components/ui/card";
 import { Input } from "@/shared/components/ui/input";
+import { Progress } from "@/shared/components/ui/progress";
 import { cn } from "@/shared/lib/utils";
 
 export function AdminDashboardPage() {
@@ -69,12 +75,12 @@ export function AdminDashboardPage() {
   ] as const;
 
   const distributionBarClassNames = [
-    "bg-[#3b82f6]",
-    "bg-[#10b981]",
-    "bg-[#f59e0b]",
-    "bg-[#ff1f67]",
-    "bg-[#06b6d4]",
-    "bg-[#8b5cf6]",
+    "[&>[data-slot=progress-indicator]]:bg-[#3b82f6]",
+    "[&>[data-slot=progress-indicator]]:bg-[#10b981]",
+    "[&>[data-slot=progress-indicator]]:bg-[#f59e0b]",
+    "[&>[data-slot=progress-indicator]]:bg-[#ff1f67]",
+    "[&>[data-slot=progress-indicator]]:bg-[#06b6d4]",
+    "[&>[data-slot=progress-indicator]]:bg-[#8b5cf6]",
   ] as const;
 
   const alertToneClassNames = [
@@ -82,6 +88,7 @@ export function AdminDashboardPage() {
     "bg-[#fff1f3] text-[#be123c]",
     "bg-[#eef5ff] text-[#1d4ed8]",
   ] as const;
+  const securityAlertIcons = [TriangleAlert, ShieldAlert, Siren] as const;
 
   const complianceToneClassNames = [
     "bg-[#dcfce7] text-[#059669]",
@@ -242,14 +249,13 @@ export function AdminDashboardPage() {
                       <span>{label}</span>
                       <strong>{value}</strong>
                     </div>
-                    <div className="h-2 rounded-full bg-[#e9eff6]">
-                      <div
-                        className={`h-2 rounded-full ${distributionBarClassNames[index]}`}
-                        style={{
-                          width: `${Math.max(35, (Number(value) / 124) * 100)}%`,
-                        }}
-                      />
-                    </div>
+                    <Progress
+                      value={Math.max(35, (Number(value) / 124) * 100)}
+                      className={cn(
+                        "h-2 rounded-full bg-[#e9eff6]",
+                        distributionBarClassNames[index]
+                      )}
+                    />
                   </div>
                 ))}
               </div>
@@ -292,14 +298,15 @@ export function AdminDashboardPage() {
                     {score}
                   </p>
                   <p className="mt-2 text-sm text-[#607694]">{detail}</p>
-                  <div className="mt-3 h-2 rounded-full bg-[#eaf1f7]">
-                    <div
-                      className={`h-2 rounded-full ${isWarning ? "bg-[#f59e0b]" : "bg-[#10b981]"}`}
-                      style={{
-                        width: `${Math.max(70, Number.parseFloat(score) || 100)}%`,
-                      }}
-                    />
-                  </div>
+                  <Progress
+                    value={Math.max(70, Number.parseFloat(score) || 100)}
+                    className={cn(
+                      "mt-3 h-2 rounded-full bg-[#eaf1f7]",
+                      isWarning
+                        ? "[&>[data-slot=progress-indicator]]:bg-[#f59e0b]"
+                        : "[&>[data-slot=progress-indicator]]:bg-[#10b981]"
+                    )}
+                  />
                 </div>
               );
             })}
@@ -384,15 +391,27 @@ export function AdminDashboardPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="grid gap-2.5 px-5 pb-5 pt-0">
-              {adminSecurityAlerts.map((item, index) => (
-                <div
-                  key={item.title}
-                  className={`rounded-[1.1rem] px-4 py-3.5 ${alertToneClassNames[index]}`}
-                >
-                  <p className="text-[0.98rem] font-semibold">{item.title}</p>
-                  <p className="mt-1 text-sm opacity-90">{item.detail}</p>
-                </div>
-              ))}
+              {adminSecurityAlerts.map((item, index) => {
+                const Icon = securityAlertIcons[index];
+
+                return (
+                  <Alert
+                    key={item.title}
+                    className={cn(
+                      "rounded-[1.1rem] border-0 px-4 py-3.5 [&>svg]:top-4 [&>svg~*]:pl-8",
+                      alertToneClassNames[index]
+                    )}
+                  >
+                    <Icon className="size-4.5" />
+                    <AlertTitle className="text-[0.98rem] font-semibold">
+                      {item.title}
+                    </AlertTitle>
+                    <AlertDescription className="mt-1 text-sm opacity-90">
+                      {item.detail}
+                    </AlertDescription>
+                  </Alert>
+                );
+              })}
             </CardContent>
           </Card>
 

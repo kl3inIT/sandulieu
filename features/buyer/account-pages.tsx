@@ -36,7 +36,14 @@ import {
   StatusPill,
 } from "@/features/buyer/shared";
 import { Button } from "@/shared/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/shared/components/ui/card";
+import { FieldGroup } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import {
   Select,
@@ -54,6 +61,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/ui/table";
+import { Textarea } from "@/shared/components/ui/textarea";
 
 export function BuyerWalletPage() {
   return (
@@ -78,9 +86,12 @@ export function BuyerWalletPage() {
               <CreditCard className="size-4" />
               Số dư khả dụng — Ví SDL
             </div>
-            <p className="text-3xl font-semibold tracking-tight text-primary">52.420.000 ₫</p>
+            <p className="text-3xl font-semibold tracking-tight text-primary">
+              52.420.000 ₫
+            </p>
             <p className="text-sm text-muted-foreground">
-              Chủ ví: Công ty TNHH FinTech Việt · MST: 0108234567 · Chi phí tháng: 28.450.000 ₫
+              Chủ ví: Công ty TNHH FinTech Việt · MST: 0108234567 · Chi phí
+              tháng: 28.450.000 ₫
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -98,7 +109,9 @@ export function BuyerWalletPage() {
         <Card className="rounded-3xl border-border/70 shadow-sm">
           <CardHeader className="pb-3">
             <CardTitle className="text-xl">Lịch sử giao dịch</CardTitle>
-            <CardDescription>30 ngày gần nhất · Tất cả phương thức</CardDescription>
+            <CardDescription>
+              30 ngày gần nhất · Tất cả phương thức
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             {buyerWalletTransactions.map((item) => (
@@ -111,11 +124,15 @@ export function BuyerWalletPage() {
                     <CreditCard className="size-4" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-primary">{item.title}</p>
+                    <p className="text-sm font-medium text-primary">
+                      {item.title}
+                    </p>
                     <p className="text-sm text-muted-foreground">{item.meta}</p>
                   </div>
                 </div>
-                <p className={`text-sm font-semibold ${item.value.startsWith("+") ? "text-emerald-700" : "text-primary"}`}>
+                <p
+                  className={`text-sm font-semibold ${item.value.startsWith("+") ? "text-emerald-700" : "text-primary"}`}
+                >
                   {item.value}
                 </p>
               </div>
@@ -139,11 +156,17 @@ export function BuyerWalletPage() {
                       <CreditCard className="size-4" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-primary">{item.label}</p>
-                      <p className="text-sm text-muted-foreground">{item.detail}</p>
+                      <p className="text-sm font-medium text-primary">
+                        {item.label}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {item.detail}
+                      </p>
                     </div>
                   </div>
-                  {item.tag ? <StatusPill tone="blue">{item.tag}</StatusPill> : null}
+                  {item.tag ? (
+                    <StatusPill tone="blue">{item.tag}</StatusPill>
+                  ) : null}
                 </div>
               ))}
             </CardContent>
@@ -154,11 +177,20 @@ export function BuyerWalletPage() {
               <CardTitle className="text-xl">Thông tin xuất hóa đơn</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
-              <BillingRow label="Tên công ty" value={buyerBillingProfile.company} />
-              <BillingRow label="Mã số thuế" value={buyerBillingProfile.taxCode} />
+              <BillingRow
+                label="Tên công ty"
+                value={buyerBillingProfile.company}
+              />
+              <BillingRow
+                label="Mã số thuế"
+                value={buyerBillingProfile.taxCode}
+              />
               <BillingRow label="Địa chỉ" value={buyerBillingProfile.address} />
               <BillingRow label="Email" value={buyerBillingProfile.email} />
-              <Button variant="outline" className="mt-3 h-9 rounded-xl px-4 text-sm">
+              <Button
+                variant="outline"
+                className="mt-3 h-9 rounded-xl px-4 text-sm"
+              >
                 Chỉnh sửa
               </Button>
             </CardContent>
@@ -189,9 +221,12 @@ export function BuyerConsentPage() {
 
       <Card className="rounded-3xl border-border/70 shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="text-xl">Dashboard minh bạch truy cập</CardTitle>
+          <CardTitle className="text-xl">
+            Dashboard minh bạch truy cập
+          </CardTitle>
           <CardDescription>
-            Mô hình Estonia Personal Data Usage Monitor — hiển thị đầy đủ: ai truy cập, mục đích, thời gian, dữ liệu nào, cơ sở pháp lý
+            Mô hình Estonia Personal Data Usage Monitor — hiển thị đầy đủ: ai
+            truy cập, mục đích, thời gian, dữ liệu nào, cơ sở pháp lý
           </CardDescription>
         </CardHeader>
         <CardContent className="overflow-x-auto">
@@ -234,7 +269,10 @@ export function BuyerConsentPage() {
                     <div className="flex justify-end gap-1">
                       <GhostIconButton icon={Eye} label="Xem" />
                       {item.status === "Hiệu lực" ? (
-                        <Button variant="ghost" className="h-8 rounded-lg px-2 text-sm text-destructive hover:text-destructive">
+                        <Button
+                          variant="ghost"
+                          className="h-8 rounded-lg px-2 text-sm text-destructive hover:text-destructive"
+                        >
                           Thu hồi
                         </Button>
                       ) : (
@@ -268,23 +306,39 @@ export function BuyerSupportPage() {
           <CardHeader className="pb-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <CardTitle className="text-xl">Danh sách ticket</CardTitle>
-              <SearchInput placeholder="Tìm ticket…" className="h-9 min-w-56 rounded-xl" />
+              <SearchInput
+                placeholder="Tìm ticket…"
+                className="h-9 min-w-56 rounded-xl"
+              />
             </div>
           </CardHeader>
           <CardContent className="space-y-2">
             {buyerSupportTickets.map((item) => (
-              <div key={item.code} className="rounded-2xl border border-border/70 p-3">
+              <div
+                key={item.code}
+                className="rounded-2xl border border-border/70 p-3"
+              >
                 <div className="mb-2 flex flex-wrap items-center gap-2 text-xs">
-                  <span className="font-medium text-muted-foreground">{item.code}</span>
-                  <StatusPill tone={item.priority === "Ưu tiên cao" ? "rose" : "amber"}>
+                  <span className="font-medium text-muted-foreground">
+                    {item.code}
+                  </span>
+                  <StatusPill
+                    tone={item.priority === "Ưu tiên cao" ? "rose" : "amber"}
+                  >
                     {item.priority}
                   </StatusPill>
-                  <StatusPill tone={item.status === "Đã giải quyết" ? "emerald" : "blue"}>
+                  <StatusPill
+                    tone={item.status === "Đã giải quyết" ? "emerald" : "blue"}
+                  >
                     {item.status}
                   </StatusPill>
                 </div>
-                <p className="text-sm font-semibold text-primary">{item.title}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{item.meta}</p>
+                <p className="text-sm font-semibold text-primary">
+                  {item.title}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {item.meta}
+                </p>
               </div>
             ))}
           </CardContent>
@@ -321,27 +375,48 @@ export function BuyerSupportPage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-xl">Tạo ticket nhanh</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <Select defaultValue="placeholder">
-                <SelectTrigger className="h-9 rounded-xl bg-card px-3 text-sm">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="placeholder">Loại vấn đề...</SelectItem>
-                    <SelectItem value="api">Lỗi kỹ thuật API</SelectItem>
-                    <SelectItem value="quality">Khiếu nại chất lượng</SelectItem>
-                    <SelectItem value="quota">Yêu cầu tăng hạn mức</SelectItem>
-                    <SelectItem value="integration">Hỗ trợ tích hợp</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              <Input className="h-9 rounded-xl" placeholder="Tiêu đề ticket" />
-              <textarea
-                className="min-h-28 w-full rounded-2xl border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
-                placeholder="Mô tả ngắn vấn đề..."
-              />
-              <Button className="h-9 w-full rounded-xl text-sm">Gửi yêu cầu</Button>
+            <CardContent>
+              <FieldGroup className="gap-3">
+                <Field label="Loại vấn đề">
+                  <Select defaultValue="placeholder">
+                    <SelectTrigger className="h-9 rounded-xl bg-card px-3 text-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="placeholder">
+                          Loại vấn đề...
+                        </SelectItem>
+                        <SelectItem value="api">Lỗi kỹ thuật API</SelectItem>
+                        <SelectItem value="quality">
+                          Khiếu nại chất lượng
+                        </SelectItem>
+                        <SelectItem value="quota">
+                          Yêu cầu tăng hạn mức
+                        </SelectItem>
+                        <SelectItem value="integration">
+                          Hỗ trợ tích hợp
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <Field label="Tiêu đề ticket">
+                  <Input
+                    className="h-9 rounded-xl"
+                    placeholder="Tiêu đề ticket"
+                  />
+                </Field>
+                <Field label="Mô tả ngắn vấn đề">
+                  <Textarea
+                    className="min-h-28 rounded-2xl bg-background text-sm"
+                    placeholder="Mô tả ngắn vấn đề..."
+                  />
+                </Field>
+              </FieldGroup>
+              <Button className="h-9 w-full rounded-xl text-sm">
+                Gửi yêu cầu
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -381,7 +456,9 @@ export function BuyerDocsPage() {
               <div className="flex size-10 items-center justify-center rounded-2xl bg-secondary text-primary">
                 <HelpCircle className="size-5" />
               </div>
-              <p className="text-base font-semibold text-primary">{item.label}</p>
+              <p className="text-base font-semibold text-primary">
+                {item.label}
+              </p>
               <p className="text-sm text-muted-foreground">{item.count}</p>
             </CardContent>
           </Card>
@@ -392,16 +469,23 @@ export function BuyerDocsPage() {
         <Card className="rounded-3xl border-border/70 shadow-sm">
           <CardHeader className="pb-3">
             <CardTitle className="text-xl">Bắt đầu trong 5 phút</CardTitle>
-            <CardDescription>3 bước đơn giản để gọi API đầu tiên</CardDescription>
+            <CardDescription>
+              3 bước đơn giản để gọi API đầu tiên
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {buyerQuickstartSteps.map((item) => (
-              <div key={item.step} className="rounded-2xl border border-border/70 p-4">
+              <div
+                key={item.step}
+                className="rounded-2xl border border-border/70 p-4"
+              >
                 <div className="mb-2 flex items-center gap-2">
                   <span className="flex size-7 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
                     {item.step}
                   </span>
-                  <p className="text-sm font-semibold text-primary">{item.title}</p>
+                  <p className="text-sm font-semibold text-primary">
+                    {item.title}
+                  </p>
                 </div>
                 <pre className="overflow-x-auto whitespace-pre-wrap rounded-2xl bg-slate-950/95 p-3 text-xs text-slate-100">
                   {item.snippet}
@@ -414,7 +498,9 @@ export function BuyerDocsPage() {
         <Card className="rounded-3xl border-border/70 shadow-sm">
           <CardHeader className="pb-3">
             <CardTitle className="text-xl">SDK chính thức</CardTitle>
-            <CardDescription>Được bảo trì bởi Trung tâm Dữ liệu Quốc gia</CardDescription>
+            <CardDescription>
+              Được bảo trì bởi Trung tâm Dữ liệu Quốc gia
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             {buyerSdkItems.map((item) => (
@@ -423,8 +509,12 @@ export function BuyerDocsPage() {
                 className="flex items-center justify-between gap-3 rounded-2xl border border-border/70 p-3"
               >
                 <div>
-                  <p className="text-sm font-medium text-primary">{item.name}</p>
-                  <p className="text-sm text-muted-foreground">{item.packageName}</p>
+                  <p className="text-sm font-medium text-primary">
+                    {item.name}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {item.packageName}
+                  </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <StatusPill tone="blue">{item.version}</StatusPill>
@@ -473,7 +563,10 @@ export function BuyerSettingsPage() {
                 {buyerCompanyProfile.initials}
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" className="h-8 rounded-xl px-3 text-sm">
+                <Button
+                  variant="outline"
+                  className="h-8 rounded-xl px-3 text-sm"
+                >
                   Tải logo mới
                 </Button>
                 <Button variant="ghost" className="h-8 rounded-xl px-2 text-sm">
@@ -486,14 +579,24 @@ export function BuyerSettingsPage() {
         <CardContent className="space-y-4">
           <div className="grid gap-3 md:grid-cols-2">
             <Field label="Tên tổ chức *">
-              <Input className="h-9 rounded-xl" defaultValue={buyerCompanyProfile.name} />
+              <Input
+                className="h-9 rounded-xl"
+                defaultValue={buyerCompanyProfile.name}
+              />
             </Field>
             <Field label="Tên tiếng Anh">
-              <Input className="h-9 rounded-xl" defaultValue={buyerCompanyProfile.englishName} />
+              <Input
+                className="h-9 rounded-xl"
+                defaultValue={buyerCompanyProfile.englishName}
+              />
             </Field>
             <Field label="Mã số thuế *">
               <div className="flex items-center gap-2">
-                <Input className="h-9 rounded-xl" defaultValue={buyerCompanyProfile.taxCode} disabled />
+                <Input
+                  className="h-9 rounded-xl"
+                  defaultValue={buyerCompanyProfile.taxCode}
+                  disabled
+                />
                 <StatusPill tone="emerald">DMDC ✓</StatusPill>
               </div>
             </Field>
@@ -506,16 +609,24 @@ export function BuyerSettingsPage() {
                   <SelectGroup>
                     <SelectItem value="llc">Công ty TNHH</SelectItem>
                     <SelectItem value="joint-stock">Công ty cổ phần</SelectItem>
-                    <SelectItem value="private">Doanh nghiệp tư nhân</SelectItem>
+                    <SelectItem value="private">
+                      Doanh nghiệp tư nhân
+                    </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
             </Field>
             <Field label="Địa chỉ trụ sở *" className="md:col-span-2">
-              <Input className="h-9 rounded-xl" defaultValue={buyerCompanyProfile.address} />
+              <Input
+                className="h-9 rounded-xl"
+                defaultValue={buyerCompanyProfile.address}
+              />
             </Field>
             <Field label="Website">
-              <Input className="h-9 rounded-xl" defaultValue={buyerCompanyProfile.website} />
+              <Input
+                className="h-9 rounded-xl"
+                defaultValue={buyerCompanyProfile.website}
+              />
             </Field>
             <Field label="Lĩnh vực">
               <Select defaultValue="fintech">
@@ -524,7 +635,9 @@ export function BuyerSettingsPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="fintech">Tài chính công nghệ (FinTech)</SelectItem>
+                    <SelectItem value="fintech">
+                      Tài chính công nghệ (FinTech)
+                    </SelectItem>
                     <SelectItem value="banking">Ngân hàng</SelectItem>
                     <SelectItem value="insurance">Bảo hiểm</SelectItem>
                   </SelectGroup>
@@ -532,14 +645,20 @@ export function BuyerSettingsPage() {
               </Select>
             </Field>
             <Field label="Số nhân viên">
-              <Input className="h-9 rounded-xl" defaultValue={buyerCompanyProfile.employees} />
+              <Input
+                className="h-9 rounded-xl"
+                defaultValue={buyerCompanyProfile.employees}
+              />
             </Field>
             <Field label="Năm thành lập">
-              <Input className="h-9 rounded-xl" defaultValue={buyerCompanyProfile.foundedYear} />
+              <Input
+                className="h-9 rounded-xl"
+                defaultValue={buyerCompanyProfile.foundedYear}
+              />
             </Field>
             <Field label="Mô tả ngắn" className="md:col-span-2">
-              <textarea
-                className="min-h-24 w-full rounded-2xl border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+              <Textarea
+                className="min-h-24 rounded-2xl bg-background text-sm"
                 defaultValue={buyerCompanyProfile.description}
               />
             </Field>
@@ -549,7 +668,9 @@ export function BuyerSettingsPage() {
             <Button variant="outline" className="h-9 rounded-xl px-4 text-sm">
               Hủy
             </Button>
-            <Button className="h-9 rounded-xl px-4 text-sm">Lưu thay đổi</Button>
+            <Button className="h-9 rounded-xl px-4 text-sm">
+              Lưu thay đổi
+            </Button>
           </div>
         </CardContent>
       </Card>

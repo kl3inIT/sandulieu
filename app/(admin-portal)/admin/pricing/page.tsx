@@ -254,7 +254,7 @@ export default function AdminPricingPage() {
                       <p className="font-semibold text-[#0a2e5c]">
                         {item.name}
                       </p>
-                      {item.badge ? (
+                      {"badge" in item ? (
                         <Badge className="rounded-full bg-[#fef3c7] px-2.5 py-0.5 text-[#ca8a04] hover:bg-[#fef3c7]">
                           {item.badge}
                         </Badge>

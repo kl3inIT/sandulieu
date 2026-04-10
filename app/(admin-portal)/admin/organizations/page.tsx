@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { Badge } from "@/shared/components/ui/badge";
+import { Button } from "@/shared/components/ui/button";
 import {
   Card,
   CardContent,
@@ -165,9 +166,14 @@ export default function AdminOrganizationsPage() {
                 47 đơn vị · 662 dịch vụ · 77 bộ dữ liệu
               </p>
             </div>
-            <button className="flex items-center justify-center size-9 rounded-[0.8rem] border border-[#d9e0e7] text-[#64748b] bg-white hover:bg-slate-50 transition-colors">
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              className="size-9 rounded-[0.8rem] border-[#d9e0e7] bg-white text-[#64748b] hover:bg-slate-50"
+            >
               <Filter className="size-4" />
-            </button>
+            </Button>
           </CardHeader>
           <CardContent className="flex-1 space-y-4 p-6 bg-white overflow-y-auto">
             {govAgencies.map((agency, i) => (
@@ -197,9 +203,14 @@ export default function AdminOrganizationsPage() {
                       {agency.datasets}
                     </span>
                   </div>
-                  <button className="text-[#94a3b8] hover:text-[#0b2e5c] transition-colors p-1">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="size-7 text-[#94a3b8] hover:bg-transparent hover:text-[#0b2e5c]"
+                  >
                     <Eye className="size-[1.12rem]" />
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}

@@ -249,7 +249,7 @@ export default function AdminConsentPage() {
             valueClassName="text-[2rem] font-semibold tracking-tight text-[#091f40] sm:text-[2.15rem]"
             iconClassName={`size-11 rounded-[0.95rem] ${card.iconClassName}`}
             meta={
-              card.delta ? (
+              "delta" in card && card.delta ? (
                 <Badge
                   className={`mt-2 rounded-full px-2.5 py-0.5 text-[0.76rem] font-medium hover:bg-current/0 ${card.deltaClassName}`}
                 >

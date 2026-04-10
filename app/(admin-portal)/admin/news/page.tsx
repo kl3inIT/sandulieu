@@ -158,7 +158,7 @@ export default function AdminNewsPage() {
                     <p className="text-[2rem] leading-none font-semibold tracking-tight text-[#091f40] sm:text-[2.15rem]">
                       {card.value}
                     </p>
-                    {card.delta ? (
+                    {"delta" in card ? (
                       <Badge className="rounded-full bg-[#dcfce7] px-2.5 py-0.5 text-[#0f9f6e] hover:bg-[#dcfce7]">
                         {card.delta} tăng trưởng
                       </Badge>

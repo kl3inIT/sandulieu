@@ -273,30 +273,38 @@ export default function AdminDatasetsPage() {
                 </div>
 
                 <div className="flex items-center gap-3 text-[#304765]">
-                  <button
+                  <Button
                     type="button"
-                    className="rounded-full p-1.5 transition-colors hover:bg-[#edf3fb] hover:text-[#0a2e5c]"
+                    variant="ghost"
+                    size="icon"
+                    className="size-8 rounded-full text-[#304765] hover:bg-[#edf3fb] hover:text-[#0a2e5c]"
                     aria-label={`Xem ${row.name}`}
                   >
                     <Eye className="size-4.5" />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
-                    className="rounded-full p-1.5 transition-colors hover:bg-[#edf3fb] hover:text-[#0a2e5c]"
+                    variant="ghost"
+                    size="icon"
+                    className="size-8 rounded-full text-[#304765] hover:bg-[#edf3fb] hover:text-[#0a2e5c]"
                     aria-label={`Tải ${row.name}`}
                   >
                     <ArrowDownToLine className="size-4.5" />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
-                    className="rounded-full p-1.5 transition-colors hover:bg-[#edf3fb] hover:text-[#0a2e5c]"
+                    variant="ghost"
+                    size="icon"
+                    className="size-8 rounded-full text-[#304765] hover:bg-[#edf3fb] hover:text-[#0a2e5c]"
                     aria-label={`Chỉnh sửa ${row.name}`}
                   >
                     <Pencil className="size-4.5" />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
-                    className={`rounded-full p-1.5 transition-colors ${row.action === "play" ? "text-[#0f9f6e] hover:bg-[#e8fbf4]" : "text-[#ff8b1f] hover:bg-[#fff2e2]"}`}
+                    variant="ghost"
+                    size="icon"
+                    className={`size-8 rounded-full ${row.action === "play" ? "text-[#0f9f6e] hover:bg-[#e8fbf4]" : "text-[#ff8b1f] hover:bg-[#fff2e2]"}`}
                     aria-label={
                       row.action === "play"
                         ? `Tiếp tục ${row.name}`
@@ -304,7 +312,7 @@ export default function AdminDatasetsPage() {
                     }
                   >
                     <ActionIcon action={row.action} />
-                  </button>
+                  </Button>
                 </div>
               </div>
             </article>

@@ -21,6 +21,14 @@ import {
   CardTitle,
 } from "@/shared/components/ui/card";
 import { Input } from "@/shared/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select";
 
 const overviewCards = [
   {
@@ -262,12 +270,37 @@ export default function AdminAuditPage() {
                   />
                 </div>
                 <div className="flex gap-2">
-                  <select className="h-10 rounded-[0.95rem] border border-[#d8e0ea] bg-white px-3 text-[0.95rem] text-[#0a2e5c] outline-none">
-                    <option>Tất cả severity</option>
-                  </select>
-                  <select className="h-10 rounded-[0.95rem] border border-[#d8e0ea] bg-white px-3 text-[0.95rem] text-[#0a2e5c] outline-none">
-                    <option>30 ngày qua</option>
-                  </select>
+                  <Select defaultValue="all-severity">
+                    <SelectTrigger className="h-10 rounded-[0.95rem] border-[#d8e0ea] bg-white px-3 text-[0.95rem] text-[#0a2e5c]">
+                      <SelectValue placeholder="Tất cả severity" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="all-severity">
+                          Tất cả severity
+                        </SelectItem>
+                        <SelectItem value="info">INFO</SelectItem>
+                        <SelectItem value="warn">WARN</SelectItem>
+                        <SelectItem value="critical">CRITICAL</SelectItem>
+                        <SelectItem value="audit">AUDIT</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Select defaultValue="last-30-days">
+                    <SelectTrigger className="h-10 rounded-[0.95rem] border-[#d8e0ea] bg-white px-3 text-[0.95rem] text-[#0a2e5c]">
+                      <SelectValue placeholder="30 ngày qua" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="today">Hôm nay</SelectItem>
+                        <SelectItem value="last-7-days">7 ngày qua</SelectItem>
+                        <SelectItem value="last-30-days">
+                          30 ngày qua
+                        </SelectItem>
+                        <SelectItem value="last-quarter">Quý này</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>

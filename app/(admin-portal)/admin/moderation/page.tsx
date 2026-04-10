@@ -22,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
+import { Input } from "@/shared/components/ui/input";
 
 const overviewCards = [
   {
@@ -222,10 +223,10 @@ export default function AdminModerationPage() {
               <div className="w-full max-w-[27rem]">
                 <div className="relative">
                   <Sparkles className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#8ca0b8]" />
-                  <input
+                  <Input
                     aria-label="Tìm mã SP / tên seller"
                     placeholder="Tìm mã SP / tên seller..."
-                    className="h-10 w-full rounded-[0.95rem] border border-[#d8e0ea] bg-white pl-10 pr-3 text-[0.95rem] text-[#0a2e5c] outline-none placeholder:text-[#8ca0b8] focus:border-[#b9c7db]"
+                    className="h-10 w-full rounded-[0.95rem] border-[#d8e0ea] bg-white pl-10 pr-3 text-[0.95rem] text-[#0a2e5c] placeholder:text-[#8ca0b8] focus-visible:border-[#b9c7db]"
                   />
                 </div>
               </div>
