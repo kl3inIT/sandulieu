@@ -7,12 +7,18 @@ export const departmentFormSchema = z.object({
     .string()
     .trim()
     .min(1, "Mã định danh phòng ban là bắt buộc.")
-    .regex(/^[^\s]+$/, "Mã định danh phòng ban phải là id ổn định, không chứa khoảng trắng."),
+    .regex(
+      /^[^\s]+$/,
+      "Mã định danh phòng ban phải là id ổn định, không chứa khoảng trắng."
+    ),
   organizationId: z
     .string()
     .trim()
     .min(1, "Mã tổ chức cha là bắt buộc.")
-    .regex(/^[^\s]+$/, "Mã tổ chức cha phải là id ổn định, không chứa khoảng trắng."),
+    .regex(
+      /^[^\s]+$/,
+      "Mã tổ chức cha phải là id ổn định, không chứa khoảng trắng."
+    ),
   code: z.string().trim().min(2, "Mã phòng ban cần ít nhất 2 ký tự."),
   name: z.string().trim().min(3, "Tên phòng ban cần ít nhất 3 ký tự."),
   status: z.enum(["active", "inactive", "archived"]),
@@ -20,9 +26,22 @@ export const departmentFormSchema = z.object({
 
 export type DepartmentFormValues = z.input<typeof departmentFormSchema>;
 export type DepartmentFormPayload = z.output<typeof departmentFormSchema>;
+export type DepartmentFormMode = "create" | "update";
+export type DepartmentFormInitialValues = Pick<
+  DepartmentModel,
+  "id" | "organizationId" | "code" | "name" | "status"
+>;
+export type DepartmentFormHydration = {
+  mode: DepartmentFormMode;
+  initialValues: DepartmentFormValues;
+  identity: {
+    organizationId: string;
+    departmentId: string;
+  } | null;
+};
 
 export function getDepartmentFormDefaults(
-  initialValues?: Partial<DepartmentModel>
+  initialValues?: Partial<DepartmentFormInitialValues>
 ): DepartmentFormValues {
   return {
     id: initialValues?.id ?? "",
@@ -33,8 +52,32 @@ export function getDepartmentFormDefaults(
   };
 }
 
+export function getDepartmentFormHydration(options?: {
+  mode?: DepartmentFormMode;
+  initialValues?: Partial<DepartmentFormInitialValues>;
+  organizationId?: string;
+  departmentId?: string;
+}): DepartmentFormHydration {
+  const mode = options?.mode ?? "create";
+  const initialValues = getDepartmentFormDefaults(options?.initialValues);
+  const organizationId = options?.organizationId?.trim();
+  const departmentId = options?.departmentId?.trim();
+
+  return {
+    mode,
+    initialValues,
+    identity:
+      organizationId && departmentId
+        ? {
+            organizationId,
+            departmentId,
+          }
+        : null,
+  };
+}
+
 export function createDepartmentFormOptions(options: {
-  initialValues?: Partial<DepartmentModel>;
+  initialValues?: Partial<DepartmentFormInitialValues>;
   onSubmit: (payload: { value: DepartmentFormPayload }) => Promise<void> | void;
 }) {
   return {
@@ -42,11 +85,7 @@ export function createDepartmentFormOptions(options: {
     validators: {
       onChange: departmentFormSchema,
     },
-    onSubmit: async ({
-      value,
-    }: {
-      value: DepartmentFormValues;
-    }) => {
+    onSubmit: async ({ value }: { value: DepartmentFormValues }) => {
       const payload = departmentFormSchema.parse(value);
       await options.onSubmit({ value: payload });
     },
