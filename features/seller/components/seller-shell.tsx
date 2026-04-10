@@ -219,7 +219,7 @@ export function SellerShell({ children }: SellerShellProps) {
 function SellerSidebar({ pathname }: { pathname: string }) {
   return (
     <div className="flex h-full w-[254px] shrink-0 flex-col">
-      <div className="flex h-14 shrink-0 items-center border-b border-border/70 px-4">
+      <div className="shrink-0 border-b border-border/70 px-4 py-3">
         <Link href="/" className="block">
           <SiteMark />
         </Link>
