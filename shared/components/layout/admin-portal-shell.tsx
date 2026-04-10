@@ -16,22 +16,87 @@ import {
 import { adminUser } from "@/features/admin/data";
 import { AdminAppSidebar } from "@/shared/components/layout/admin-app-sidebar";
 import { Button } from "@/shared/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/shared/components/ui/dropdown-menu";
 import { Input } from "@/shared/components/ui/input";
 import { useIsMobile } from "@/shared/hooks/use-mobile";
 
 const RAIL_WIDTH = 80;
 const SIDEBAR_WIDTH = 256;
-const DRAWER_EASING = "cubic-bezier(0.05,0.74,0.2,0.99)";
-const DRAWER_DURATION = 400;
+const DRAWER_EASING = "cubic-bezier(0.22,1,0.36,1)";
+const DRAWER_DURATION = 440;
+const DESKTOP_DRAWER_CLOSE_DELAY = 180;
+const SIDEBAR_MODE_STORAGE_KEY = "admin-sidebar-mode";
+
+type DesktopSidebarMode = "static" | "slim" | "drawer" | "overlay";
+
+const sidebarModeOptions: Array<{
+  value: DesktopSidebarMode;
+  label: string;
+  description: string;
+}> = [
+  {
+    value: "static",
+    label: "Static",
+    description: "Sidebar cố định, đẩy nội dung sang phải.",
+  },
+  {
+    value: "slim",
+    label: "Slim",
+    description: "Thanh rail mỏng, hover mở rộng sidebar.",
+  },
+  {
+    value: "drawer",
+    label: "Drawer",
+    description: "Sidebar trượt từ trái, nội dung giữ nguyên.",
+  },
+  {
+    value: "overlay",
+    label: "Overlay",
+    description: "Sidebar phủ lên nội dung với backdrop.",
+  },
+];
+
+function getStoredDesktopMode(): DesktopSidebarMode {
+  if (typeof window === "undefined") {
+    return "slim";
+  }
+
+  const storedMode = window.localStorage.getItem(
+    SIDEBAR_MODE_STORAGE_KEY
+  ) as DesktopSidebarMode | null;
+
+  if (
+    storedMode === "static" ||
+    storedMode === "slim" ||
+    storedMode === "drawer" ||
+    storedMode === "overlay"
+  ) {
+    return storedMode;
+  }
+
+  return "slim";
+}
 
 export function AdminPortalShell({
   children,
 }: Readonly<{ children: ReactNode }>) {
   const isMobile = useIsMobile();
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [isSlimDesktop, setIsSlimDesktop] = useState(true);
+  const [desktopMode, setDesktopMode] =
+    useState<DesktopSidebarMode>(getStoredDesktopMode);
   const [isDesktopDrawerOpen, setIsDesktopDrawerOpen] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    window.localStorage.setItem(SIDEBAR_MODE_STORAGE_KEY, desktopMode);
+  }, [desktopMode]);
 
   useEffect(() => {
     return () => {
@@ -42,7 +107,10 @@ export function AdminPortalShell({
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("overflow-hidden", isMobile && isMobileSidebarOpen);
+    document.body.classList.toggle(
+      "overflow-hidden",
+      isMobile && isMobileSidebarOpen
+    );
 
     return () => {
       document.body.classList.remove("overflow-hidden");
@@ -56,8 +124,11 @@ export function AdminPortalShell({
     }
   };
 
+  const isTemporaryDesktopMode =
+    desktopMode === "drawer" || desktopMode === "overlay";
+
   const scheduleDrawerClose = () => {
-    if (isMobile || !isSlimDesktop) {
+    if (isMobile || desktopMode !== "slim") {
       return;
     }
 
@@ -65,11 +136,11 @@ export function AdminPortalShell({
     closeTimerRef.current = setTimeout(() => {
       setIsDesktopDrawerOpen(false);
       closeTimerRef.current = null;
-    }, 120);
+    }, DESKTOP_DRAWER_CLOSE_DELAY);
   };
 
   const openDesktopDrawer = () => {
-    if (isMobile || !isSlimDesktop) {
+    if (isMobile || desktopMode !== "slim") {
       return;
     }
 
@@ -83,25 +154,74 @@ export function AdminPortalShell({
     setIsMobileSidebarOpen(false);
   };
 
+  const handleSidebarNavigation = () => {
+    clearCloseTimer();
+
+    if (isMobile) {
+      setIsMobileSidebarOpen(false);
+    }
+  };
+
   const handleSidebarToggle = () => {
     if (isMobile) {
       setIsMobileSidebarOpen((prev) => !prev);
       return;
     }
 
+    if (desktopMode === "drawer" || desktopMode === "overlay") {
+      clearCloseTimer();
+      setIsDesktopDrawerOpen((prev) => !prev);
+      return;
+    }
+
     clearCloseTimer();
     setIsDesktopDrawerOpen(false);
-    setIsSlimDesktop((prev) => !prev);
+    setDesktopMode((prev) => (prev === "slim" ? "static" : "slim"));
+  };
+
+  const handleSidebarModeChange = (nextMode: string) => {
+    if (
+      nextMode !== "static" &&
+      nextMode !== "slim" &&
+      nextMode !== "drawer" &&
+      nextMode !== "overlay"
+    ) {
+      return;
+    }
+
+    clearCloseTimer();
+    setIsDesktopDrawerOpen(false);
+    setDesktopMode(nextMode);
   };
 
   const showOverlay =
-    (isMobile && isMobileSidebarOpen) || (!isMobile && isSlimDesktop && isDesktopDrawerOpen);
-  const desktopOffset = isSlimDesktop ? RAIL_WIDTH : SIDEBAR_WIDTH;
+    (isMobile && isMobileSidebarOpen) ||
+    (!isMobile &&
+      ((desktopMode === "slim" && isDesktopDrawerOpen) ||
+        (isTemporaryDesktopMode && isDesktopDrawerOpen)));
+  const desktopOffset = isMobile
+    ? 0
+    : desktopMode === "static"
+      ? SIDEBAR_WIDTH
+      : desktopMode === "slim"
+        ? RAIL_WIDTH
+        : 0;
+  const desktopToggleLabel = isMobile
+    ? isMobileSidebarOpen
+      ? "Đóng điều hướng"
+      : "Mở điều hướng"
+    : desktopMode === "drawer" || desktopMode === "overlay"
+      ? isDesktopDrawerOpen
+        ? "Đóng sidebar"
+        : "Mở sidebar"
+      : desktopMode === "slim"
+        ? "Mở sidebar đầy đủ"
+        : "Thu gọn sidebar";
 
   return (
     <div className="min-h-svh bg-[#eef3f8] text-[#0b2e5c]">
       <AdminAppSidebar
-        mode={isMobile ? "mobile" : isSlimDesktop ? "slim" : "full"}
+        mode={isMobile ? "mobile" : desktopMode}
         drawerOpen={isDesktopDrawerOpen}
         mobileOpen={isMobileSidebarOpen}
         onRailMouseEnter={openDesktopDrawer}
@@ -109,7 +229,7 @@ export function AdminPortalShell({
         onPanelMouseEnter={clearCloseTimer}
         onPanelMouseLeave={scheduleDrawerClose}
         onClose={closeAllMenus}
-        onNavigate={closeAllMenus}
+        onItemNavigate={handleSidebarNavigation}
       />
 
       <div
@@ -128,7 +248,7 @@ export function AdminPortalShell({
               size="icon"
               onClick={handleSidebarToggle}
               className="flex h-10 w-10 items-center justify-center rounded-md text-[hsl(var(--muted-foreground))] hover:bg-[#f5f8fc] hover:text-[#0b2e5c]"
-              aria-label={isMobile ? "Mở điều hướng" : isSlimDesktop ? "Mở sidebar đầy đủ" : "Thu gọn sidebar"}
+              aria-label={desktopToggleLabel}
             >
               {isMobile ? (
                 isMobileSidebarOpen ? (
@@ -136,7 +256,13 @@ export function AdminPortalShell({
                 ) : (
                   <Menu className="h-5 w-5" />
                 )
-              ) : isSlimDesktop ? (
+              ) : desktopMode === "drawer" || desktopMode === "overlay" ? (
+                isDesktopDrawerOpen ? (
+                  <PanelLeftClose className="h-5 w-5" />
+                ) : (
+                  <PanelLeftOpen className="h-5 w-5" />
+                )
+              ) : desktopMode === "slim" ? (
                 <PanelLeftOpen className="h-5 w-5" />
               ) : (
                 <PanelLeftClose className="h-5 w-5" />
@@ -176,20 +302,54 @@ export function AdminPortalShell({
               <Bell className="h-5 w-5" />
               <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-[hsl(var(--destructive))]" />
             </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="relative flex h-10 w-10 items-center justify-center rounded-md text-[hsl(var(--muted-foreground))] hover:bg-[#f5f8fc] hover:text-[#0b2e5c]"
-            >
-              <Settings className="h-5 w-5" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="relative flex h-10 w-10 items-center justify-center rounded-md text-[hsl(var(--muted-foreground))] hover:bg-[#f5f8fc] hover:text-[#0b2e5c]"
+                  aria-label="Cài đặt chế độ sidebar"
+                >
+                  <Settings className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-72">
+                <div className="px-2 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#7b8da5]">
+                  Chế độ sidebar
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuRadioGroup
+                  value={desktopMode}
+                  onValueChange={handleSidebarModeChange}
+                >
+                  {sidebarModeOptions.map((option) => (
+                    <DropdownMenuRadioItem
+                      key={option.value}
+                      value={option.value}
+                      className="items-start gap-2 py-2.5"
+                    >
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-medium text-[#0b2e5c]">
+                          {option.label}
+                        </span>
+                        <span className="text-xs leading-5 text-[#7b8da5]">
+                          {option.description}
+                        </span>
+                      </div>
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <div className="ml-2 flex items-center gap-2 rounded-md border border-[hsl(var(--border))] bg-white px-2 py-1">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#d4a72c] to-[#b8891f] text-xs font-semibold text-white">
                 {adminUser.initials}
               </div>
               <div className="hidden sm:block">
-                <div className="text-xs font-semibold text-[#0b2e5c]">{adminUser.name}</div>
+                <div className="text-xs font-semibold text-[#0b2e5c]">
+                  {adminUser.name}
+                </div>
                 <div className="text-[10px] text-[hsl(var(--muted-foreground))]">
                   {adminUser.unit}
                 </div>
@@ -208,7 +368,9 @@ export function AdminPortalShell({
         onClick={closeAllMenus}
         className={
           "fixed inset-0 z-40 bg-[#0b1f3a]/24 transition-opacity ease-[cubic-bezier(0.05,0.74,0.2,0.99)] " +
-          (showOverlay ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0")
+          (showOverlay
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0")
         }
         style={{
           transitionDuration: `${Math.max(DRAWER_DURATION - 80, 220)}ms`,
