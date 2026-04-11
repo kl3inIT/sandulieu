@@ -216,12 +216,12 @@ export function SellerProductsPage() {
         <div className="relative flex-1 min-w-48">
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            className="h-9 rounded-md pl-9 text-sm"
+            className="h-9 rounded-xl pl-9 text-sm"
             placeholder="Tìm theo tên sản phẩm, mã sản phẩm..."
           />
         </div>
         <Select defaultValue="all-cat">
-          <SelectTrigger className="h-9 w-44 rounded-md bg-card px-3 text-sm">
+          <SelectTrigger className="h-9 w-44 rounded-xl bg-card px-3 text-sm">
             <SelectValue placeholder="Tất cả danh mục" />
           </SelectTrigger>
           <SelectContent>
@@ -233,7 +233,7 @@ export function SellerProductsPage() {
           </SelectContent>
         </Select>
         <Select defaultValue="all-status">
-          <SelectTrigger className="h-9 w-44 rounded-md bg-card px-3 text-sm">
+          <SelectTrigger className="h-9 w-44 rounded-xl bg-card px-3 text-sm">
             <SelectValue placeholder="Tất cả trạng thái" />
           </SelectTrigger>
           <SelectContent>
@@ -257,7 +257,7 @@ export function SellerProductsPage() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         {products.map((p) => (
-          <Card key={p.id} className="rounded-xl border-border/70 shadow-sm">
+          <Card key={p.id} className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
@@ -384,7 +384,7 @@ export function SellerCreatePage() {
             </p>
           </div>
 
-          <Card className="rounded-xl border-border/70 shadow-sm">
+          <Card className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm">
                 Bước 1: Thông tin cơ bản
@@ -401,20 +401,20 @@ export function SellerCreatePage() {
               </FField>
               <FField label="Tên sản phẩm *">
                 <Input
-                  className="h-9 rounded-md"
+                  className="h-9 rounded-xl"
                   defaultValue="Báo cáo tín dụng SME theo ngành Q1/2026"
                 />
               </FField>
               <FField label="Tên tiếng Anh (cho danh mục quốc tế)">
                 <Input
-                  className="h-9 rounded-md"
+                  className="h-9 rounded-xl"
                   defaultValue="SME Credit Report by Industry Q1/2026"
                 />
               </FField>
               <div className="grid grid-cols-2 gap-3">
                 <FField label="Lĩnh vực chính *">
                   <Select defaultValue="finance">
-                    <SelectTrigger className="h-9 rounded-md">
+                    <SelectTrigger className="h-9 rounded-xl">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -430,7 +430,7 @@ export function SellerCreatePage() {
                 </FField>
                 <FField label="Danh mục con">
                   <Select defaultValue="sme">
-                    <SelectTrigger className="h-9 rounded-md">
+                    <SelectTrigger className="h-9 rounded-xl">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -516,7 +516,7 @@ export function SellerCreatePage() {
 
         {/* Sidebar */}
         <div className="flex flex-col gap-4">
-          <Card className="rounded-xl border-border/70 shadow-sm">
+          <Card className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Tiến trình</CardTitle>
             </CardHeader>
@@ -553,7 +553,7 @@ export function SellerCreatePage() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-xl border-border/70 shadow-sm">
+          <Card className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Checklist DCAT-VN</CardTitle>
             </CardHeader>
@@ -585,7 +585,7 @@ export function SellerCreatePage() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-xl border-border/70 shadow-sm bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900">
+          <Card className="rounded-2xl border-border/70 shadow-sm bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-blue-700 dark:text-blue-400">
                 Mẹo
@@ -738,7 +738,7 @@ export function SellerPricingPage() {
       </div>
 
       {/* Base price table */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="flex flex-row items-center justify-between gap-3 pb-2">
           <div>
             <CardTitle className="text-sm">Giá cơ bản sản phẩm</CardTitle>
@@ -820,7 +820,7 @@ export function SellerPricingPage() {
           {bundles.map((b) => (
             <Card
               key={b.name}
-              className="rounded-xl border-border/70 shadow-sm"
+              className="rounded-2xl border-border/70 shadow-sm"
             >
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
@@ -868,7 +868,7 @@ export function SellerPricingPage() {
       </div>
 
       {/* Vouchers */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="flex flex-row items-center justify-between gap-3 pb-2">
           <div>
             <CardTitle className="text-sm">Mã khuyến mãi & Voucher</CardTitle>
@@ -1059,7 +1059,7 @@ export function SellerDataQualityPage() {
       </div>
 
       {/* Score chart */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Quality Score theo sản phẩm</CardTitle>
           <CardDescription className="text-xs">
@@ -1084,7 +1084,7 @@ export function SellerDataQualityPage() {
       {/* Product detail cards */}
       <div className="flex flex-col gap-3">
         {qualityProducts.map((p) => (
-          <Card key={p.id} className="rounded-xl border-border/70 shadow-sm">
+          <Card key={p.id} className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
@@ -1152,7 +1152,7 @@ export function SellerDataQualityPage() {
       </div>
 
       {/* Anomalies */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <AlertTriangle className="size-4 text-amber-500" /> Anomalies cần xử
@@ -1323,7 +1323,7 @@ export function SellerPoliciesPage() {
           {licenses.map((l) => (
             <Card
               key={l.name}
-              className="rounded-xl border-border/70 shadow-sm"
+              className="rounded-2xl border-border/70 shadow-sm"
             >
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
@@ -1362,7 +1362,7 @@ export function SellerPoliciesPage() {
       </div>
 
       {/* Policy Builder */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
             <CardTitle className="text-sm">
@@ -1403,7 +1403,7 @@ export function SellerPoliciesPage() {
       </Card>
 
       {/* Audit trail */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <ShieldCheck className="size-4 text-emerald-500" /> Audit thứ Policy
@@ -1506,7 +1506,7 @@ export function SellerLineagePage() {
       </div>
 
       {/* DAG Visualization */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">
             Lineage cho SP-TC-001 (Báo cáo tín dụng DN)
@@ -1619,7 +1619,7 @@ export function SellerLineagePage() {
       </Card>
 
       {/* Upstream Sources */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Upstream Sources - Chi tiết</CardTitle>
           <CardDescription className="text-xs">
@@ -1650,7 +1650,7 @@ export function SellerLineagePage() {
       </Card>
 
       {/* Downstream Impact */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Downstream Impact</CardTitle>
           <CardDescription className="text-xs">
@@ -1784,7 +1784,7 @@ export function SellerQualityPage() {
 
       <div className="flex flex-col gap-4">
         {reviewItems.map((r) => (
-          <Card key={r.id} className="rounded-xl border-border/70 shadow-sm">
+          <Card key={r.id} className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
@@ -1873,7 +1873,7 @@ export function SellerQualityPage() {
       </div>
 
       {/* Scorecard */}
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="rounded-2xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Star className="size-4 text-amber-500" /> Scorecard chất lượng —
@@ -2056,7 +2056,7 @@ export function SellerSandboxPage() {
       {/* Active sandboxes */}
       <div className="flex flex-col gap-3">
         {activeSandboxes.map((s) => (
-          <Card key={s.id} className="rounded-xl border-border/70 shadow-sm">
+          <Card key={s.id} className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="py-3">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -2100,7 +2100,7 @@ export function SellerSandboxPage() {
           {sandboxTools.map((t) => (
             <Card
               key={t.name}
-              className="rounded-xl border-border/70 shadow-sm"
+              className="rounded-2xl border-border/70 shadow-sm"
             >
               <CardHeader className="pb-2">
                 <div className="flex size-9 items-center justify-center rounded-xl bg-muted">
@@ -2221,7 +2221,7 @@ export function SellerAuctionsPage() {
 
       <div className="flex flex-col gap-4">
         {auctions.map((a) => (
-          <Card key={a.id} className="rounded-xl border-border/70 shadow-sm">
+          <Card key={a.id} className="rounded-2xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between gap-3">
                 <div>

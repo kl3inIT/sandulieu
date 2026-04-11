@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -9,8 +9,6 @@ import {
   CircleHelp,
   LogOut,
   Menu,
-  PanelLeftClose,
-  PanelLeftOpen,
   Search,
   Settings,
   UserRound,
@@ -26,12 +24,10 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/components/ui/dropdown-menu";
 import { Input } from "@/shared/components/ui/input";
-import { Separator } from "@/shared/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -48,35 +44,29 @@ type SellerShellProps = {
 
 export function SellerShell({ children }: SellerShellProps) {
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#f7fafd_0%,#eef4fa_100%)] text-foreground">
-      <div className="flex min-h-screen">
-        {/* Desktop sidebar */}
-        <aside
-          className={cn(
-            "hidden border-r border-border/70 bg-card lg:sticky lg:top-0 lg:flex lg:h-screen lg:shrink-0 lg:overflow-hidden",
-            "transition-[width] duration-200 ease-in-out",
-            sidebarOpen ? "lg:w-[254px]" : "lg:w-0 lg:border-r-0"
-          )}
-        >
+      <div className="grid min-h-screen lg:grid-cols-[254px_1fr]">
+        <aside className="hidden border-r border-border/70 bg-card lg:flex">
           <SellerSidebar pathname={pathname} />
         </aside>
 
-        <div className="flex min-h-screen flex-1 flex-col overflow-x-hidden">
-          {/* ── Header ── */}
-          <header className="sticky top-0 z-30 h-14 border-b border-border/70 bg-background/95 backdrop-blur-sm">
-            <div className="flex h-full items-center gap-1 px-3 sm:px-4">
-              {/* Mobile: sheet trigger */}
+        <div className="flex min-h-screen flex-col">
+          <header className="sticky top-0 z-30 border-b border-border/70 bg-background/95 backdrop-blur-sm">
+            <div className="flex min-h-13 items-center gap-2 px-3 sm:px-4 lg:px-5">
               <div className="lg:hidden">
                 <Sheet>
                   <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" aria-label="Mở menu">
-                      <Menu className="text-muted-foreground" />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      aria-label="Mở menu seller"
+                    >
+                      <Menu />
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-[300px] p-0">
+                  <SheetContent side="left" className="w-[320px] p-0">
                     <SheetHeader className="sr-only">
                       <SheetTitle>Điều hướng seller</SheetTitle>
                       <SheetDescription>
@@ -88,105 +78,57 @@ export function SellerShell({ children }: SellerShellProps) {
                 </Sheet>
               </div>
 
-              {/* Desktop: sidebar toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hidden lg:flex"
-                onClick={() => setSidebarOpen((v) => !v)}
-                aria-label={sidebarOpen ? "Đóng menu" : "Mở menu"}
-              >
-                {sidebarOpen ? (
-                  <PanelLeftClose className="text-muted-foreground" />
-                ) : (
-                  <PanelLeftOpen className="text-muted-foreground" />
-                )}
-              </Button>
-
-              <Separator
-                orientation="vertical"
-                className="mx-1 hidden h-5 lg:block"
-              />
-
-              {/* Branding pill */}
-              <div className="hidden items-center gap-2 lg:flex">
-                <Badge
-                  variant="secondary"
-                  className="h-6 rounded-full px-3 text-[11px] font-semibold tracking-wide"
-                >
+              <div className="hidden min-w-0 items-center gap-3 lg:flex">
+                <Badge className="h-6 rounded-full bg-secondary px-3 text-[11px] text-primary">
                   BÊN BÁN
                 </Badge>
-                <span className="text-sm text-muted-foreground">
+                <span className="truncate text-sm text-muted-foreground">
                   Sàn Dữ liệu Quốc gia
                 </span>
               </div>
 
-              {/* Search — flex-1 */}
-              <div className="relative mx-2 flex-1 sm:mx-3">
-                <Search className="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
+              <div className="relative flex-1">
+                <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <Input
-                  className="h-8 rounded-lg bg-muted/60 pl-9 text-[13px] shadow-none focus-visible:bg-card"
+                  className="h-8 rounded-xl bg-card pl-10 text-[13px] shadow-none"
                   placeholder="Tìm dịch vụ, bộ dữ liệu, giao dịch..."
                 />
               </div>
 
-              {/* Icon actions */}
-              <div className="hidden items-center gap-0.5 md:flex">
+              <div className="hidden items-center gap-2 md:flex">
                 <IconButton icon={CircleHelp} label="Hỗ trợ" />
                 <div className="relative">
                   <IconButton icon={Bell} label="Thông báo" />
-                  <span className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-destructive ring-2 ring-background" />
+                  <span className="absolute right-2 top-2 size-2 rounded-full bg-destructive" />
                 </div>
                 <IconButton icon={Settings} label="Cài đặt" />
               </div>
 
-              <Separator
-                orientation="vertical"
-                className="mx-1 hidden h-5 md:block"
-              />
-
-              {/* User dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    variant="ghost"
-                    className="h-9 gap-2 rounded-xl px-2 hover:bg-muted"
+                    variant="outline"
+                    className="h-9 rounded-xl px-3 sm:min-w-52 sm:justify-between"
                   >
-                    <Avatar className="size-7 bg-primary text-primary-foreground">
-                      <AvatarFallback className="size-7 bg-primary text-xs font-semibold text-primary-foreground">
-                        {sellerUser.initials}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="hidden flex-col items-start text-left sm:flex">
-                      <span className="text-[13px] font-semibold leading-tight text-foreground">
-                        {sellerUser.name}
-                      </span>
-                      <span className="text-[11px] leading-tight text-muted-foreground">
-                        {sellerUser.companyShort}
-                      </span>
-                    </div>
-                    <ChevronDown className="hidden size-3.5 shrink-0 text-muted-foreground sm:block" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-64">
-                  <DropdownMenuLabel className="p-0 font-normal">
-                    <div className="flex items-center gap-3 px-3 py-2.5">
-                      <Avatar className="size-9 bg-primary text-primary-foreground">
-                        <AvatarFallback className="size-9 bg-primary text-sm font-semibold text-primary-foreground">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="bg-primary text-primary-foreground">
+                        <AvatarFallback className="bg-primary text-primary-foreground">
                           {sellerUser.initials}
                         </AvatarFallback>
                       </Avatar>
-                      <div className="flex min-w-0 flex-col gap-0.5">
-                        <span className="truncate text-sm font-semibold text-foreground">
+                      <div className="hidden text-left sm:block">
+                        <p className="text-sm font-semibold text-foreground">
                           {sellerUser.name}
-                        </span>
-                        <span className="truncate text-xs text-muted-foreground">
+                        </p>
+                        <p className="text-xs text-muted-foreground">
                           {sellerUser.company}
-                        </span>
+                        </p>
                       </div>
                     </div>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
+                    <ChevronDown className="hidden text-muted-foreground sm:block" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-64">
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
                       <UserRound />
@@ -218,8 +160,8 @@ export function SellerShell({ children }: SellerShellProps) {
 
 function SellerSidebar({ pathname }: { pathname: string }) {
   return (
-    <div className="flex h-full w-[254px] shrink-0 flex-col">
-      <div className="shrink-0 border-b border-border/70 px-4 py-3">
+    <div className="flex h-full w-full flex-col">
+      <div className="border-b border-border/70 px-4 py-4">
         <Link href="/" className="block">
           <SiteMark />
         </Link>
@@ -232,7 +174,7 @@ function SellerSidebar({ pathname }: { pathname: string }) {
               <h2 className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 {group.label}
               </h2>
-              <nav className="flex flex-col gap-0.5">
+              <nav className="flex flex-col gap-1.5">
                 {group.items.map((item) => {
                   const isActive =
                     pathname === item.href ||
@@ -245,7 +187,7 @@ function SellerSidebar({ pathname }: { pathname: string }) {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "flex items-center justify-between rounded-lg px-3 py-2 text-[13px] font-medium transition",
+                        "flex items-center justify-between rounded-xl px-3 py-2 text-[13px] font-medium transition",
                         isActive
                           ? "bg-primary text-primary-foreground shadow-sm"
                           : "text-foreground hover:bg-muted"
@@ -254,10 +196,7 @@ function SellerSidebar({ pathname }: { pathname: string }) {
                       <span className="flex min-w-0 items-center gap-3">
                         <Icon
                           className={cn(
-                            "size-4 shrink-0",
-                            isActive
-                              ? "text-primary-foreground/80"
-                              : "text-muted-foreground"
+                            isActive ? "text-chart-1" : "text-muted-foreground"
                           )}
                         />
                         <span className="truncate">{item.label}</span>
@@ -283,16 +222,16 @@ function SellerSidebar({ pathname }: { pathname: string }) {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-border/70 p-3">
-        <div className="flex items-center gap-3 rounded-xl border border-border/70 bg-muted/40 p-3">
-          <Avatar className="size-8 shrink-0 bg-primary text-primary-foreground">
-            <AvatarFallback className="size-8 bg-primary text-xs font-semibold text-primary-foreground">
+      <div className="border-t border-border/70 p-3">
+        <div className="flex items-center gap-3 rounded-3xl border border-border/70 bg-muted/40 p-3">
+          <Avatar className="bg-primary text-primary-foreground">
+            <AvatarFallback className="bg-primary text-primary-foreground">
               {sellerUser.initials}
             </AvatarFallback>
           </Avatar>
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-semibold">{sellerUser.name}</p>
-            <p className="truncate text-xs text-muted-foreground">
+            <p className="truncate text-sm text-muted-foreground">
               {sellerUser.companyShort}
             </p>
           </div>
@@ -300,11 +239,11 @@ function SellerSidebar({ pathname }: { pathname: string }) {
             asChild
             variant="ghost"
             size="icon"
-            className="size-7 shrink-0 rounded-lg"
+            className="size-8 rounded-lg"
             aria-label="Đăng xuất"
           >
             <Link href="/login">
-              <LogOut className="size-3.5" />
+              <LogOut />
             </Link>
           </Button>
         </div>
@@ -321,8 +260,8 @@ function IconButton({
   label: string;
 }) {
   return (
-    <Button variant="ghost" size="icon" className="size-8" aria-label={label}>
-      <Icon className="size-4 text-muted-foreground" />
+    <Button variant="ghost" size="icon" aria-label={label}>
+      <Icon className="text-muted-foreground" />
     </Button>
   );
 }
