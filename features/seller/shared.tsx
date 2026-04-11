@@ -2,10 +2,10 @@ import type { LucideIcon } from "lucide-react";
 
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/shared/components/ui/card";
 import { cn } from "@/shared/lib/utils";
 
@@ -54,25 +54,25 @@ export function SellerKpiCard({
   tone: "emerald" | "rose" | "amber" | "blue" | "violet";
 }) {
   return (
-    <Card className="rounded-3xl border-border/70 shadow-sm">
-      <CardHeader className="flex flex-row items-start justify-between gap-3 pb-2">
-        <div className="space-y-1">
-          <CardDescription className="text-[14px]">{label}</CardDescription>
-          <CardTitle className="text-[1.6rem] leading-none text-primary">
-            {value}
-          </CardTitle>
-        </div>
-        <div
-          className={cn(
-            "flex size-10 shrink-0 items-center justify-center rounded-2xl",
-            toneSurface[tone]
-          )}
-        >
-          <Icon className="size-5" />
-        </div>
+    <Card className="justify-between rounded-3xl border-border/70 shadow-sm">
+      <CardHeader className="pb-2">
+        <CardDescription>{label}</CardDescription>
+        <CardAction>
+          <div
+            className={cn(
+              "flex size-10 shrink-0 items-center justify-center rounded-2xl",
+              toneSurface[tone]
+            )}
+          >
+            <Icon className="size-5" />
+          </div>
+        </CardAction>
       </CardHeader>
-      {delta ? (
-        <CardContent className="pb-4 pt-0">
+      <CardContent className="flex flex-col gap-1.5 pb-4 pt-0">
+        <p className="text-3xl font-semibold tracking-tight text-foreground xl:text-4xl">
+          {value}
+        </p>
+        {delta ? (
           <span
             className={cn(
               "text-xs font-medium",
@@ -81,8 +81,8 @@ export function SellerKpiCard({
           >
             {delta}
           </span>
-        </CardContent>
-      ) : null}
+        ) : null}
+      </CardContent>
     </Card>
   );
 }

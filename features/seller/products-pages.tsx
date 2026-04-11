@@ -33,6 +33,7 @@ import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -551,55 +552,63 @@ export function SellerPricingPage() {
 
       {/* Base price table */}
       <Card className="rounded-2xl border-border/70 shadow-sm">
-        <CardHeader className="flex flex-row items-center justify-between gap-3 pb-2">
-          <div>
-            <CardTitle className="text-sm">Giá cơ bản sản phẩm</CardTitle>
-            <CardDescription className="text-xs">
-              Thiết lập giá cơ sở — Bộ sản phẩm có thể đặt giá thoả thuận riêng
-            </CardDescription>
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8 rounded-xl text-xs"
-          >
-            Cập nhật hàng loạt
-          </Button>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm">Giá cơ bản sản phẩm</CardTitle>
+          <CardDescription className="text-xs">
+            Thiết lập giá cơ sở — Bộ sản phẩm có thể đặt giá thoả thuận riêng
+          </CardDescription>
+          <CardAction>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 rounded-xl text-xs"
+            >
+              Cập nhật hàng loạt
+            </Button>
+          </CardAction>
         </CardHeader>
         <CardContent className="p-0">
-          <Table>
+          <Table className="table-fixed">
+            <colgroup>
+              <col className="w-[38%]" />
+              <col className="w-[18%]" />
+              <col className="w-[15%]" />
+              <col className="w-[10%]" />
+              <col className="w-[14%]" />
+              <col className="w-[5%]" />
+            </colgroup>
             <TableHeader>
               <TableRow>
-                <TableHead>Sản phẩm</TableHead>
-                <TableHead>Giá base</TableHead>
-                <TableHead>Đơn vị</TableHead>
-                <TableHead className="text-right">Số đơn</TableHead>
-                <TableHead>Trạng thái</TableHead>
-                <TableHead />
+                <TableHead className="px-4">Sản phẩm</TableHead>
+                <TableHead className="px-4">Giá base</TableHead>
+                <TableHead className="px-4">Đơn vị</TableHead>
+                <TableHead className="px-4 text-right">Số đơn</TableHead>
+                <TableHead className="px-4">Trạng thái</TableHead>
+                <TableHead className="px-4 text-right" />
               </TableRow>
             </TableHeader>
             <TableBody>
               {baseProducts.map((p) => (
                 <TableRow key={p.name}>
-                  <TableCell>
-                    <div className="font-medium text-sm">{p.name}</div>
-                    <div className="text-xs text-muted-foreground">
+                  <TableCell className="px-4 py-2.5">
+                    <div className="text-sm font-medium">{p.name}</div>
+                    <div className="truncate text-xs text-muted-foreground">
                       {p.desc}
                     </div>
                   </TableCell>
-                  <TableCell className="font-medium">{p.price}</TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
+                  <TableCell className="px-4 py-2.5 font-medium">
+                    {p.price}
+                  </TableCell>
+                  <TableCell className="px-4 py-2.5 text-sm text-muted-foreground">
                     {p.unit}
                   </TableCell>
-                  <TableCell className="text-right text-sm">
+                  <TableCell className="px-4 py-2.5 text-right text-sm">
                     {p.orders} gói
                   </TableCell>
-                  <TableCell>
-                    <span>
-                      <StatusPill tone="emerald">{p.status}</StatusPill>
-                    </span>
+                  <TableCell className="px-4 py-2.5">
+                    <StatusPill tone="emerald">{p.status}</StatusPill>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="px-4 py-2.5 text-right">
                     <Button variant="ghost" size="icon" className="size-7">
                       <Edit className="size-3.5" />
                     </Button>
@@ -1069,13 +1078,16 @@ export function SellerPoliciesPage() {
         </CardHeader>
         <CardContent className="flex flex-col gap-2 pt-0">
           {policyAudit.map((a, i) => (
-            <div key={i} className="flex items-start gap-3 text-xs">
-              <span className="shrink-0 text-muted-foreground w-32">
+            <div
+              key={i}
+              className="flex items-center gap-2 rounded-lg border border-border/80 bg-background px-3 py-2 pl-4 text-xs"
+            >
+              <span
+                className={`size-2 shrink-0 rounded-full ${a.severity === "rose" ? "bg-rose-500" : a.severity === "amber" ? "bg-amber-500" : a.severity === "blue" ? "bg-blue-500" : "bg-emerald-500"}`}
+              />
+              <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
                 {a.time}
               </span>
-              <Badge variant="outline" className="shrink-0 text-[10px] px-1.5">
-                {a.type}
-              </Badge>
               <span className="text-muted-foreground">{a.msg}</span>
             </div>
           ))}
