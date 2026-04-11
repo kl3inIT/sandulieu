@@ -30,7 +30,10 @@ export default function RootLayout({
       lang="vi"
       className={`${inter.className} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-background font-sans text-foreground">
+      <body
+        className="min-h-full bg-background font-sans text-foreground"
+        suppressHydrationWarning
+      >
         <AppProviders>{children}</AppProviders>
       </body>
     </html>
