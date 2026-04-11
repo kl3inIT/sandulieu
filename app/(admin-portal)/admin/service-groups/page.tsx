@@ -1,5 +1,5 @@
-import { AdminPlaceholderPage } from "@/features/admin/pages";
+import { AdminServiceGroupsPage as AdminServiceGroupsContent } from "@/features/admin/pages";
 
 export default function AdminServiceGroupsPage() {
-  return <AdminPlaceholderPage section="service-groups" />;
+  return <AdminServiceGroupsContent />;
 }

@@ -1,5 +1,5 @@
-import { AdminPlaceholderPage } from "@/features/admin/pages";
+import { AdminNotificationsPage as AdminNotificationsContent } from "@/features/admin/pages";
 
 export default function AdminNotificationsPage() {
-  return <AdminPlaceholderPage section="notifications" />;
+  return <AdminNotificationsContent />;
 }

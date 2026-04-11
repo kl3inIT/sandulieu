@@ -7,7 +7,7 @@ import { LogOut, X } from "lucide-react";
 import { adminNavGroups, adminUser } from "@/features/admin/data";
 import { cn } from "@/shared/lib/utils";
 
-type AdminSidebarMode = "full" | "slim" | "mobile";
+type AdminSidebarMode = "static" | "slim" | "drawer" | "overlay" | "mobile";
 
 type AdminAppSidebarProps = {
   mode: AdminSidebarMode;
@@ -18,12 +18,12 @@ type AdminAppSidebarProps = {
   onPanelMouseEnter: () => void;
   onPanelMouseLeave: () => void;
   onClose: () => void;
-  onNavigate: () => void;
+  onItemNavigate: () => void;
 };
 
-const DRAWER_EASING = "cubic-bezier(0.05,0.74,0.2,0.99)";
-const DRAWER_DURATION = 520;
-const CONTENT_DURATION = 360;
+const DRAWER_EASING = "cubic-bezier(0.22,1,0.36,1)";
+const DRAWER_DURATION = 460;
+const CONTENT_DURATION = 420;
 
 function SidebarBrand({ compact }: { compact: boolean }) {
   return (
@@ -48,10 +48,38 @@ function SidebarBrand({ compact }: { compact: boolean }) {
           <circle cx="14" cy="24" r="2" fill="url(#logoGrad)" />
           <circle cx="34" cy="24" r="2" fill="url(#logoGrad)" />
           <circle cx="24" cy="30" r="2" fill="url(#logoGrad)" />
-          <line x1="24" y1="18" x2="14" y2="24" stroke="url(#logoGrad)" strokeWidth="1" />
-          <line x1="24" y1="18" x2="34" y2="24" stroke="url(#logoGrad)" strokeWidth="1" />
-          <line x1="14" y1="24" x2="24" y2="30" stroke="url(#logoGrad)" strokeWidth="1" />
-          <line x1="34" y1="24" x2="24" y2="30" stroke="url(#logoGrad)" strokeWidth="1" />
+          <line
+            x1="24"
+            y1="18"
+            x2="14"
+            y2="24"
+            stroke="url(#logoGrad)"
+            strokeWidth="1"
+          />
+          <line
+            x1="24"
+            y1="18"
+            x2="34"
+            y2="24"
+            stroke="url(#logoGrad)"
+            strokeWidth="1"
+          />
+          <line
+            x1="14"
+            y1="24"
+            x2="24"
+            y2="30"
+            stroke="url(#logoGrad)"
+            strokeWidth="1"
+          />
+          <line
+            x1="34"
+            y1="24"
+            x2="24"
+            y2="30"
+            stroke="url(#logoGrad)"
+            strokeWidth="1"
+          />
         </svg>
       </div>
       {!compact ? (
@@ -71,11 +99,11 @@ function SidebarBrand({ compact }: { compact: boolean }) {
 function SidebarSection({
   compact,
   expanded,
-  onNavigate,
+  onItemNavigate,
 }: {
   compact: boolean;
   expanded: boolean;
-  onNavigate: () => void;
+  onItemNavigate: () => void;
 }) {
   const pathname = usePathname();
 
@@ -94,16 +122,20 @@ function SidebarSection({
               const isActive =
                 item.href === "/admin"
                   ? pathname === "/admin"
-                  : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                  : pathname === item.href ||
+                    pathname.startsWith(`${item.href}/`);
 
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={onNavigate}
+                  onNavigate={onItemNavigate}
+                  prefetch={true}
                   className={cn(
                     "group flex items-center rounded-md text-sm font-medium transition-all",
-                    expanded ? "gap-3 px-3 py-2" : "mx-auto h-12 w-12 justify-center rounded-2xl",
+                    expanded
+                      ? "gap-3 px-3 py-2"
+                      : "mx-auto h-12 w-12 justify-center rounded-2xl",
                     isActive
                       ? "bg-[#0b2e5c] text-white shadow-sm"
                       : "text-[#1f3b63] hover:bg-[#f5f8fc] hover:text-[#0b2e5c]"
@@ -113,7 +145,9 @@ function SidebarSection({
                   <Icon
                     className={cn(
                       "h-4 w-4 shrink-0",
-                      isActive ? "text-[#f1cf72]" : "text-[hsl(var(--muted-foreground))]"
+                      isActive
+                        ? "text-[#f1cf72]"
+                        : "text-[hsl(var(--muted-foreground))]"
                     )}
                   />
                   {expanded ? (
@@ -162,7 +196,9 @@ function SidebarFooterCard({ compact }: { compact: boolean }) {
       {!compact ? (
         <>
           <div className="min-w-0 flex-1">
-            <div className="truncate text-sm font-semibold text-[#0b2e5c]">{adminUser.name}</div>
+            <div className="truncate text-sm font-semibold text-[#0b2e5c]">
+              {adminUser.name}
+            </div>
             <div className="truncate text-[11px] text-[hsl(var(--muted-foreground))]">
               {adminUser.unit}
             </div>
@@ -189,19 +225,24 @@ export function AdminAppSidebar({
   onPanelMouseEnter,
   onPanelMouseLeave,
   onClose,
-  onNavigate,
+  onItemNavigate,
 }: AdminAppSidebarProps) {
   const showRail = mode === "slim";
   const showDesktopPanel = mode !== "mobile";
   const showMobilePanel = mode === "mobile";
-  const desktopPanelVisible = mode === "full" || (mode === "slim" && drawerOpen);
+  const desktopPanelVisible =
+    mode === "static" ||
+    (mode === "slim" && drawerOpen) ||
+    ((mode === "drawer" || mode === "overlay") && drawerOpen);
 
   return (
     <>
       <aside
         className={cn(
           "fixed inset-y-0 left-0 z-30 hidden w-20 flex-col border-r border-[hsl(var(--border))] bg-white transition-[transform,opacity] ease-[cubic-bezier(0.05,0.74,0.2,0.99)] lg:flex",
-          showRail ? "translate-x-0 opacity-100" : "-translate-x-1 opacity-0 pointer-events-none"
+          showRail
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-1 opacity-0 pointer-events-none"
         )}
         style={{
           transitionDuration: `${DRAWER_DURATION}ms`,
@@ -211,13 +252,29 @@ export function AdminAppSidebar({
         onMouseLeave={onRailMouseLeave}
       >
         <div className="flex h-16 items-center justify-center border-b border-[hsl(var(--border))] px-3">
-          <Link href="/" aria-label="Sàn Dữ liệu Quốc gia" onClick={onNavigate}>
+          <Link
+            href="/"
+            aria-label="Sàn Dữ liệu Quốc gia"
+            onNavigate={onItemNavigate}
+            prefetch={true}
+          >
             <SidebarBrand compact />
           </Link>
         </div>
-        <nav className="scrollbar-thin flex-1 overflow-y-auto px-2 py-4">
-          <SidebarSection compact expanded={false} onNavigate={onNavigate} />
-        </nav>
+        <div className="flex-1 overflow-hidden px-2 py-4">
+          <nav
+            data-admin-sidebar-scroll
+            className="h-full w-[calc(100%+32px)] overflow-y-auto pr-8"
+          >
+            <div className="w-12">
+              <SidebarSection
+                compact
+                expanded={false}
+                onItemNavigate={onItemNavigate}
+              />
+            </div>
+          </nav>
+        </div>
         <div className="border-t border-[hsl(var(--border))] p-2">
           <SidebarFooterCard compact />
         </div>
@@ -228,11 +285,17 @@ export function AdminAppSidebar({
           "fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-[hsl(var(--border))] bg-white transition-[transform,opacity,box-shadow] ease-[cubic-bezier(0.05,0.74,0.2,0.99)]",
           showDesktopPanel && "hidden lg:flex",
           showMobilePanel && "lg:hidden",
-          mode === "full" && "translate-x-0 opacity-100 shadow-none",
+          mode === "static" && "translate-x-0 opacity-100 shadow-none",
           mode === "slim" &&
             (desktopPanelVisible
               ? "translate-x-0 opacity-100 shadow-[0_18px_45px_rgba(15,23,42,0.12),0_2px_8px_rgba(15,23,42,0.06)]"
-              : "-translate-x-[2px] opacity-0 pointer-events-none shadow-none"),
+              : "-translate-x-2 opacity-0 pointer-events-none shadow-none"),
+          (mode === "drawer" || mode === "overlay") &&
+            (desktopPanelVisible
+              ? mode === "overlay"
+                ? "translate-x-0 opacity-100 shadow-[0_24px_60px_rgba(15,23,42,0.18),0_2px_8px_rgba(15,23,42,0.08)]"
+                : "translate-x-0 opacity-100 shadow-[0_18px_45px_rgba(15,23,42,0.12),0_2px_8px_rgba(15,23,42,0.06)]"
+              : "-translate-x-full opacity-0 pointer-events-none shadow-none"),
           mode === "mobile" &&
             (mobileOpen
               ? "translate-x-0 opacity-100 shadow-[0_18px_45px_rgba(15,23,42,0.12),0_2px_8px_rgba(15,23,42,0.06)]"
@@ -246,26 +309,48 @@ export function AdminAppSidebar({
         onMouseLeave={showDesktopPanel ? onPanelMouseLeave : undefined}
       >
         <div className="flex h-16 items-center border-b border-[hsl(var(--border))] px-5">
-          <Link href="/" aria-label="Sàn Dữ liệu Quốc gia" onClick={onNavigate}>
+          <Link
+            href="/"
+            aria-label="Sàn Dữ liệu Quốc gia"
+            onNavigate={onItemNavigate}
+            prefetch={true}
+          >
             <SidebarBrand compact={false} />
           </Link>
         </div>
-        <nav
-          className={cn(
-            "scrollbar-thin flex-1 overflow-y-auto px-3 py-4 transition-[opacity,transform] ease-[cubic-bezier(0.05,0.74,0.2,0.99)]",
-            mode === "slim" && !desktopPanelVisible ? "-translate-x-[2px] opacity-0" : "translate-x-0 opacity-100"
-          )}
-          style={{
-            transitionDuration: `${CONTENT_DURATION}ms`,
-            transitionTimingFunction: DRAWER_EASING,
-          }}
-        >
-          <SidebarSection compact={false} expanded onNavigate={onNavigate} />
-        </nav>
+        <div className="flex-1 overflow-hidden px-3 py-4">
+          <nav
+            data-admin-sidebar-scroll
+            className={cn(
+              "h-full w-[calc(100%+32px)] overflow-y-auto pr-8 transition-[opacity,transform] ease-[cubic-bezier(0.05,0.74,0.2,0.99)]",
+              mode === "slim" && !desktopPanelVisible
+                ? "-translate-x-1.5 opacity-0"
+                : "translate-x-0 opacity-100",
+              (mode === "drawer" || mode === "overlay") && !desktopPanelVisible
+                ? "-translate-x-1.5 opacity-0"
+                : ""
+            )}
+            style={{
+              transitionDuration: `${CONTENT_DURATION}ms`,
+              transitionTimingFunction: DRAWER_EASING,
+            }}
+          >
+            <SidebarSection
+              compact={false}
+              expanded
+              onItemNavigate={onItemNavigate}
+            />
+          </nav>
+        </div>
         <div
           className={cn(
             "border-t border-[hsl(var(--border))] p-3 transition-[opacity,transform] ease-[cubic-bezier(0.05,0.74,0.2,0.99)]",
-            mode === "slim" && !desktopPanelVisible ? "-translate-x-[2px] opacity-0" : "translate-x-0 opacity-100"
+            mode === "slim" && !desktopPanelVisible
+              ? "-translate-x-1.5 opacity-0"
+              : "translate-x-0 opacity-100",
+            (mode === "drawer" || mode === "overlay") && !desktopPanelVisible
+              ? "-translate-x-1.5 opacity-0"
+              : ""
           )}
           style={{
             transitionDuration: `${CONTENT_DURATION}ms`,
@@ -281,7 +366,9 @@ export function AdminAppSidebar({
             onClick={onClose}
             className={cn(
               "absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#0b2e5c] text-white transition-all ease-[cubic-bezier(0.05,0.74,0.2,0.99)] lg:hidden",
-              mobileOpen ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0 pointer-events-none"
+              mobileOpen
+                ? "translate-y-0 opacity-100"
+                : "-translate-y-1 opacity-0 pointer-events-none"
             )}
             style={{
               transitionDuration: `${CONTENT_DURATION}ms`,

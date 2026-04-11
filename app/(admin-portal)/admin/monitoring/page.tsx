@@ -1,5 +1,5 @@
-import { AdminPlaceholderPage } from "@/features/admin/pages";
+import { AdminMonitoringPage as AdminMonitoringContent } from "@/features/admin/pages";
 
 export default function AdminMonitoringPage() {
-  return <AdminPlaceholderPage section="monitoring" />;
+  return <AdminMonitoringContent />;
 }

@@ -137,3 +137,36 @@
     background: rgba(191, 161, 84, 0.24);
   }
 }
+
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  [data-admin-sidebar-scroll] {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  [data-admin-sidebar-scroll]::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    background: transparent !important;
+  }
+
+  [data-admin-sidebar-scroll]::-webkit-scrollbar-thumb {
+    background: transparent !important;
+  }
+
+  [data-admin-sidebar-scroll]::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+}
