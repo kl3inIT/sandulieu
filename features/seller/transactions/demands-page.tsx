@@ -68,10 +68,7 @@ export function SellerDemandsPage() {
 
       <div className="flex flex-col gap-4">
         {demands.map((demand) => (
-          <Card
-            key={demand.id}
-            className="rounded-xl border-border/70 shadow-sm"
-          >
+          <Card key={demand.id} className="border-border/70 shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex items-start gap-4">
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600">

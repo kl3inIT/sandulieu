@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 
 import {
@@ -6,11 +7,11 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
+  CardTitle,
 } from "@/shared/components/ui/card";
 import { cn } from "@/shared/lib/utils";
 
 export {
-  BuyerPageHeader as SellerPageHeader,
   HeaderButton,
   HeaderLinkButton,
   SearchInput,
@@ -28,6 +29,37 @@ export {
   BillingRow,
 } from "@/features/buyer/shared";
 
+/**
+ * Page-level header card — matches the Card/CardHeader pattern used on the
+ * Home, Analytics and Notifications pages (CardTitle text-3xl, description,
+ * optional action buttons in CardAction).
+ */
+export function SellerPageHeader({
+  title,
+  description,
+  actions,
+}: {
+  title: ReactNode;
+  description: string;
+  actions?: ReactNode;
+}) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-3xl font-semibold tracking-tight">
+          {title}
+        </CardTitle>
+        <CardDescription>{description}</CardDescription>
+        {actions ? (
+          <CardAction className="flex flex-wrap items-center gap-2 self-center">
+            {actions}
+          </CardAction>
+        ) : null}
+      </CardHeader>
+    </Card>
+  );
+}
+
 const toneSurface: Record<string, string> = {
   emerald: "bg-emerald-500/10 text-emerald-600",
   rose: "bg-rose-500/10    text-rose-600",
@@ -37,8 +69,8 @@ const toneSurface: Record<string, string> = {
 };
 
 /**
- * KPI card dùng cho seller — tiêu đề + giá trị lớn + icon góc phải + delta tuỳ chọn.
- * Khớp với pattern MetricCard của buyer portal.
+ * KPI card — label + large value + toned icon, matches MetricCard on the home
+ * page (text-3xl/4xl font-semibold tracking-tight in CardContent).
  */
 export function SellerKpiCard({
   label,

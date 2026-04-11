@@ -106,7 +106,7 @@ export function SellerSupportPage() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card className="rounded-xl border-border/70 shadow-sm">
+        <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm">
               Account Manager chuyên trách
@@ -160,7 +160,7 @@ export function SellerSupportPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-xl border-border/70 shadow-sm">
+        <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm">Đặt lịch tư vấn 1:1</CardTitle>
             <CardDescription className="text-xs">
@@ -197,7 +197,7 @@ export function SellerSupportPage() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.8fr_1fr]">
-        <Card className="rounded-xl border-border/70 shadow-sm">
+        <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm">Tạo ticket mới</CardTitle>
           </CardHeader>
@@ -257,7 +257,7 @@ export function SellerSupportPage() {
                 <FieldContent>
                   <Input
                     id="seller-support-subject"
-                    className="h-10 rounded-md"
+                    className="h-10 rounded-xl"
                     placeholder="Ví dụ: Cần review lại pricing cho sản phẩm SME"
                   />
                 </FieldContent>
@@ -273,7 +273,7 @@ export function SellerSupportPage() {
                   <Textarea
                     id="seller-support-message"
                     rows={5}
-                    className="rounded-md"
+                    className="rounded-xl"
                     placeholder="Mô tả chi tiết bối cảnh, link giao dịch, mã sản phẩm hoặc lỗi kỹ thuật..."
                   />
                 </FieldContent>
@@ -293,7 +293,7 @@ export function SellerSupportPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-xl border-border/70 shadow-sm">
+        <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm">Tài liệu seller</CardTitle>
           </CardHeader>

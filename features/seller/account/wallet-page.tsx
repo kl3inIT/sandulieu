@@ -98,7 +98,7 @@ export function SellerWalletPage() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.8fr_1fr]">
-        <Card className="rounded-xl border-border/70 shadow-sm">
+        <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm">Lịch sử rút tiền</CardTitle>
             <CardDescription className="text-xs">
@@ -141,7 +141,7 @@ export function SellerWalletPage() {
         </Card>
 
         <div className="flex flex-col gap-4">
-          <Card className="rounded-xl border-border/70 shadow-sm">
+          <Card className="border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Cấu hình rút tự động</CardTitle>
             </CardHeader>
@@ -162,7 +162,7 @@ export function SellerWalletPage() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-xl border-border/70 shadow-sm">
+          <Card className="border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Báo cáo thuế 2026</CardTitle>
             </CardHeader>

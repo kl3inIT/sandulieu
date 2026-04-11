@@ -74,7 +74,7 @@ export function SellerAuditPage() {
         />
       </div>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="gap-3 pb-3">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div>
@@ -87,12 +87,12 @@ export function SellerAuditPage() {
               <div className="relative">
                 <Search className="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
                 <Input
-                  className="h-9 w-full rounded-md pl-8 text-sm sm:w-64"
+                  className="h-9 w-full rounded-xl pl-8 text-sm sm:w-64"
                   placeholder="Tìm theo user, action, target..."
                 />
               </div>
               <Select defaultValue="all-severity">
-                <SelectTrigger className="h-9 w-full rounded-md text-sm sm:w-40">
+                <SelectTrigger className="h-9 w-full rounded-xl text-sm sm:w-40">
                   <SelectValue placeholder="Tất cả severity" />
                 </SelectTrigger>
                 <SelectContent>
@@ -107,7 +107,7 @@ export function SellerAuditPage() {
                 </SelectContent>
               </Select>
               <Select defaultValue="all-users">
-                <SelectTrigger className="h-9 w-full rounded-md text-sm sm:w-36">
+                <SelectTrigger className="h-9 w-full rounded-xl text-sm sm:w-36">
                   <SelectValue placeholder="Tất cả users" />
                 </SelectTrigger>
                 <SelectContent>

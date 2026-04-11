@@ -176,7 +176,7 @@ export function SellerProductsPage() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         {products.map((p) => (
-          <Card key={p.id} className="rounded-2xl border-border/70 shadow-sm">
+          <Card key={p.id} className="border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
@@ -231,14 +231,14 @@ export function SellerProductsPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 flex-1 rounded-xl text-xs gap-1"
+                  className="h-8 flex-1 rounded-lg text-xs gap-1"
                 >
                   <Eye className="size-3" /> Xem
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 flex-1 rounded-xl text-xs gap-1"
+                  className="h-8 flex-1 rounded-lg text-xs gap-1"
                 >
                   <Edit className="size-3" /> Chỉnh sửa
                 </Button>
@@ -293,7 +293,7 @@ export function SellerCreatePage() {
             </p>
           </div>
 
-          <Card className="rounded-2xl border-border/70 shadow-sm">
+          <Card className="border-border/70 shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm">
                 Bước 1: Thông tin cơ bản
@@ -425,7 +425,7 @@ export function SellerCreatePage() {
 
         {/* Sidebar */}
         <div className="flex flex-col gap-4">
-          <Card className="rounded-2xl border-border/70 shadow-sm">
+          <Card className="border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Tiến trình</CardTitle>
             </CardHeader>
@@ -462,7 +462,7 @@ export function SellerCreatePage() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-2xl border-border/70 shadow-sm">
+          <Card className="border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Checklist DCAT-VN</CardTitle>
             </CardHeader>
@@ -494,7 +494,7 @@ export function SellerCreatePage() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-2xl border-border/70 shadow-sm bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900">
+          <Card className="border-border/70 shadow-sm bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-blue-700 dark:text-blue-400">
                 Mẹo
@@ -551,7 +551,7 @@ export function SellerPricingPage() {
       </div>
 
       {/* Base price table */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Giá cơ bản sản phẩm</CardTitle>
           <CardDescription className="text-xs">
@@ -561,7 +561,7 @@ export function SellerPricingPage() {
             <Button
               variant="outline"
               size="sm"
-              className="h-8 rounded-xl text-xs"
+              className="h-8 rounded-lg text-xs"
             >
               Cập nhật hàng loạt
             </Button>
@@ -632,17 +632,14 @@ export function SellerPricingPage() {
           <Button
             variant="outline"
             size="sm"
-            className="h-8 rounded-xl text-xs gap-1"
+            className="h-8 rounded-lg text-xs gap-1"
           >
             <Plus className="size-3.5" /> Tạo gói kết hợp
           </Button>
         </div>
         <div className="grid gap-4 sm:grid-cols-3">
           {bundles.map((b) => (
-            <Card
-              key={b.name}
-              className="rounded-2xl border-border/70 shadow-sm"
-            >
+            <Card key={b.name} className="border-border/70 shadow-sm">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <Badge variant="secondary" className="text-xs">
@@ -668,7 +665,7 @@ export function SellerPricingPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-7 flex-1 rounded-xl text-xs"
+                    className="h-7 flex-1 rounded-lg text-xs"
                   >
                     <Eye className="size-3 mr-1" />
                     Xem
@@ -676,7 +673,7 @@ export function SellerPricingPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-7 flex-1 rounded-xl text-xs"
+                    className="h-7 flex-1 rounded-lg text-xs"
                   >
                     <Edit className="size-3 mr-1" />
                     Sửa
@@ -689,7 +686,7 @@ export function SellerPricingPage() {
       </div>
 
       {/* Vouchers */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="flex flex-row items-center justify-between gap-3 pb-2">
           <div>
             <CardTitle className="text-sm">Mã khuyến mãi & Voucher</CardTitle>
@@ -697,7 +694,7 @@ export function SellerPricingPage() {
               Tạo mã giảm giá cho các campaigns marketing
             </CardDescription>
           </div>
-          <Button size="sm" className="h-8 rounded-xl text-xs gap-1">
+          <Button size="sm" className="h-8 rounded-lg text-xs gap-1">
             <Plus className="size-3.5" /> Tạo mã mới
           </Button>
         </CardHeader>
@@ -792,7 +789,7 @@ export function SellerDataQualityPage() {
       </div>
 
       {/* Score chart */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Quality Score theo sản phẩm</CardTitle>
           <CardDescription className="text-xs">
@@ -817,7 +814,7 @@ export function SellerDataQualityPage() {
       {/* Product detail cards */}
       <div className="flex flex-col gap-3">
         {qualityProducts.map((p) => (
-          <Card key={p.id} className="rounded-2xl border-border/70 shadow-sm">
+          <Card key={p.id} className="border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
@@ -848,14 +845,14 @@ export function SellerDataQualityPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-7 rounded-xl text-xs"
+                    className="h-7 rounded-lg text-xs"
                   >
                     Xem chi tiết
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-7 rounded-xl text-xs"
+                    className="h-7 rounded-lg text-xs"
                   >
                     Quét lại
                   </Button>
@@ -885,7 +882,7 @@ export function SellerDataQualityPage() {
       </div>
 
       {/* Anomalies */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <AlertTriangle className="size-4 text-amber-500" /> Anomalies cần xử
@@ -985,10 +982,7 @@ export function SellerPoliciesPage() {
         <h2 className="mb-3 text-sm font-semibold">4 mẫu Policy của bạn</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {licenses.map((l) => (
-            <Card
-              key={l.name}
-              className="rounded-2xl border-border/70 shadow-sm"
-            >
+            <Card key={l.name} className="border-border/70 shadow-sm">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-sm">{l.name}</CardTitle>
@@ -1015,7 +1009,7 @@ export function SellerPoliciesPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-7 w-full rounded-xl text-xs"
+                  className="h-7 w-full rounded-lg text-xs"
                 >
                   Chỉnh sửa
                 </Button>
@@ -1026,7 +1020,7 @@ export function SellerPoliciesPage() {
       </div>
 
       {/* Policy Builder */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
             <CardTitle className="text-sm">
@@ -1036,7 +1030,7 @@ export function SellerPoliciesPage() {
               Tự soạn policy theo chuẩn ODRL cho từng sản phẩm
             </CardDescription>
           </div>
-          <Button size="sm" className="h-7 rounded-xl text-xs">
+          <Button size="sm" className="h-7 rounded-lg text-xs">
             Lưu policy
           </Button>
         </CardHeader>
@@ -1067,7 +1061,7 @@ export function SellerPoliciesPage() {
       </Card>
 
       {/* Audit trail */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <ShieldCheck className="size-4 text-emerald-500" /> Audit thứ Policy

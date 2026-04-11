@@ -53,10 +53,7 @@ export function SellerDisputesPage() {
 
       <div className="flex flex-col gap-4">
         {disputes.map((dispute) => (
-          <Card
-            key={dispute.id}
-            className="rounded-xl border-border/70 shadow-sm"
-          >
+          <Card key={dispute.id} className="border-border/70 shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
                 <div className="flex items-start gap-4">

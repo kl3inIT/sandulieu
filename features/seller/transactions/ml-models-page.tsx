@@ -101,10 +101,7 @@ export function SellerMlModelsPage() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         {mlModels.map((model) => (
-          <Card
-            key={model.id}
-            className="rounded-xl border-border/70 shadow-sm"
-          >
+          <Card key={model.id} className="border-border/70 shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
@@ -178,10 +175,7 @@ export function SellerMlModelsPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {mlTools.map((tool) => (
-          <Card
-            key={tool.name}
-            className="rounded-xl border-border/70 shadow-sm"
-          >
+          <Card key={tool.name} className="border-border/70 shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex size-10 items-center justify-center rounded-xl bg-muted">
                 <tool.icon className="size-5 text-muted-foreground" />

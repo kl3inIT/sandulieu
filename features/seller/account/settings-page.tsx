@@ -106,7 +106,7 @@ export function SellerSettingsPage() {
 
 function ProfilePanel() {
   return (
-    <Card className="rounded-xl border-border/70 shadow-sm">
+    <Card className="border-border/70 shadow-sm">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm">Hồ sơ nhà cung cấp dữ liệu</CardTitle>
         <CardDescription className="text-xs">
@@ -130,7 +130,7 @@ function ProfilePanel() {
             <FieldContent>
               <Input
                 id="seller-name"
-                className="h-10 rounded-md"
+                className="h-10 rounded-xl"
                 defaultValue="CTCP Dữ liệu Tài chính Việt"
               />
             </FieldContent>
@@ -142,7 +142,7 @@ function ProfilePanel() {
               <div className="flex items-center gap-2">
                 <Input
                   id="seller-tax-id"
-                  className="h-10 rounded-md"
+                  className="h-10 rounded-xl"
                   defaultValue="0316789012"
                 />
                 <Badge className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-700">
@@ -157,7 +157,7 @@ function ProfilePanel() {
             <FieldContent>
               <Input
                 id="seller-website"
-                className="h-10 rounded-md"
+                className="h-10 rounded-xl"
                 defaultValue="https://dltc.vn"
               />
             </FieldContent>
@@ -167,7 +167,7 @@ function ProfilePanel() {
             <FieldLabel htmlFor="seller-sector">Lĩnh vực chính</FieldLabel>
             <FieldContent>
               <Select defaultValue="finance">
-                <SelectTrigger id="seller-sector" className="h-10 rounded-md">
+                <SelectTrigger id="seller-sector" className="h-10 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -189,7 +189,7 @@ function ProfilePanel() {
               <Textarea
                 id="seller-summary"
                 rows={5}
-                className="rounded-md"
+                className="rounded-xl"
                 defaultValue="CTCP Dữ liệu Tài chính Việt là nhà cung cấp dữ liệu hàng đầu về tài chính - ngân hàng - chứng khoán tại Việt Nam với hơn 18 sản phẩm dữ liệu được chứng nhận Gold bởi Hội đồng thẩm định SDL."
               />
             </FieldContent>
@@ -226,7 +226,7 @@ function ProfilePanel() {
 function StorefrontPanel() {
   return (
     <div className="flex flex-col gap-4">
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             <Building2 data-icon="inline-start" />
@@ -235,7 +235,7 @@ function StorefrontPanel() {
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           <Input
-            className="h-11 rounded-md bg-muted"
+            className="h-11 rounded-xl bg-muted"
             readOnly
             value="https://sdl.gov.vn/s/dltc-vietnam"
           />
@@ -245,7 +245,7 @@ function StorefrontPanel() {
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             SEO & Metadata
@@ -261,7 +261,7 @@ function StorefrontPanel() {
               <FieldContent>
                 <Input
                   id="seller-meta-title"
-                  className="h-11 rounded-md"
+                  className="h-11 rounded-xl"
                   defaultValue="CTCP Dữ liệu Tài chính Việt - Platinum Seller · Báo cáo tín dụng doanh nghiệp & SME"
                 />
               </FieldContent>
@@ -275,7 +275,7 @@ function StorefrontPanel() {
                 <Textarea
                   id="seller-meta-desc"
                   rows={3}
-                  className="rounded-md"
+                  className="rounded-xl"
                   defaultValue="Nhà cung cấp dữ liệu tài chính hàng đầu VN. 18 sản phẩm Gold Certified. KYC, credit scoring, thị trường chứng khoán, SME analytics."
                 />
               </FieldContent>
@@ -288,7 +288,7 @@ function StorefrontPanel() {
               <FieldContent>
                 <Input
                   id="seller-meta-keywords"
-                  className="h-11 rounded-md"
+                  className="h-11 rounded-xl"
                   defaultValue="báo cáo tín dụng, credit report, SME analytics, chứng khoán, fintech, KYC data"
                 />
               </FieldContent>
@@ -315,7 +315,7 @@ function StorefrontPanel() {
 function MembersPanel() {
   return (
     <div className="flex flex-col gap-4">
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between gap-3">
             <div>
@@ -383,7 +383,7 @@ function MembersPanel() {
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">7 vai trò Seller</CardTitle>
         </CardHeader>
@@ -410,7 +410,7 @@ function MembersPanel() {
 function PaymentPanel() {
   return (
     <div className="flex flex-col gap-4">
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             <CreditCard data-icon="inline-start" />
@@ -436,7 +436,7 @@ function PaymentPanel() {
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             Chính sách rút tiền tự động
@@ -456,7 +456,7 @@ function PaymentPanel() {
               <FieldLabel>Lịch rút</FieldLabel>
               <FieldContent>
                 <Select defaultValue="t2-t5">
-                  <SelectTrigger className="h-10 rounded-md">
+                  <SelectTrigger className="h-10 rounded-xl">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -474,7 +474,7 @@ function PaymentPanel() {
               <FieldLabel>Ngưỡng tối thiểu</FieldLabel>
               <FieldContent>
                 <Input
-                  className="h-10 rounded-md"
+                  className="h-10 rounded-xl"
                   defaultValue="10.000.000 VNĐ"
                 />
               </FieldContent>
@@ -483,7 +483,7 @@ function PaymentPanel() {
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             Thuế & Hóa đơn
@@ -512,7 +512,7 @@ function PaymentPanel() {
 function SecurityPanel() {
   return (
     <div className="flex flex-col gap-4">
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             <Shield data-icon="inline-start" />
@@ -559,7 +559,7 @@ function SecurityPanel() {
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             Phiên đang hoạt động (4)
@@ -592,7 +592,7 @@ function SecurityPanel() {
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             IP Whitelist cho Data API
@@ -623,7 +623,7 @@ function SecurityPanel() {
 
 function NotificationPanel() {
   return (
-    <Card className="rounded-xl border-border/70 shadow-sm">
+    <Card className="border-border/70 shadow-sm">
       <CardHeader className="pb-2">
         <CardTitle className="text-2xl font-semibold">
           <Bell data-icon="inline-start" />
@@ -664,7 +664,7 @@ function NotificationPanel() {
                 </TableCell>
                 <TableCell>
                   <Select defaultValue="realtime">
-                    <SelectTrigger className="h-8 w-[92px] rounded-md">
+                    <SelectTrigger className="h-8 w-[92px] rounded-lg">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -688,7 +688,7 @@ function NotificationPanel() {
 function DisplayPanel() {
   return (
     <div className="flex flex-col gap-4">
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             <Palette data-icon="inline-start" />
@@ -704,7 +704,7 @@ function DisplayPanel() {
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl border-border/70 shadow-sm">
+      <Card className="border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-2xl font-semibold">
             <Globe data-icon="inline-start" />
@@ -717,7 +717,7 @@ function DisplayPanel() {
               <FieldLabel>Ngôn ngữ</FieldLabel>
               <FieldContent>
                 <Select defaultValue="vi">
-                  <SelectTrigger className="h-10 rounded-md">
+                  <SelectTrigger className="h-10 rounded-xl">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -734,7 +734,7 @@ function DisplayPanel() {
               <FieldLabel>Timezone</FieldLabel>
               <FieldContent>
                 <Select defaultValue="vn-time">
-                  <SelectTrigger className="h-10 rounded-md">
+                  <SelectTrigger className="h-10 rounded-xl">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>

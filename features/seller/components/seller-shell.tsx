@@ -54,7 +54,7 @@ export function SellerShell({ children }: SellerShellProps) {
         {/* Desktop sidebar */}
         <aside
           className={cn(
-            "hidden shrink-0 flex-col overflow-hidden lg:flex",
+            "hidden shrink-0 flex-col overflow-hidden lg:sticky lg:top-0 lg:flex lg:h-screen",
             "transition-[width] duration-200 ease-in-out",
             sidebarOpen ? "w-[254px] border-r border-border/70 bg-card" : "w-0"
           )}
@@ -112,7 +112,7 @@ export function SellerShell({ children }: SellerShellProps) {
                   BÊN BÁN
                 </Badge>
                 <span className="truncate text-sm text-muted-foreground">
-                  Sàn Dữ liệu Quốc gia
+                  Sàn dữ liệu Quốc gia
                 </span>
               </div>
 
@@ -201,7 +201,7 @@ function SellerSidebar({ pathname }: { pathname: string }) {
       </div>
 
       {/* Nav — scrollable */}
-      <div className="flex-1 overflow-y-auto px-3 py-3">
+      <div className="min-h-0 flex-1 overflow-y-auto px-3 py-3">
         <div className="flex flex-col gap-4">
           {sellerNavGroups.map((group) => (
             <section key={group.label} className="flex flex-col gap-1.5">
