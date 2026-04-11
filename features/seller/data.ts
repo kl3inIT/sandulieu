@@ -39,8 +39,9 @@ export type SellerNavGroup = {
 export const sellerUser = {
   initials: "TM",
   name: "Trần Thị Mai",
+  role: "Platinum Seller",
   company: "CTCP Dữ liệu Tài chính Việt",
-  companyShort: "CTCP Dữ liệu Tài chính Việt",
+  companyShort: "DTC Vietnam",
 };
 
 export const sellerNavGroups: SellerNavGroup[] = [

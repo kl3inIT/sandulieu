@@ -26,6 +26,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/components/ui/dropdown-menu";
@@ -139,28 +140,48 @@ export function SellerShell({ children }: SellerShellProps) {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    variant="outline"
-                    className="h-9 rounded-xl px-3 sm:min-w-52 sm:justify-between"
+                    variant="ghost"
+                    className="h-9 gap-2 rounded-xl px-2.5 hover:bg-muted"
                   >
-                    <div className="flex items-center gap-2.5">
-                      <Avatar className="size-7 bg-primary text-primary-foreground">
-                        <AvatarFallback className="bg-primary text-[11px] text-primary-foreground">
-                          {sellerUser.initials}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="hidden text-left sm:block">
-                        <p className="text-sm font-semibold leading-tight text-foreground">
-                          {sellerUser.name}
-                        </p>
-                        <p className="text-xs leading-tight text-muted-foreground">
-                          {sellerUser.company}
-                        </p>
-                      </div>
+                    <Avatar className="size-7 shrink-0">
+                      <AvatarFallback className="bg-primary text-[11px] font-semibold text-primary-foreground">
+                        {sellerUser.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="hidden max-w-[140px] text-left sm:block">
+                      <p className="truncate text-sm font-semibold leading-tight">
+                        {sellerUser.name}
+                      </p>
+                      <p className="truncate text-[11px] leading-tight text-muted-foreground">
+                        {sellerUser.companyShort}
+                      </p>
                     </div>
-                    <ChevronDown className="hidden size-4 text-muted-foreground sm:block" />
+                    <ChevronDown className="hidden size-3.5 shrink-0 text-muted-foreground sm:block" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-64">
+                  {/* User info header */}
+                  <DropdownMenuLabel className="p-0">
+                    <div className="flex items-center gap-3 px-3 py-2.5">
+                      <Avatar className="size-9 shrink-0">
+                        <AvatarFallback className="bg-primary text-sm font-semibold text-primary-foreground">
+                          {sellerUser.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-semibold">
+                          {sellerUser.name}
+                        </p>
+                        <p className="truncate text-xs text-muted-foreground">
+                          {sellerUser.company}
+                        </p>
+                        <Badge className="mt-1 h-4 rounded-full bg-amber-100 px-2 py-0 text-[10px] text-amber-700">
+                          {sellerUser.role}
+                        </Badge>
+                      </div>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
                       <UserRound />
@@ -270,7 +291,7 @@ function SellerSidebar({ pathname }: { pathname: string }) {
               {sellerUser.name}
             </p>
             <p className="truncate text-xs leading-tight text-muted-foreground">
-              {sellerUser.companyShort}
+              {sellerUser.role}
             </p>
           </div>
           <Button
