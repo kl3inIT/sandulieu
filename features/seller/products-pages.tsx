@@ -64,6 +64,25 @@ import {
   StatusPill,
 } from "@/features/seller/shared";
 
+import {
+  activeSandboxes,
+  auctions,
+  baseProducts,
+  bundles,
+  createSteps,
+  products,
+  sandboxTools,
+  vouchers,
+} from "@/features/seller/data/products.data";
+import {
+  anomalies,
+  licenses,
+  policyAudit,
+  qualityProducts,
+  reviewItems,
+  upstreamSources,
+} from "@/features/seller/data/quality.data";
+
 // ─── Helper ───────────────────────────────────────────────────────────────────
 
 function FField({
@@ -80,107 +99,6 @@ function FField({
     </div>
   );
 }
-
-// ─── Sản phẩm của tôi ─────────────────────────────────────────────────────────
-
-const products = [
-  {
-    id: "SP-TC-001",
-    category: "Tài chính",
-    type: "Tín dụng",
-    status: "Đang bán",
-    tone: "emerald" as const,
-    name: "Báo cáo tín dụng doanh nghiệp toàn diện",
-    desc: "Dữ liệu tín dụng DN từ 3 nguồn: CIC, Thuế, BHXH - cập nhật hằng ngày",
-    price: "48.500.000 đ",
-    downloads: "142 lượt",
-    rating: "4.9",
-  },
-  {
-    id: "SP-TC-002",
-    category: "Tài chính",
-    type: "Chứng khoán",
-    status: "Đang bán",
-    tone: "emerald" as const,
-    name: "Chỉ số thị trường chứng khoán realtime",
-    desc: "Dữ liệu giá, khối lượng, chỉ số kỹ thuật realtime HOSE+HNX+UPCOM",
-    price: "15.000.000 đ",
-    downloads: "89 lượt",
-    rating: "4.8",
-  },
-  {
-    id: "SP-TC-003",
-    category: "Tài chính",
-    type: "Tỷ giá",
-    status: "Đang bán",
-    tone: "emerald" as const,
-    name: "Dữ liệu tỷ giá 28 cặp tiền tệ",
-    desc: "Tỷ giá liên ngân hàng và tự do 28 cặp tiền - lịch sử 5 năm",
-    price: "5.000.000 đ",
-    downloads: "124 lượt",
-    rating: "4.7",
-  },
-  {
-    id: "SP-TC-004",
-    category: "Tài chính",
-    type: "Ngành",
-    status: "Đang bán",
-    tone: "emerald" as const,
-    name: "Báo cáo ngành ngân hàng Q1/2026",
-    desc: "Phân tích xu hướng ngành ngân hàng - tổng hợp từ báo cáo tài chính",
-    price: "25.000.000 đ",
-    downloads: "48 lượt",
-    rating: "4.6",
-  },
-  {
-    id: "SP-VT-005",
-    category: "Vĩ mô",
-    type: "Dự báo kinh tế",
-    status: "Chờ kiểm duyệt",
-    tone: "amber" as const,
-    name: "Dự báo kinh tế vĩ mô 2026-2027",
-    desc: "Dự báo GDP, lạm phát, tỷ giá từ 12 mô hình kinh tế lượng",
-    price: "30.000.000 đ",
-    downloads: "24 lượt",
-    rating: "4.8",
-  },
-  {
-    id: "SP-TC-006",
-    category: "Tài chính",
-    type: "Rủi ro",
-    status: "Bản nháp",
-    tone: "blue" as const,
-    name: "Bộ đầu tư liệu giao dịch 2020-2025",
-    desc: "65 triệu giao dịch cổ phiếu với 45 biến đặc trưng cho ML/AI",
-    price: "85.000.000 đ",
-    downloads: "12 lượt",
-    rating: "4.5",
-  },
-  {
-    id: "SP-TC-007",
-    category: "Tài chính",
-    type: "SME",
-    status: "Đang bán",
-    tone: "emerald" as const,
-    name: "Chỉ số rủi ro tín dụng SME",
-    desc: "Score rủi ro cho 2M+ doanh nghiệp vừa và nhỏ - model XGBoost",
-    price: "22.000.000 đ",
-    downloads: "0 lượt",
-    rating: "—",
-  },
-  {
-    id: "SP-TC-008",
-    category: "Tài chính",
-    type: "Niêm yết",
-    status: "Đang bán",
-    tone: "emerald" as const,
-    name: "DS doanh nghiệp niêm yết HOSE+HNX",
-    desc: "Danh sách đầy đủ DN niêm yết với thông tin tài chính cơ bản",
-    price: "18.000.000 đ",
-    downloads: "154 lượt",
-    rating: "4.9",
-  },
-];
 
 export function SellerProductsPage() {
   return (
@@ -331,16 +249,6 @@ export function SellerProductsPage() {
     </div>
   );
 }
-
-// ─── Đăng sản phẩm mới ────────────────────────────────────────────────────────
-
-const createSteps = [
-  { n: 1, label: "Thông tin cơ bản" },
-  { n: 2, label: "Schema & Dữ liệu" },
-  { n: 3, label: "Định giá & Gói cước" },
-  { n: 4, label: "Cam kết chất lượng" },
-  { n: 5, label: "Xuất bản" },
-];
 
 export function SellerCreatePage() {
   return (
@@ -603,102 +511,6 @@ export function SellerCreatePage() {
   );
 }
 
-// ─── Quản lý giá & Khuyến mãi ─────────────────────────────────────────────────
-
-const baseProducts = [
-  {
-    name: "Báo cáo tín dụng DN toàn diện",
-    desc: "SP-TC-001 · Cập nhật hằng ngày",
-    price: "48.000.000 đ",
-    unit: "Hàng tháng",
-    orders: 3,
-    status: "Hoạt động",
-  },
-  {
-    name: "Chỉ số thị trường CK realtime",
-    desc: "SP-TC-002 · Tức thời",
-    price: "15.000.000 đ",
-    unit: "Phiên",
-    orders: 3,
-    status: "Hoạt động",
-  },
-  {
-    name: "Dữ liệu tỷ giá 28 cặp",
-    desc: "SP-TC-003 · Cập nhật hằng ngày",
-    price: "5.000.000 đ",
-    unit: "Hàng tháng",
-    orders: 1,
-    status: "Hoạt động",
-  },
-  {
-    name: "Bộ DL lịch sử CK 2020-2023",
-    desc: "SP-TC-007 · Tĩnh",
-    price: "85.000.000 đ",
-    unit: "Mã",
-    orders: 1,
-    status: "Hoạt động",
-  },
-];
-
-const bundles = [
-  {
-    name: "Combo Tài chính toàn diện",
-    items: "4 sản phẩm",
-    price: "125.000.000 đ",
-    sales: 10,
-    discount: "15% off",
-  },
-  {
-    name: "Gói Khởi nghiệp FinTech",
-    items: "2 sản phẩm",
-    price: "18.000.000 đ",
-    sales: 24,
-    discount: "25% off",
-  },
-  {
-    name: "Enterprise Finance Pack",
-    items: "5 sản phẩm",
-    price: "240.000.000 đ",
-    sales: 6,
-    discount: "30% off",
-  },
-];
-
-const vouchers = [
-  {
-    code: "NEWYEAR2026",
-    type: "Phần trăm",
-    status: "Đang hoạt động",
-    desc: "Giảm 15% cho đơn hàng đầu tiên",
-    used: "12/50",
-    exp: "31/12/2026",
-  },
-  {
-    code: "PLATFORM2026",
-    type: "Phần trăm",
-    status: "Đang hoạt động",
-    desc: "Giảm 10% cho khách hàng Doanh nghiệp",
-    used: "8/100",
-    exp: "30/06/2026",
-  },
-  {
-    code: "FIRSTORDER",
-    type: "Cố định",
-    status: "Đang hoạt động",
-    desc: "Giảm 5tr cho đơn mua dữ liệu đầu tiên",
-    used: "34/∞",
-    exp: "31/12/2026",
-  },
-  {
-    code: "SUMMER2026",
-    type: "Phần trăm",
-    status: "Lên kế hoạch",
-    desc: "Khuyến mãi mùa hè - 25% Gói Tiêu chuẩn",
-    used: "0/200",
-    exp: "31/08/2026",
-  },
-];
-
 export function SellerPricingPage() {
   return (
     <div className="flex flex-col gap-6">
@@ -925,94 +737,6 @@ export function SellerPricingPage() {
   );
 }
 
-// ─── Data Quality Framework Dashboard ─────────────────────────────────────────
-
-const qualityProducts = [
-  {
-    id: "SP-TC-001",
-    name: "Báo cáo tín dụng DN toàn diện",
-    score: 94,
-    grade: "A",
-    status: "Score 94/100",
-    tone: "emerald" as const,
-    dims: [
-      { label: "Accuracy", v: 96 },
-      { label: "Completeness", v: 98 },
-      { label: "Timeliness", v: 92 },
-      { label: "Consistency", v: 90 },
-    ],
-  },
-  {
-    id: "SP-TC-007",
-    name: "Bộ DL lịch sử CK 2020-2023",
-    score: 99,
-    grade: "A+",
-    status: "Score 99/100",
-    tone: "emerald" as const,
-    dims: [
-      { label: "Accuracy", v: 99 },
-      { label: "Completeness", v: 100 },
-      { label: "Timeliness", v: 98 },
-      { label: "Consistency", v: 99 },
-    ],
-  },
-  {
-    id: "SP-TC-003",
-    name: "Dữ liệu tỷ giá 28 cặp",
-    score: 88,
-    grade: "B+",
-    status: "1 anomalies",
-    tone: "amber" as const,
-    dims: [
-      { label: "Accuracy", v: 90 },
-      { label: "Completeness", v: 88 },
-      { label: "Timeliness", v: 85 },
-      { label: "Consistency", v: 89 },
-    ],
-  },
-  {
-    id: "SP-TC-002",
-    name: "Chỉ số thị trường CK realtime",
-    score: 91,
-    grade: "A",
-    status: "Score 91/100",
-    tone: "emerald" as const,
-    dims: [
-      { label: "Accuracy", v: 94 },
-      { label: "Completeness", v: 92 },
-      { label: "Timeliness", v: 99 },
-      { label: "Consistency", v: 85 },
-    ],
-  },
-];
-
-const anomalies = [
-  {
-    severity: "rose",
-    msg: "completeness giảm 8.7% — 5% có thể bị trì hoãn thiếu lúc",
-    time: "3 phút trước",
-    product: "SP-TC-003",
-  },
-  {
-    severity: "amber",
-    msg: "Phát hiện 3% records có accuracy đất bất thường (Timeliness 3.5 s)",
-    time: "12 phút trước",
-    product: "SP-TC-003",
-  },
-  {
-    severity: "amber",
-    msg: "Completeness giảm: 4 field 'sources_timestamp' vào schema 2.4",
-    time: "25/04/2026 10:05",
-    product: "SP-TC-001",
-  },
-  {
-    severity: "blue",
-    msg: "Lele delivery: batch (4/26) chậm 6 phút",
-    time: "25/04/2026 10:05",
-    product: "SP-TC-003",
-  },
-];
-
 export function SellerDataQualityPage() {
   return (
     <div className="flex flex-col gap-6">
@@ -1192,75 +916,6 @@ export function SellerDataQualityPage() {
   );
 }
 
-// ─── Usage Control Policies (IDSA ODRL) ───────────────────────────────────────
-
-const licenses = [
-  {
-    name: "Standard License",
-    subscribers: 3,
-    color: "blue",
-    features: [
-      "Giới hạn 15 thành",
-      "Tối đa 3 thành viên",
-      "Chỉ nội bộ tổ chức",
-    ],
-    description: "Dành cho khách hàng tổ chức vừa nhỏ — Phù hợp thị trường",
-  },
-  {
-    name: "Enterprise License",
-    subscribers: 5,
-    color: "violet",
-    features: [
-      "Giới hạn 25 thành",
-      "Tối đa 25 thành viên",
-      "Chi phép nhà phân phối",
-      "Cập nhật SLA",
-    ],
-    description: "Dành cho khách hàng Enterprise — nhiều quyền hơn",
-  },
-  {
-    name: "Research License",
-    subscribers: 1,
-    color: "emerald",
-    features: ["Phi thương mại", "Công bố kết quả", "Chỉ nghiên cứu"],
-    description: "Dành cho viện nghiên cứu học thuật",
-  },
-  {
-    name: "Open Data License",
-    subscribers: 2,
-    color: "amber",
-    features: ["Không giới hạn", "Cho phép tái phân phối", "Không đăng ký CL"],
-    description: "Dữ liệu mở — không phí, không hạn chế",
-  },
-];
-
-const policyAudit = [
-  {
-    time: "25/04 10:44",
-    type: "auto-delete",
-    msg: "Auto-delete chạy lúc 07:44 xóa cải bị 57/11 văn bản 45 → 45VNĐ",
-    severity: "blue",
-  },
-  {
-    time: "25/04 09:10",
-    type: "warning",
-    msg: "Warning: 2018-34 không nhận được dữ liệu cập nhật trong 10h",
-    severity: "amber",
-  },
-  {
-    time: "24/04 16:20",
-    type: "policy",
-    msg: "Policy đã chặt: 1/6 dụng cụ SP-TK-01 97 yêu cầu tải website lần thứ chưa giờ",
-    severity: "rose",
-  },
-  {
-    time: "24/04 14:37",
-    type: "log",
-    msg: "Log key: 8/30 được renew to schema v3.4",
-    severity: "emerald",
-  },
-];
-
 export function SellerPoliciesPage() {
   return (
     <div className="flex flex-col gap-6">
@@ -1429,37 +1084,6 @@ export function SellerPoliciesPage() {
     </div>
   );
 }
-
-// ─── Data Lineage & Provenance ─────────────────────────────────────────────────
-
-const upstreamSources = [
-  {
-    name: "Cục Quản lý Đăng ký Kinh doanh ICQNN",
-    desc: "Bộ Kế hoạch và Đầu tư",
-    products: 6,
-  },
-  {
-    name: "Tổng cục Thuế",
-    desc: "Bộ Tài chính - cập nhật hằng ngày",
-    products: 6,
-  },
-  { name: "Bảo hiểm Xã hội Việt Nam", desc: "BHXH - hằng tháng", products: 4 },
-  {
-    name: "CIC Vietnam - Credit Bureau",
-    desc: "NHNN - T+1 business day",
-    products: 6,
-  },
-  {
-    name: "14 ngân hàng đối tác (Federated)",
-    desc: "Hợp đồng độc quyền 3 năm",
-    products: 4,
-  },
-  {
-    name: "VineID Identity Verification",
-    desc: "VNPT - realtime webhook",
-    products: 11,
-  },
-];
 
 export function SellerLineagePage() {
   return (
@@ -1689,59 +1313,6 @@ export function SellerLineagePage() {
   );
 }
 
-// ─── Thẩm định chất lượng & giá ───────────────────────────────────────────────
-
-const reviewItems = [
-  {
-    id: "SP-TC-009",
-    name: "Báo cáo tín dụng SME Q1/2026",
-    status: "Đang thẩm định",
-    tone: "amber" as const,
-    submitted: "03/04/2026",
-    reviewers: 3,
-    progress: 75,
-    scoreDims: [
-      { label: "Tiếp nhận", done: true },
-      { label: "Xem xét hồ sơ", done: true },
-      { label: "Chấm điểm Q", done: false },
-      { label: "Thẩm tra giá", done: false },
-      { label: "Kết quả cuối", done: false },
-    ],
-  },
-  {
-    id: "SP-TC-010",
-    name: "Chỉ số rủi ro tín dụng SME",
-    status: "Đang thẩm định",
-    tone: "amber" as const,
-    submitted: "01/04/2026",
-    reviewers: 3,
-    progress: 48,
-    scoreDims: [
-      { label: "Tiếp nhận", done: true },
-      { label: "Xem xét hồ sơ", done: true },
-      { label: "Chấm điểm Q", done: false },
-      { label: "Thẩm tra giá", done: false },
-      { label: "Kết quả cuối", done: false },
-    ],
-  },
-  {
-    id: "SP-TC-007",
-    name: "Dự báo kinh tế vĩ mô 2026-2027",
-    status: "Đã phê duyệt",
-    tone: "emerald" as const,
-    submitted: "18/03/2026",
-    reviewers: 3,
-    progress: 100,
-    scoreDims: [
-      { label: "Tiếp nhận", done: true },
-      { label: "Xem xét hồ sơ", done: true },
-      { label: "Chấm điểm Q", done: true },
-      { label: "Thẩm tra giá", done: true },
-      { label: "Kết quả cuối", done: true },
-    ],
-  },
-];
-
 export function SellerQualityPage() {
   return (
     <div className="flex flex-col gap-6">
@@ -1937,71 +1508,6 @@ export function SellerQualityPage() {
   );
 }
 
-// ─── Sandbox kiểm thử sản phẩm ────────────────────────────────────────────────
-
-const activeSandboxes = [
-  {
-    id: "SBX-007",
-    name: "Test SP-TC-007 Schema",
-    status: "Hoạt động",
-    tone: "emerald" as const,
-    product: "SP-TC-007 · 0 lỗi",
-    requests: "34 req/phút",
-    started: "3 giờ trước",
-  },
-  {
-    id: "SBX-009",
-    name: "Load test API credit report",
-    status: "Hoạt động",
-    tone: "emerald" as const,
-    product: "SP-TC-001 · 0 lỗi",
-    requests: "120 req/phút",
-    started: "1 giờ trước",
-  },
-  {
-    id: "SBX-010",
-    name: "Validate breaking changes v2.4",
-    status: "Chờ",
-    tone: "amber" as const,
-    product: "SP-TC-003 · schema check",
-    requests: "—",
-    started: "—",
-  },
-];
-
-const sandboxTools = [
-  {
-    name: "API Request Tester",
-    desc: "Test từng endpoint với custom payload, xem response thực tế",
-    icon: Code2,
-  },
-  {
-    name: "Load Testing",
-    desc: "Simulate 100-500 concurrent users để test limit & performance",
-    icon: Zap,
-  },
-  {
-    name: "Schema Migration Checker",
-    desc: "So sánh 2 version schema để phát hiện breaking changes",
-    icon: GitBranch,
-  },
-  {
-    name: "Data Validation",
-    desc: "Validate file CSV theo DCAT schema, PII detection, quality check",
-    icon: ShieldCheck,
-  },
-  {
-    name: "Latency Profiler",
-    desc: "Đo latency từng API endpoint real-time trong 60 giây",
-    icon: Clock,
-  },
-  {
-    name: "Error Injection",
-    desc: "Mô phỏng lỗi mạng, timeout, payload sai để test fallback",
-    icon: AlertCircle,
-  },
-];
-
 export function SellerSandboxPage() {
   return (
     <div className="flex flex-col gap-6">
@@ -2125,50 +1631,6 @@ export function SellerSandboxPage() {
     </div>
   );
 }
-
-// ─── Đấu giá dữ liệu ─────────────────────────────────────────────────────────
-
-const auctions = [
-  {
-    id: "AUC-2026-003",
-    name: "Bộ dữ liệu lịch sử giao dịch CK 2020-2025",
-    status: "Đang đấu giá",
-    tone: "blue" as const,
-    sources: 9,
-    bids: 28,
-    startPrice: "500.000.000 đ",
-    currentPrice: "1.240.000.000 đ",
-    topBuyer: "CTCP Chứng khoán SSI",
-    progress: 82,
-    endsIn: "2 ngày 14 giờ",
-  },
-  {
-    id: "AUC-2026-004",
-    name: "Báo cáo tín dụng SME ngành Q1/2026",
-    status: "Đang đấu giá",
-    tone: "blue" as const,
-    sources: 6,
-    bids: 16,
-    startPrice: "300.000.000 đ",
-    currentPrice: "600.000.000 đ",
-    topBuyer: "Ngân hàng TMCP BIDV",
-    progress: 65,
-    endsIn: "4 ngày 8 giờ",
-  },
-  {
-    id: "AUC-2026-002",
-    name: "Dữ liệu giao dịch thẻ tín dụng 2024-2025",
-    status: "Đang đấu giá",
-    tone: "blue" as const,
-    sources: 10,
-    bids: 35,
-    startPrice: "800.000.000 đ",
-    currentPrice: "2.150.000.000 đ",
-    topBuyer: "VietinBank",
-    progress: 88,
-    endsIn: "1 ngày 2 giờ",
-  },
-];
 
 export function SellerAuctionsPage() {
   return (

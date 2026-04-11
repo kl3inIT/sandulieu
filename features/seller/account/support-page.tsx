@@ -11,6 +11,12 @@ import {
   Zap,
 } from "lucide-react";
 
+import {
+  accountManager,
+  bookingSlots,
+  supportDocs as docs,
+} from "@/features/seller/data/account/support.data";
+
 import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -37,28 +43,6 @@ import {
 } from "@/shared/components/ui/select";
 import { Textarea } from "@/shared/components/ui/textarea";
 import { SellerKpiCard, SellerPageHeader } from "@/features/seller/shared";
-
-const bookingSlots = [
-  {
-    title: "Tư vấn định giá sản phẩm",
-    detail: "Chuyên gia Kinh tế SDL · 30 phút",
-  },
-  { title: "Hỗ trợ tích hợp API & SDK", detail: "Senior Engineer · 45 phút" },
-  { title: "Review chiến lược tháng", detail: "Account Manager · 60 phút" },
-  {
-    title: "Đào tạo Clean Room & Privacy",
-    detail: "Data Privacy Specialist · 90 phút",
-  },
-];
-
-const docs = [
-  "Hướng dẫn định giá sản phẩm dữ liệu",
-  "Chiến lược marketing cho Platinum Seller",
-  "Tích hợp API cho seller",
-  "Quy trình thẩm định & SLA",
-  "Best practices bảo mật dữ liệu",
-  "Chính sách phí & thanh toán",
-];
 
 export function SellerSupportPage() {
   return (
@@ -136,27 +120,27 @@ export function SellerSupportPage() {
               <div className="flex items-center gap-3">
                 <Avatar className="size-12">
                   <AvatarFallback className="bg-amber-400 text-sm font-semibold text-slate-950">
-                    HN
+                    {accountManager.initials}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-medium">Hoàng Thị Ngọc</p>
+                  <p className="font-medium">{accountManager.name}</p>
                   <p className="text-xs text-muted-foreground">
-                    Senior Account Manager
+                    {accountManager.title}
                   </p>
                   <p className="text-xs text-emerald-600">
-                    Online · Phản hồi ngay
+                    {accountManager.availability}
                   </p>
                 </div>
               </div>
               <div className="mt-4 grid gap-2 text-xs text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Phone className="size-3.5" />
-                  0912 345 678
+                  {accountManager.phone}
                 </div>
                 <div className="flex items-center gap-2">
                   <MessageSquare className="size-3.5" />
-                  ngoc.ht.ngl@sdl.gov.vn
+                  {accountManager.email}
                 </div>
               </div>
             </div>

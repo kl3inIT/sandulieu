@@ -1,13 +1,9 @@
+import { Settings, Upload } from "lucide-react";
+
 import {
-  Bell,
-  CreditCard,
-  Globe2,
-  Languages,
-  Lock,
-  Settings,
-  Upload,
-  Users,
-} from "lucide-react";
+  profileTags,
+  settingsTabs,
+} from "@/features/seller/data/account/settings.data";
 
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
@@ -35,26 +31,6 @@ import {
 } from "@/shared/components/ui/select";
 import { Textarea } from "@/shared/components/ui/textarea";
 import { SellerPageHeader } from "@/features/seller/shared";
-
-const settingsTabs = [
-  { label: "Hồ sơ nhà cung cấp", icon: Users, active: true },
-  { label: "Storefront & SEO", icon: Globe2, active: false },
-  { label: "Thành viên & Phân quyền", icon: Users, active: false },
-  { label: "Thanh toán & Thuế", icon: CreditCard, active: false },
-  { label: "Bảo mật", icon: Lock, active: false },
-  { label: "Thông báo", icon: Bell, active: false },
-  { label: "Hiển thị & Ngôn ngữ", icon: Languages, active: false },
-];
-
-const profileTags = [
-  "Báo cáo tín dụng",
-  "Chỉ số thị trường",
-  "Phân tích rủi ro",
-  "Chứng khoán",
-  "Ngân hàng",
-  "Fintech",
-  "SME Analytics",
-];
 
 export function SellerSettingsPage() {
   return (

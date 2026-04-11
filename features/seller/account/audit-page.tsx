@@ -6,6 +6,8 @@ import {
   Users,
 } from "lucide-react";
 
+import { auditEvents } from "@/features/seller/data/account/audit.data";
+
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -25,74 +27,6 @@ import {
   SelectValue,
 } from "@/shared/components/ui/select";
 import { SellerKpiCard, SellerPageHeader } from "@/features/seller/shared";
-
-const auditEvents = [
-  {
-    role: "Owner",
-    actor: "Trần Thị Mai",
-    action: "Cập nhật giá từ 45M → 48M VND",
-    target: "Target: SP-TC-001 · IP: 14.237.83.14 · 05/04/2026 14:32:18",
-    tone: "blue" as const,
-  },
-  {
-    role: "Sales Manager",
-    actor: "Nguyễn Quang Huy",
-    action: "Gửi chào giá 2,28B tới VIB",
-    target: "Target: RFQ-2026-04-0482 · IP: 14.237.83.15 · 05/04/2026 14:08:42",
-    tone: "blue" as const,
-  },
-  {
-    role: "Data Engineer",
-    actor: "Phạm Văn Minh",
-    action: "Thêm field 'source_timestamp' vào schema v2.4",
-    target: "Target: SP-TC-003 · IP: 14.237.83.18 · 05/04/2026 14:15:06",
-    tone: "amber" as const,
-  },
-  {
-    role: "Finance",
-    actor: "Lê Thị Hà",
-    action: "Rút 185M VND về ngân hàng",
-    target:
-      "Target: Vietcombank ••••3847 · IP: 14.237.83.22 · 05/04/2026 13:24:15",
-    tone: "blue" as const,
-  },
-  {
-    role: "Owner",
-    actor: "Trần Thị Mai",
-    action: "Mời thành viên mới với role Support Agent",
-    target: "Target: user-ngoc · IP: 14.237.83.24 · 05/04/2026 12:08:30",
-    tone: "blue" as const,
-  },
-  {
-    role: "Content Manager",
-    actor: "Hoàng Thị Lan",
-    action: "Cập nhật meta description và keywords",
-    target: "Target: storefront · IP: 14.237.83.22 · 05/04/2026 11:32:45",
-    tone: "blue" as const,
-  },
-  {
-    role: "Owner",
-    actor: "Trần Thị Mai",
-    action: "Tạo policy mới cho Enterprise tier",
-    target:
-      "Target: enterprise-policy · IP: 14.237.83.24 · 05/04/2026 10:45:20",
-    tone: "blue" as const,
-  },
-  {
-    role: "Critical",
-    actor: "System",
-    action: "5 lần đăng nhập thất bại, đã khóa IP",
-    target: "Target: unknown@attacker.ru · IP: 203.x.x.x · 05/04/2026 09:18:08",
-    tone: "rose" as const,
-  },
-  {
-    role: "Sales Manager",
-    actor: "Nguyễn Quang Huy",
-    action: "Xem hồ sơ khách hàng",
-    target: "Target: CUST-001 · IP: 14.237.83.15 · 05/04/2026 08:52:12",
-    tone: "blue" as const,
-  },
-];
 
 export function SellerAuditPage() {
   return (
