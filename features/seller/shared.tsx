@@ -61,11 +61,11 @@ export function SellerPageHeader({
 }
 
 const toneSurface: Record<string, string> = {
-  emerald: "bg-emerald-500/10 text-emerald-600",
-  rose: "bg-rose-500/10    text-rose-600",
-  amber: "bg-amber-500/10   text-amber-600",
-  blue: "bg-blue-500/10    text-blue-600",
-  violet: "bg-violet-500/10  text-violet-600",
+  emerald: "bg-emerald-500/15 text-emerald-700",
+  rose: "bg-rose-500/15    text-rose-700",
+  amber: "bg-amber-500/15   text-amber-700",
+  blue: "bg-blue-500/15    text-blue-700",
+  violet: "bg-violet-500/15  text-violet-700",
 };
 
 /**
@@ -78,25 +78,32 @@ export function SellerKpiCard({
   delta,
   icon: Icon,
   tone,
+  iconClassName,
+  iconStrokeWidth,
 }: {
   label: string;
   value: string;
   delta?: string;
   icon: LucideIcon;
   tone: "emerald" | "rose" | "amber" | "blue" | "violet";
+  iconClassName?: string;
+  iconStrokeWidth?: number;
 }) {
   return (
-    <Card className="justify-between rounded-3xl border-border/70 shadow-sm">
+    <Card className="justify-between rounded-xl border-border/70 shadow-sm">
       <CardHeader className="pb-2">
         <CardDescription>{label}</CardDescription>
         <CardAction>
           <div
             className={cn(
-              "flex size-10 shrink-0 items-center justify-center rounded-2xl",
+              "flex size-10 shrink-0 items-center justify-center rounded-xl",
               toneSurface[tone]
             )}
           >
-            <Icon className="size-5" />
+            <Icon
+              className={cn("size-5", iconClassName)}
+              strokeWidth={iconStrokeWidth}
+            />
           </div>
         </CardAction>
       </CardHeader>

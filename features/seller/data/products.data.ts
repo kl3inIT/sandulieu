@@ -42,9 +42,11 @@ export type BaseProduct = {
 export type Bundle = {
   name: string;
   items: string;
+  basePrice: string;
   price: string;
   sales: number;
   discount: string;
+  tone: "amber" | "blue" | "violet";
 };
 
 export type Voucher = {
@@ -204,7 +206,7 @@ export const baseProducts: BaseProduct[] = [
     name: "Báo cáo tín dụng DN toàn diện",
     desc: "SP-TC-001 · Cập nhật hằng ngày",
     price: "48.000.000 đ",
-    unit: "Hàng tháng",
+    unit: "/bộ/quý",
     orders: 3,
     status: "Hoạt động",
   },
@@ -212,23 +214,23 @@ export const baseProducts: BaseProduct[] = [
     name: "Chỉ số thị trường CK realtime",
     desc: "SP-TC-002 · Tức thời",
     price: "15.000.000 đ",
-    unit: "Phiên",
+    unit: "/tháng",
     orders: 3,
     status: "Hoạt động",
   },
   {
     name: "Dữ liệu tỷ giá 28 cặp",
     desc: "SP-TC-003 · Cập nhật hằng ngày",
-    price: "5.000.000 đ",
-    unit: "Hàng tháng",
-    orders: 1,
+    price: "8.000.000 đ",
+    unit: "/tháng",
+    orders: 2,
     status: "Hoạt động",
   },
   {
-    name: "Bộ DL lịch sử CK 2020-2023",
-    desc: "SP-TC-007 · Tĩnh",
+    name: "Bộ DL lịch sử CK 2020-2025",
+    desc: "SP-TC-006 · Tĩnh",
     price: "85.000.000 đ",
-    unit: "Mã",
+    unit: "/bộ",
     orders: 1,
     status: "Hoạt động",
   },
@@ -238,23 +240,29 @@ export const bundles: Bundle[] = [
   {
     name: "Combo Tài chính toàn diện",
     items: "4 sản phẩm",
+    basePrice: "156.000.000 đ",
     price: "125.000.000 đ",
-    sales: 10,
-    discount: "15% off",
+    sales: 18,
+    discount: "-20% OFF",
+    tone: "amber",
   },
   {
     name: "Gói Khởi nghiệp FinTech",
     items: "2 sản phẩm",
+    basePrice: "23.000.000 đ",
     price: "18.000.000 đ",
-    sales: 24,
-    discount: "25% off",
+    sales: 42,
+    discount: "-22% OFF",
+    tone: "blue",
   },
   {
     name: "Enterprise Finance Pack",
-    items: "5 sản phẩm",
+    items: "6 sản phẩm",
+    basePrice: "320.000.000 đ",
     price: "240.000.000 đ",
-    sales: 6,
-    discount: "30% off",
+    sales: 8,
+    discount: "-25% OFF",
+    tone: "violet",
   },
 ];
 
@@ -262,25 +270,25 @@ export const vouchers: Voucher[] = [
   {
     code: "NEWYEAR2026",
     type: "Phần trăm",
-    status: "Đang hoạt động",
-    desc: "Giảm 15% cho đơn hàng đầu tiên",
-    used: "12/50",
-    exp: "31/12/2026",
+    status: "Hết hạn",
+    desc: "Giảm 15% cho đơn hàng tháng đầu tiên",
+    used: "84/200",
+    exp: "28/02/2026",
   },
   {
-    code: "PLATFORM2026",
+    code: "PLATINUM10",
     type: "Phần trăm",
     status: "Đang hoạt động",
     desc: "Giảm 10% cho khách hàng Doanh nghiệp",
-    used: "8/100",
-    exp: "30/06/2026",
+    used: "24/100",
+    exp: "31/12/2026",
   },
   {
     code: "FIRSTORDER",
     type: "Cố định",
     status: "Đang hoạt động",
-    desc: "Giảm 5tr cho đơn mua dữ liệu đầu tiên",
-    used: "34/∞",
+    desc: "Miễn phí thiết lập cho đơn đầu tiên",
+    used: "5/50",
     exp: "31/12/2026",
   },
   {

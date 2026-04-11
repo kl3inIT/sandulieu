@@ -6,6 +6,7 @@ import {
   Clock,
   Code2,
   Database,
+  Copy,
   Edit,
   Eye,
   FlaskConical,
@@ -120,15 +121,33 @@ export function SellerProductsPage() {
           value="14"
           tone="emerald"
           icon={CheckCircle2}
+          iconClassName="size-[22px]"
+          iconStrokeWidth={2.4}
         />
         <SellerKpiCard
           label="Chờ kiểm duyệt"
           value="3"
           tone="amber"
           icon={Clock}
+          iconClassName="size-[22px]"
+          iconStrokeWidth={2.4}
         />
-        <SellerKpiCard label="Bản nháp" value="1" tone="blue" icon={Edit} />
-        <SellerKpiCard label="Đã ngừng" value="2" tone="rose" icon={XCircle} />
+        <SellerKpiCard
+          label="Bản nháp"
+          value="1"
+          tone="blue"
+          icon={Edit}
+          iconClassName="size-[22px]"
+          iconStrokeWidth={2.4}
+        />
+        <SellerKpiCard
+          label="Đã ngừng"
+          value="2"
+          tone="rose"
+          icon={XCircle}
+          iconClassName="size-[22px]"
+          iconStrokeWidth={2.4}
+        />
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
@@ -181,7 +200,7 @@ export function SellerProductsPage() {
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600">
-                    <Package className="size-4" />
+                    <Package className="size-[18px]" strokeWidth={2.4} />
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5">
                     <span className="text-xs text-muted-foreground">
@@ -205,7 +224,7 @@ export function SellerProductsPage() {
                   </div>
                 </div>
                 <button className="shrink-0 text-muted-foreground hover:text-foreground">
-                  <MoreVertical className="size-4" />
+                  <MoreVertical className="size-[17px]" strokeWidth={2.4} />
                 </button>
               </div>
               <CardTitle className="mt-2 text-sm leading-snug">
@@ -233,14 +252,14 @@ export function SellerProductsPage() {
                   size="sm"
                   className="h-8 flex-1 rounded-lg text-xs gap-1"
                 >
-                  <Eye className="size-3" /> Xem
+                  <Eye className="size-3.5" strokeWidth={2.4} /> Xem
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
                   className="h-8 flex-1 rounded-lg text-xs gap-1"
                 >
-                  <Edit className="size-3" /> Chỉnh sửa
+                  <Edit className="size-3.5" strokeWidth={2.4} /> Chỉnh sửa
                 </Button>
               </div>
             </CardContent>
@@ -264,10 +283,10 @@ export function SellerCreatePage() {
         {createSteps.map((s, i) => (
           <div key={s.n} className="flex items-center">
             <div
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap ${s.n === 1 ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
+              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium whitespace-nowrap ${s.n === 1 ? "bg-primary text-primary-foreground" : "border border-border/70 bg-background/70 text-muted-foreground backdrop-blur-[1px]"}`}
             >
               <span
-                className={`flex size-6 items-center justify-center rounded-full text-xs font-semibold ${s.n === 1 ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"}`}
+                className={`flex size-6 items-center justify-center rounded-full text-xs font-semibold ${s.n === 1 ? "bg-primary-foreground/20 text-primary-foreground" : "border border-border/60 bg-muted/70 text-foreground/75"}`}
               >
                 {s.n}
               </span>
@@ -284,9 +303,9 @@ export function SellerCreatePage() {
         {/* Main form */}
         <div className="lg:col-span-2 flex flex-col gap-4">
           {/* AI tip */}
-          <div className="flex items-start gap-3 rounded-xl border border-violet-200 bg-violet-50 p-3 dark:border-violet-900 dark:bg-violet-950/30">
+          <div className="flex items-start gap-3 rounded-xl border border-violet-300 bg-violet-100 p-[14px] dark:border-violet-900 dark:bg-violet-950/30">
             <Sparkles className="mt-0.5 size-4 shrink-0 text-violet-600" />
-            <p className="text-xs text-violet-700 dark:text-violet-400">
+            <p className="text-xs text-violet-800 dark:text-violet-400">
               <strong>DCAT-VN:</strong> Mô tả sản phẩm tốt hơn giúp tăng khả
               năng tìm thấy 40%. Điền đầy đủ metadata để tự động điền vào
               catalog quốc gia và tăng điểm trust với người mua.
@@ -304,7 +323,7 @@ export function SellerCreatePage() {
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
               <FField label="Mã sản phẩm (auto-generated)">
-                <div className="flex h-9 items-center rounded-xl border bg-muted/50 px-3 text-sm text-muted-foreground">
+                <div className="flex h-9 items-center rounded-xl border bg-muted/50 px-[14px] text-sm text-muted-foreground">
                   SP-TC-&#x2026;
                 </div>
               </FField>
@@ -353,13 +372,13 @@ export function SellerCreatePage() {
               </div>
               <FField label="Mô tả ngắn (hiển thị trên trang care catalog) *">
                 <textarea
-                  className="min-h-[80px] w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="min-h-[80px] w-full rounded-xl border border-input bg-background px-[14px] py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   defaultValue="Phân tích tín dụng cho hơn 286.000 doanh nghiệp SME theo từng ngành. Phân loại AAA đến CCC theo chuẩn 21 ngành kinh tế."
                 />
               </FField>
               <FField label="Mô tả chi tiết (markdown) *">
                 <textarea
-                  className="min-h-[120px] w-full rounded-xl border border-input bg-background px-3 py-2 text-sm font-mono ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="min-h-[120px] w-full rounded-xl border border-input bg-background px-[14px] py-2 text-sm font-mono ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   defaultValue={
                     "## Dữ liệu bao gồm\n- Chỉ số tín dụng cho trên 286.000 doanh nghiệp SME có từ hiệu quả hoạt động\n- Nợ dưới vốn (AAA → CCC theo chuẩn 21 ngành kinh tế)\n- Lịch sử thanh toán 36 tháng\n  - Tỷ lệ nợ xấu theo từng phân ngành"
                   }
@@ -494,7 +513,7 @@ export function SellerCreatePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/70 shadow-sm bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900">
+          <Card className="border-border/70 shadow-sm bg-blue-100 dark:bg-blue-950/30 border-blue-300 dark:border-blue-900">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-blue-700 dark:text-blue-400">
                 Mẹo
@@ -543,10 +562,11 @@ export function SellerPricingPage() {
           icon={Percent}
         />
         <SellerKpiCard
-          label="Doanh thu Q1"
+          label="Doanh thu từ KM"
           value="840.000.000 đ"
           tone="violet"
           icon={TrendingUp}
+          delta="+18.4%"
         />
       </div>
 
@@ -602,8 +622,13 @@ export function SellerPricingPage() {
                   <TableCell className="px-4 py-2.5 text-sm text-muted-foreground">
                     {p.unit}
                   </TableCell>
-                  <TableCell className="px-4 py-2.5 text-right text-sm">
-                    {p.orders} gói
+                  <TableCell className="px-4 py-2.5 text-right">
+                    <Badge
+                      variant="secondary"
+                      className="text-[10px] px-1.5 py-0"
+                    >
+                      {p.orders} gói
+                    </Badge>
                   </TableCell>
                   <TableCell className="px-4 py-2.5">
                     <StatusPill tone="emerald">{p.status}</StatusPill>
@@ -639,10 +664,15 @@ export function SellerPricingPage() {
         </div>
         <div className="grid gap-4 sm:grid-cols-3">
           {bundles.map((b) => (
-            <Card key={b.name} className="border-border/70 shadow-sm">
+            <Card
+              key={b.name}
+              className={`border-border/70 shadow-sm ${b.tone === "amber" ? "bg-amber-50/40" : b.tone === "blue" ? "bg-blue-50/40" : "bg-violet-50/40"}`}
+            >
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge
+                    className={`text-xs ${b.tone === "amber" ? "bg-amber-200 text-amber-800 hover:bg-amber-200" : b.tone === "blue" ? "bg-blue-200 text-blue-800 hover:bg-blue-200" : "bg-violet-200 text-violet-800 hover:bg-violet-200"}`}
+                  >
                     {b.discount}
                   </Badge>
                   <button className="text-muted-foreground hover:text-foreground">
@@ -655,7 +685,12 @@ export function SellerPricingPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="pb-3">
-                <div className="text-lg font-bold text-primary mb-1">
+                <div className="mb-0.5 text-xs text-muted-foreground line-through">
+                  {b.basePrice}
+                </div>
+                <div
+                  className={`text-lg font-bold mb-1 ${b.tone === "amber" ? "text-amber-700" : b.tone === "blue" ? "text-blue-700" : "text-violet-700"}`}
+                >
                   {b.price}
                 </div>
                 <div className="text-xs text-muted-foreground">
@@ -702,7 +737,7 @@ export function SellerPricingPage() {
           {vouchers.map((v) => (
             <div
               key={v.code}
-              className="flex items-start justify-between gap-3 rounded-xl border border-border/70 p-3"
+              className={`flex items-start justify-between gap-3 rounded-xl border p-[14px] ${v.status === "Hết hạn" ? "border-amber-300 bg-amber-100/60" : v.status === "Đang hoạt động" ? "border-emerald-300 bg-emerald-100/40" : "border-blue-300 bg-blue-100/50"}`}
             >
               <div className="flex flex-col gap-0.5">
                 <div className="flex items-center gap-2">
@@ -726,6 +761,9 @@ export function SellerPricingPage() {
               <div className="flex shrink-0 gap-1">
                 <Button variant="ghost" size="icon" className="size-7">
                   <Edit className="size-3.5" />
+                </Button>
+                <Button variant="ghost" size="icon" className="size-7">
+                  <Copy className="size-3.5" />
                 </Button>
                 <Button
                   variant="ghost"
@@ -896,7 +934,7 @@ export function SellerDataQualityPage() {
           {anomalies.map((a, i) => (
             <div
               key={i}
-              className={`flex items-start gap-3 rounded-xl p-3 ${a.severity === "rose" ? "bg-rose-50 dark:bg-rose-950/30" : a.severity === "amber" ? "bg-amber-50 dark:bg-amber-950/30" : "bg-blue-50 dark:bg-blue-950/30"}`}
+              className={`flex items-start gap-3 rounded-xl p-3 ${a.severity === "rose" ? "bg-rose-100 dark:bg-rose-950/30" : a.severity === "amber" ? "bg-amber-100 dark:bg-amber-950/30" : "bg-blue-100 dark:bg-blue-950/30"}`}
             >
               <AlertCircle
                 className={`mt-0.5 size-4 shrink-0 ${a.severity === "rose" ? "text-rose-500" : a.severity === "amber" ? "text-amber-500" : "text-blue-500"}`}
@@ -936,7 +974,7 @@ export function SellerPoliciesPage() {
       />
 
       {/* Info banner */}
-      <div className="flex items-start gap-3 rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-900 dark:bg-blue-950/30">
+      <div className="flex items-start gap-3 rounded-xl border border-blue-300 bg-blue-100 p-4 dark:border-blue-900 dark:bg-blue-950/30">
         <Info className="mt-0.5 size-4 shrink-0 text-blue-600" />
         <div className="text-xs text-blue-700 dark:text-blue-400">
           <strong>Usage Control thay thế Access Control:</strong> Chính sách cho
@@ -1074,7 +1112,7 @@ export function SellerPoliciesPage() {
           {policyAudit.map((a, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 rounded-lg border border-border/80 bg-background px-3 py-2 pl-4 text-xs"
+              className="flex items-center gap-2 rounded-lg border border-border/80 bg-background px-[14px] py-2 pl-[18px] text-xs"
             >
               <span
                 className={`size-2 shrink-0 rounded-full ${a.severity === "rose" ? "bg-rose-500" : a.severity === "amber" ? "bg-amber-500" : a.severity === "blue" ? "bg-blue-500" : "bg-emerald-500"}`}
@@ -1136,7 +1174,7 @@ export function SellerLineagePage() {
       </div>
 
       {/* DAG Visualization */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="rounded-xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">
             Lineage cho SP-TC-001 (Báo cáo tín dụng DN)
@@ -1175,7 +1213,7 @@ export function SellerLineagePage() {
                 ].map((s) => (
                   <div
                     key={s.label}
-                    className="flex items-center gap-2 rounded-lg border border-border/70 bg-background px-3 py-2"
+                    className="flex items-center gap-2 rounded-lg border border-border/70 bg-background px-[14px] py-2"
                   >
                     <Database className="size-3.5 text-muted-foreground" />
                     <div>
@@ -1207,7 +1245,7 @@ export function SellerLineagePage() {
                 ].map((t) => (
                   <div
                     key={t.label}
-                    className="flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-50 dark:bg-amber-950/30 px-3 py-2"
+                    className="flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-100 dark:bg-amber-950/30 px-[14px] py-2"
                   >
                     <Network className="size-3.5 text-amber-600" />
                     <div>
@@ -1225,7 +1263,7 @@ export function SellerLineagePage() {
               </div>
               {/* Final product */}
               <div className="flex flex-col gap-2">
-                <div className="rounded-lg border-2 border-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 p-3">
+                <div className="rounded-lg border-2 border-emerald-500 bg-emerald-100 dark:bg-emerald-950/30 p-[14px]">
                   <div className="flex items-center gap-1 mb-1">
                     <Badge className="bg-emerald-600 text-[10px] px-1.5">
                       Final Product
@@ -1249,7 +1287,7 @@ export function SellerLineagePage() {
       </Card>
 
       {/* Upstream Sources */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="rounded-xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Upstream Sources - Chi tiết</CardTitle>
           <CardDescription className="text-xs">
@@ -1260,7 +1298,7 @@ export function SellerLineagePage() {
           {upstreamSources.map((s) => (
             <div
               key={s.name}
-              className="flex items-center justify-between gap-3 rounded-xl border border-border/70 p-3"
+              className="flex items-center justify-between gap-3 rounded-xl border border-border/70 p-[14px]"
             >
               <div className="flex items-center gap-2">
                 <div className="flex size-8 items-center justify-center rounded-lg bg-blue-500/10 text-blue-600">
@@ -1280,7 +1318,7 @@ export function SellerLineagePage() {
       </Card>
 
       {/* Downstream Impact */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="rounded-xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm">Downstream Impact</CardTitle>
           <CardDescription className="text-xs">
@@ -1361,7 +1399,7 @@ export function SellerQualityPage() {
 
       <div className="flex flex-col gap-4">
         {reviewItems.map((r) => (
-          <Card key={r.id} className="rounded-2xl border-border/70 shadow-sm">
+          <Card key={r.id} className="rounded-xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
@@ -1450,7 +1488,7 @@ export function SellerQualityPage() {
       </div>
 
       {/* Scorecard */}
-      <Card className="rounded-2xl border-border/70 shadow-sm">
+      <Card className="rounded-xl border-border/70 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Star className="size-4 text-amber-500" /> Scorecard chất lượng —
@@ -1499,7 +1537,7 @@ export function SellerQualityPage() {
               </div>
             </div>
           ))}
-          <div className="mt-2 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-3 dark:border-amber-900 dark:bg-amber-950/30">
+          <div className="mt-2 flex items-start gap-3 rounded-xl border border-amber-300 bg-amber-100 p-[14px] dark:border-amber-900 dark:bg-amber-950/30">
             <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-500" />
             <p className="text-xs text-amber-700 dark:text-amber-400">
               <strong>Nhận xét từ Hội đồng:</strong> Dữ liệu có chất lượng ổn.
@@ -1528,7 +1566,7 @@ export function SellerSandboxPage() {
       />
 
       {/* Info banner */}
-      <div className="flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-3 dark:border-amber-900 dark:bg-amber-950/30">
+      <div className="flex items-start gap-3 rounded-xl border border-amber-300 bg-amber-100 p-[14px] dark:border-amber-900 dark:bg-amber-950/30">
         <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" />
         <p className="text-xs text-amber-700 dark:text-amber-400">
           <strong>Tại sao dùng Sandbox:</strong> Mọi API endpoint của sản phẩm
@@ -1568,7 +1606,7 @@ export function SellerSandboxPage() {
       {/* Active sandboxes */}
       <div className="flex flex-col gap-3">
         {activeSandboxes.map((s) => (
-          <Card key={s.id} className="rounded-2xl border-border/70 shadow-sm">
+          <Card key={s.id} className="rounded-xl border-border/70 shadow-sm">
             <CardHeader className="py-3">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -1612,7 +1650,7 @@ export function SellerSandboxPage() {
           {sandboxTools.map((t) => (
             <Card
               key={t.name}
-              className="rounded-2xl border-border/70 shadow-sm"
+              className="rounded-xl border-border/70 shadow-sm"
             >
               <CardHeader className="pb-2">
                 <div className="flex size-9 items-center justify-center rounded-xl bg-muted">
@@ -1689,7 +1727,7 @@ export function SellerAuctionsPage() {
 
       <div className="flex flex-col gap-4">
         {auctions.map((a) => (
-          <Card key={a.id} className="rounded-2xl border-border/70 shadow-sm">
+          <Card key={a.id} className="rounded-xl border-border/70 shadow-sm">
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between gap-3">
                 <div>

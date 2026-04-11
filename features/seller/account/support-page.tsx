@@ -1,11 +1,16 @@
 import {
+  BookMarked,
   CheckCircle2,
   Clock,
+  Dot,
   Headphones,
+  Layers3,
+  LifeBuoy,
   MessageSquare,
   Phone,
   Send,
   Star,
+  Ticket,
   Upload,
   Users,
   Zap,
@@ -65,7 +70,9 @@ export function SellerSupportPage() {
               <Zap className="size-6" />
             </div>
             <div>
-              <p className="text-sm text-slate-300">Dịch vụ Platinum</p>
+              <p className="mb-1 inline-flex items-center rounded-full bg-amber-400/15 px-2 py-0.5 text-[11px] font-medium text-amber-300">
+                Dịch vụ Platinum
+              </p>
               <h2 className="text-2xl font-semibold text-white">
                 Priority Support 24/7
               </h2>
@@ -108,7 +115,8 @@ export function SellerSupportPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm">
+            <CardTitle className="flex items-center gap-2 text-sm">
+              <Users className="size-4 text-blue-600" />
               Account Manager chuyên trách
             </CardTitle>
             <CardDescription className="text-xs">
@@ -128,7 +136,8 @@ export function SellerSupportPage() {
                   <p className="text-xs text-muted-foreground">
                     {accountManager.title}
                   </p>
-                  <p className="text-xs text-emerald-600">
+                  <p className="inline-flex items-center text-xs text-emerald-600">
+                    <Dot className="size-4" />
                     {accountManager.availability}
                   </p>
                 </div>
@@ -162,7 +171,10 @@ export function SellerSupportPage() {
 
         <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Đặt lịch tư vấn 1:1</CardTitle>
+            <CardTitle className="flex items-center gap-2 text-sm">
+              <LifeBuoy className="size-4 text-blue-600" />
+              Đặt lịch tư vấn 1:1
+            </CardTitle>
             <CardDescription className="text-xs">
               Tư vấn định giá, chiến lược, tích hợp kỹ thuật
             </CardDescription>
@@ -199,7 +211,10 @@ export function SellerSupportPage() {
       <div className="grid gap-4 lg:grid-cols-[1.8fr_1fr]">
         <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Tạo ticket mới</CardTitle>
+            <CardTitle className="flex items-center gap-2 text-sm">
+              <Ticket className="size-4 text-blue-600" />
+              Tạo ticket mới
+            </CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
             <FieldGroup className="grid gap-4 lg:grid-cols-2">
@@ -295,7 +310,10 @@ export function SellerSupportPage() {
 
         <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Tài liệu seller</CardTitle>
+            <CardTitle className="flex items-center gap-2 text-sm">
+              <BookMarked className="size-4 text-blue-600" />
+              Tài liệu seller
+            </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-2 pt-0">
             {docs.map((doc) => (
@@ -304,6 +322,7 @@ export function SellerSupportPage() {
                 variant="ghost"
                 className="h-auto justify-start rounded-lg px-3 py-2 text-left text-xs font-normal"
               >
+                <Layers3 className="size-3.5 text-muted-foreground" />
                 {doc}
               </Button>
             ))}
