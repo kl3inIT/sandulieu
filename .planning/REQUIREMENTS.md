@@ -39,14 +39,14 @@
 - [ ] **MEM-02**: User can search members by key fields
 - [ ] **MEM-03**: User can filter members by parent organization, parent department, and status
 - [ ] **MEM-04**: User can sort members by defined table columns
-- [ ] **MEM-05**: User can create a member under a specific department with required validation
+- [x] **MEM-05**: User can create a member under a specific department with required validation
 - [ ] **MEM-06**: User can view a member detail page with parent hierarchy context
-- [ ] **MEM-07**: User can edit a member and persist updated values
-- [ ] **MEM-08**: User can soft-delete a member through a guarded confirmation flow
-- [ ] **MEM-09**: Member belongs to exactly one department and one organization through the parent hierarchy
-- [ ] **MEM-10**: Member has an explicit status field usable in badges and filters
-- [ ] **MEM-11**: User can select multiple members and execute supported bulk actions
-- [ ] **MEM-12**: Bulk actions show clear success/failure feedback per operation
+- [x] **MEM-07**: User can edit a member and persist updated values
+- [x] **MEM-08**: User can soft-delete a member through a guarded confirmation flow
+- [x] **MEM-09**: Member belongs to exactly one department and one organization through the parent hierarchy
+- [x] **MEM-10**: Member has an explicit status field usable in badges and filters
+- [x] **MEM-11**: User can select multiple members and execute supported bulk actions
+- [x] **MEM-12**: Bulk actions show clear success/failure feedback per operation
 
 ### Shared Admin UX
 
@@ -125,14 +125,14 @@
 | MEM-02      | Phase 4 | Pending  |
 | MEM-03      | Phase 4 | Pending  |
 | MEM-04      | Phase 4 | Pending  |
-| MEM-05      | Phase 4 | Pending  |
+| MEM-05      | Phase 4 | Complete |
 | MEM-06      | Phase 4 | Pending  |
-| MEM-07      | Phase 4 | Pending  |
-| MEM-08      | Phase 4 | Pending  |
-| MEM-09      | Phase 4 | Pending  |
-| MEM-10      | Phase 4 | Pending  |
-| MEM-11      | Phase 4 | Pending  |
-| MEM-12      | Phase 4 | Pending  |
+| MEM-07      | Phase 4 | Complete |
+| MEM-08      | Phase 4 | Complete |
+| MEM-09      | Phase 4 | Complete |
+| MEM-10      | Phase 4 | Complete |
+| MEM-11      | Phase 4 | Complete |
+| MEM-12      | Phase 4 | Complete |
 | UX-01       | Phase 5 | Pending  |
 | UX-02       | Phase 1 | Pending  |
 | UX-03       | Phase 5 | Pending  |
