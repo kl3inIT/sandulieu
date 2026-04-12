@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-04-12T08:11:40.425Z"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-04-12T08:18:09.264Z"
 last_activity: 2026-04-12
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 20
-  completed_plans: 16
-  percent: 80
+  completed_plans: 17
+  percent: 85
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: D:/DTH/sandulieu/.planning/PROJECT.md (updated 2026-04-08)
 ## Current Position
 
 Phase: 04 (member-management-bulk-operations) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 Status: Ready to execute
 Last activity: 2026-04-12
 
@@ -55,6 +55,7 @@ _Updated after each plan completion_
 | Phase 01-directory-foundations-contracts P06 | 11min | 1 tasks | 1 files |
 | Phase 03-department-management-in-organization-scope P01 | 931 | 3 tasks | 8 files |
 | Phase 04 P01 | 25min | 2 tasks | 6 files |
+| Phase 04 P02 | 25min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Recent decisions affecting current work:
 - [Phase 03-department-management-in-organization-scope]: Delete guard semantics use member data under organizationId plus departmentId scope and soft-delete departments instead of hard deletion.
 - [Phase 04-01]: Member cache invalidation uses departmentLists(organizationId, departmentId) key to prevent cross-department cache contamination
 - [Phase 04-01]: deleteMemberApi performs soft-delete (sets deletedAt) instead of hard deletion, consistent with department pattern
+- [Phase 04-02]: Used normalizedState.sort directly for MemberListTable — buildDirectoryTableState returns TanStack sorting format, not DirectorySort[] that MemberListTable expects
+- [Phase 04-02]: Implemented URL navigation inline via serializeDirectoryListState + router.replace — useDirectoryListNavigation does not exist in features/directory/shared
 
 ### Pending Todos
 
@@ -87,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-12T08:11:40.418Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-04-12T08:18:09.258Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None

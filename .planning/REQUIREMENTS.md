@@ -35,10 +35,10 @@
 
 ### Members
 
-- [ ] **MEM-01**: User can view a paginated table of members within department and organization context
-- [ ] **MEM-02**: User can search members by key fields
-- [ ] **MEM-03**: User can filter members by parent organization, parent department, and status
-- [ ] **MEM-04**: User can sort members by defined table columns
+- [x] **MEM-01**: User can view a paginated table of members within department and organization context
+- [x] **MEM-02**: User can search members by key fields
+- [x] **MEM-03**: User can filter members by parent organization, parent department, and status
+- [x] **MEM-04**: User can sort members by defined table columns
 - [x] **MEM-05**: User can create a member under a specific department with required validation
 - [ ] **MEM-06**: User can view a member detail page with parent hierarchy context
 - [x] **MEM-07**: User can edit a member and persist updated values
@@ -121,10 +121,10 @@
 | DEPT-09     | Phase 3 | Complete |
 | DEPT-10     | Phase 3 | Complete |
 | DEPT-11     | Phase 3 | Complete |
-| MEM-01      | Phase 4 | Pending  |
-| MEM-02      | Phase 4 | Pending  |
-| MEM-03      | Phase 4 | Pending  |
-| MEM-04      | Phase 4 | Pending  |
+| MEM-01      | Phase 4 | Complete |
+| MEM-02      | Phase 4 | Complete |
+| MEM-03      | Phase 4 | Complete |
+| MEM-04      | Phase 4 | Complete |
 | MEM-05      | Phase 4 | Complete |
 | MEM-06      | Phase 4 | Pending  |
 | MEM-07      | Phase 4 | Complete |
