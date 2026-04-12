@@ -15,6 +15,7 @@ import {
 
 import { adminUser } from "@/features/admin/data";
 import { AdminAppSidebar } from "@/shared/components/layout/admin-app-sidebar";
+import { AdminBreadcrumb } from "@/shared/components/layout/admin-breadcrumb";
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 import { useIsMobile } from "@/shared/hooks/use-mobile";
@@ -42,7 +43,10 @@ export function AdminPortalShell({
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("overflow-hidden", isMobile && isMobileSidebarOpen);
+    document.body.classList.toggle(
+      "overflow-hidden",
+      isMobile && isMobileSidebarOpen
+    );
 
     return () => {
       document.body.classList.remove("overflow-hidden");
@@ -95,7 +99,8 @@ export function AdminPortalShell({
   };
 
   const showOverlay =
-    (isMobile && isMobileSidebarOpen) || (!isMobile && isSlimDesktop && isDesktopDrawerOpen);
+    (isMobile && isMobileSidebarOpen) ||
+    (!isMobile && isSlimDesktop && isDesktopDrawerOpen);
   const desktopOffset = isSlimDesktop ? RAIL_WIDTH : SIDEBAR_WIDTH;
 
   return (
@@ -128,7 +133,13 @@ export function AdminPortalShell({
               size="icon"
               onClick={handleSidebarToggle}
               className="flex h-10 w-10 items-center justify-center rounded-md text-[hsl(var(--muted-foreground))] hover:bg-[#f5f8fc] hover:text-[#0b2e5c]"
-              aria-label={isMobile ? "Mở điều hướng" : isSlimDesktop ? "Mở sidebar đầy đủ" : "Thu gọn sidebar"}
+              aria-label={
+                isMobile
+                  ? "Mở điều hướng"
+                  : isSlimDesktop
+                    ? "Mở sidebar đầy đủ"
+                    : "Thu gọn sidebar"
+              }
             >
               {isMobile ? (
                 isMobileSidebarOpen ? (
@@ -189,7 +200,9 @@ export function AdminPortalShell({
                 {adminUser.initials}
               </div>
               <div className="hidden sm:block">
-                <div className="text-xs font-semibold text-[#0b2e5c]">{adminUser.name}</div>
+                <div className="text-xs font-semibold text-[#0b2e5c]">
+                  {adminUser.name}
+                </div>
                 <div className="text-[10px] text-[hsl(var(--muted-foreground))]">
                   {adminUser.unit}
                 </div>
@@ -199,7 +212,10 @@ export function AdminPortalShell({
           </div>
         </header>
 
-        <main className="flex-1 px-4 py-5 sm:px-6 lg:px-8">{children}</main>
+        <main className="flex-1 px-4 py-5 sm:px-6 lg:px-8">
+          <AdminBreadcrumb />
+          {children}
+        </main>
       </div>
 
       <button
@@ -208,7 +224,9 @@ export function AdminPortalShell({
         onClick={closeAllMenus}
         className={
           "fixed inset-0 z-40 bg-[#0b1f3a]/24 transition-opacity ease-[cubic-bezier(0.05,0.74,0.2,0.99)] " +
-          (showOverlay ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0")
+          (showOverlay
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0")
         }
         style={{
           transitionDuration: `${Math.max(DRAWER_DURATION - 80, 220)}ms`,
