@@ -57,11 +57,11 @@ All sizes use Inter. Two weights only.
 | Role                         | Size | Weight         | Line Height | Tailwind classes          |
 | ---------------------------- | ---- | -------------- | ----------- | ------------------------- |
 | Body                         | 14px | 400 (regular)  | 1.5         | `text-sm`                 |
-| Label / table header         | 14px | 500 (medium)   | 1.5         | `text-sm font-medium`     |
+| Label / table header         | 14px | 600 (semibold) | 1.5         | `text-sm font-semibold`   |
 | Card title / section heading | 16px | 600 (semibold) | 1.25        | `text-base font-semibold` |
 | Page heading                 | 20px | 600 (semibold) | 1.2         | `text-xl font-semibold`   |
 
-Source: Measured from `DepartmentListTable.tsx` — uses `text-sm`, `text-sm font-medium`, `font-medium`, `text-xs text-muted-foreground`. Promoted to formal scale here. The `text-xs` (12px) secondary line in table cells (stable ID sub-label) is permitted as a sub-body annotation only — it does not constitute a fifth type size.
+Source: Measured from `DepartmentListTable.tsx` — uses `text-sm`, `text-sm font-medium`, `font-medium`, `text-xs text-muted-foreground`. Weight 500 (medium) is collapsed into 600 (semibold) per two-weight maximum. The `text-xs` (12px) secondary line in table cells (stable ID sub-label) is permitted as a sub-body annotation only — it does not constitute a fifth type size.
 
 ---
 
@@ -69,13 +69,13 @@ Source: Measured from `DepartmentListTable.tsx` — uses `text-sm`, `text-sm fon
 
 All values are CSS custom properties resolved from `app/globals.css`. The project uses OKLCH tokens — hex approximations are noted for human readability only. Implementations must reference CSS variables, not hardcoded hex.
 
-| Role            | CSS variable         | Light approx              | Usage                                                                                |
-| --------------- | -------------------- | ------------------------- | ------------------------------------------------------------------------------------ |
-| Dominant (60%)  | `--background`       | #f8fafc (near-white cool) | Page background, table row backgrounds                                               |
-| Secondary (30%) | `--card` / `--muted` | white / #f3f4f8           | Cards (member list card, detail summary card), sidebar, filter bar background        |
-| Accent (10%)    | `--primary`          | dark navy blue            | Reserved for: primary action buttons only ("Thêm thành viên", "Lưu", "Xác nhận xoá") |
-| Muted text      | `--muted-foreground` | medium gray               | Stable ID sub-labels, pagination description text, empty-state body copy             |
-| Destructive     | `--destructive`      | red-orange                | Delete button variant, delete dialog confirm button only                             |
+| Role            | CSS variable         | Light approx              | Usage                                                                                                           |
+| --------------- | -------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Dominant (60%)  | `--background`       | #f8fafc (near-white cool) | Page background, table row backgrounds                                                                          |
+| Secondary (30%) | `--card` / `--muted` | white / #f3f4f8           | Cards (member list card, detail summary card), sidebar, filter bar background                                   |
+| Accent (10%)    | `--primary`          | dark navy blue            | Reserved for: primary action buttons only ("Thêm thành viên", "Lưu thành viên", "Lưu thay đổi", "Xác nhận xoá") |
+| Muted text      | `--muted-foreground` | medium gray               | Stable ID sub-labels, pagination description text, empty-state body copy                                        |
+| Destructive     | `--destructive`      | red-orange                | Delete button variant, delete dialog confirm button only                                                        |
 
 Accent (`--primary`) is reserved for: primary action buttons only (create CTA, save on form, confirm-delete on dialog). It must NOT be applied to sort headers, filter dropdowns, status pickers, pagination, row actions, or bulk toolbar status picker.
 
@@ -122,8 +122,8 @@ Column order (left to right):
 
 1. Checkbox (bulk selection) — 40px fixed width
 2. # (row index) — `text-muted-foreground`, narrow
-3. Mã thành viên (memberCode) — `font-medium`, sortable
-4. Họ và tên (fullName) — primary scan field, `font-medium` + stable ID sub-label in `text-xs text-muted-foreground`, sortable
+3. Mã thành viên (memberCode) — `font-semibold`, sortable
+4. Họ và tên (fullName) — primary scan field, `font-semibold` + stable ID sub-label in `text-xs text-muted-foreground`, sortable
 5. Trạng thái (status) — `DirectoryStatusBadge`, sortable
 6. Thao tác (row actions) — right-aligned, `text-right`
 
@@ -137,7 +137,7 @@ Position: inline above the table, inside the `CardContent`, between `MemberListF
 
 Layout: single horizontal row — `flex items-center justify-between gap-4 rounded-md border bg-muted px-4 py-3`.
 
-Left side: "{N} thành viên được chọn" in `text-sm font-medium`.
+Left side: "{N} thành viên được chọn" in `text-sm font-semibold`.
 
 Right side: `Select` (status picker) + "Áp dụng" Button (primary variant) + "Bỏ chọn tất cả" Button (ghost variant).
 
@@ -157,7 +157,7 @@ No dropdown menu — three inline ghost buttons, consistent with `DepartmentRowA
 
 ### Delete Confirmation Dialog (MemberDeleteDialog)
 
-Uses `AlertDialog`. Title: "Xoá thành viên". Description: shows member fullName. Cancel button: "Huỷ". Confirm button: destructive variant, "Xoá". Members have no children so no dependency guard summary is shown. Source: CONTEXT.md D-18, D-19.
+Uses `AlertDialog`. Title: "Xoá thành viên". Description: shows member fullName. Cancel button: "Quay lại". Confirm button: destructive variant, "Xoá". Members have no children so no dependency guard summary is shown. Source: CONTEXT.md D-18, D-19.
 
 ### Create / Edit Form (MemberForm)
 
@@ -172,6 +172,13 @@ Field order:
 5. Trạng thái (status) — `Select`, required
 
 Read-only fields show the resolved name from route context (not raw UUID). Source: CONTEXT.md D-13.
+
+Form submit button label is context-sensitive:
+
+- Create flow: "Lưu thành viên"
+- Edit flow: "Lưu thay đổi"
+
+Form cancel button: "Quay lại" (navigates back without saving).
 
 ### Member Detail Page
 
@@ -203,7 +210,7 @@ All user-facing text in Vietnamese with diacritics. Source: CLAUDE.md + CONTEXT.
 | Error state (create/edit)  | Lưu thất bại — Không thể lưu thông tin thành viên. Vui lòng kiểm tra lại dữ liệu và thử lại.        |
 | Delete dialog title        | Xoá thành viên                                                                                      |
 | Delete dialog description  | Bạn sắp xoá thành viên "{fullName}". Thao tác này không thể hoàn tác.                               |
-| Delete dialog cancel       | Huỷ                                                                                                 |
+| Delete dialog cancel       | Quay lại                                                                                            |
 | Delete dialog confirm      | Xoá                                                                                                 |
 | Delete success             | Đã xoá thành viên thành công.                                                                       |
 | Bulk bar selected count    | {N} thành viên được chọn                                                                            |
@@ -219,8 +226,9 @@ All user-facing text in Vietnamese with diacritics. Source: CLAUDE.md + CONTEXT.
 | Row action: edit           | Chỉnh sửa                                                                                           |
 | Row action: delete         | Xoá                                                                                                 |
 | Back to list               | Quay lại danh sách                                                                                  |
-| Save form                  | Lưu                                                                                                 |
-| Cancel form                | Huỷ                                                                                                 |
+| Save form (create flow)    | Lưu thành viên                                                                                      |
+| Save form (edit flow)      | Lưu thay đổi                                                                                        |
+| Cancel form                | Quay lại                                                                                            |
 | Pagination: prev           | Trang trước                                                                                         |
 | Pagination: next           | Trang sau                                                                                           |
 | Pagination description     | Hiển thị {N} / {total} thành viên, trang {page}, kích thước {size}.                                 |
