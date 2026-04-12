@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-04-12T08:18:09.264Z"
+stopped_at: Completed 04-03-PLAN.md
+last_updated: "2026-04-12T08:25:16.874Z"
 last_activity: 2026-04-12
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 20
-  completed_plans: 17
-  percent: 85
+  completed_plans: 18
+  percent: 90
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: D:/DTH/sandulieu/.planning/PROJECT.md (updated 2026-04-08)
 ## Current Position
 
 Phase: 04 (member-management-bulk-operations) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 Status: Ready to execute
 Last activity: 2026-04-12
 
@@ -56,6 +56,7 @@ _Updated after each plan completion_
 | Phase 03-department-management-in-organization-scope P01 | 931 | 3 tasks | 8 files |
 | Phase 04 P01 | 25min | 2 tasks | 6 files |
 | Phase 04 P02 | 25min | 2 tasks | 5 files |
+| Phase 04 P03 | 20min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase 04-01]: deleteMemberApi performs soft-delete (sets deletedAt) instead of hard deletion, consistent with department pattern
 - [Phase 04-02]: Used normalizedState.sort directly for MemberListTable — buildDirectoryTableState returns TanStack sorting format, not DirectorySort[] that MemberListTable expects
 - [Phase 04-02]: Implemented URL navigation inline via serializeDirectoryListState + router.replace — useDirectoryListNavigation does not exist in features/directory/shared
+- [Phase 04-03]: organizationId and departmentId rendered as read-only p elements instead of disabled Input — clearer semantics and harder to tamper via DevTools
+- [Phase 04-03]: MemberForm wrapped in Card with CardHeader — plan spec explicitly requested Card layout unlike DepartmentForm analog
 
 ### Pending Todos
 
@@ -90,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-12T08:18:09.258Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-04-12T08:25:16.869Z
+Stopped at: Completed 04-03-PLAN.md
 Resume file: None

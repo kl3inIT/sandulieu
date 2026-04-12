@@ -90,7 +90,7 @@ Plans:
 
 - [x] 04-01-PLAN.md — Member API mutations, service functions, types, and query hooks with parent-qualified cache invalidation (Wave 1)
 - [x] 04-02-PLAN.md — Member enterprise list table, filters, row actions, delete dialog, and evolved list page (Wave 2)
-- [ ] 04-03-PLAN.md — Shared MemberForm component and create/edit route pages (Wave 2)
+- [x] 04-03-PLAN.md — Shared MemberForm component and create/edit route pages (Wave 2)
 - [ ] 04-04-PLAN.md — Member detail page with parent hierarchy summary and delete flow (Wave 2)
 - [ ] 04-05-PLAN.md — Bulk selection column, MemberBulkActionBar with status picker and per-operation feedback (Wave 3)
 
