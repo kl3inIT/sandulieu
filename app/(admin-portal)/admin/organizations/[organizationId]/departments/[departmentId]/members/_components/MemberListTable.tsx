@@ -18,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
+import { Checkbox } from "@/shared/components/ui/checkbox";
 import { Skeleton } from "@/shared/components/ui/skeleton";
 import {
   Table,
@@ -43,9 +44,11 @@ type MemberListTableProps = {
   pageSize: number;
   pageCount: number;
   rowCount: number;
+  selectedIds: string[];
   renderRowActions?: (member: Member) => ReactNode;
   onSortChange: (field: MemberTableSortField) => void;
   onPageChange: (pageIndex: number) => void;
+  onSelectionChange: (ids: string[]) => void;
 };
 
 export function MemberListTable({
@@ -61,9 +64,11 @@ export function MemberListTable({
   pageSize,
   pageCount,
   rowCount,
+  selectedIds,
   renderRowActions,
   onSortChange,
   onPageChange,
+  onSelectionChange,
 }: MemberListTableProps) {
   if (isError) {
     return (
@@ -83,9 +88,38 @@ export function MemberListTable({
           <CardTitle>Đang tải danh sách thành viên</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-10 w-full" />
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[40px]" />
+                <TableHead className="text-muted-foreground">#</TableHead>
+                <TableHead>Mã thành viên</TableHead>
+                <TableHead>Họ và tên</TableHead>
+                <TableHead>Trạng thái</TableHead>
+                <TableHead className="text-right">Thao tác</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {[0, 1, 2].map((i) => (
+                <TableRow key={i}>
+                  <TableCell />
+                  <TableCell>
+                    <Skeleton className="h-4 w-6" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-24" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-32" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-16" />
+                  </TableCell>
+                  <TableCell />
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     );
@@ -123,6 +157,22 @@ export function MemberListTable({
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-[40px]">
+                <Checkbox
+                  checked={
+                    members.length > 0 && selectedIds.length === members.length
+                      ? true
+                      : selectedIds.length > 0 &&
+                          selectedIds.length < members.length
+                        ? "indeterminate"
+                        : false
+                  }
+                  onCheckedChange={(checked) => {
+                    onSelectionChange(checked ? members.map((m) => m.id) : []);
+                  }}
+                  aria-label="Chọn tất cả"
+                />
+              </TableHead>
               <TableHead className="text-muted-foreground">#</TableHead>
               <SortableHeader
                 field="memberCode"
@@ -148,6 +198,19 @@ export function MemberListTable({
           <TableBody>
             {members.map((member, index) => (
               <TableRow key={member.id}>
+                <TableCell>
+                  <Checkbox
+                    checked={selectedIds.includes(member.id)}
+                    onCheckedChange={(checked) => {
+                      onSelectionChange(
+                        checked
+                          ? [...selectedIds, member.id]
+                          : selectedIds.filter((id) => id !== member.id)
+                      );
+                    }}
+                    aria-label={`Chọn ${member.fullName}`}
+                  />
+                </TableCell>
                 <TableCell className="text-muted-foreground">
                   {pageIndex * pageSize + index + 1}
                 </TableCell>
