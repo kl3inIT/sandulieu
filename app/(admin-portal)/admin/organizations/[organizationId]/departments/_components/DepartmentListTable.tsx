@@ -25,8 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/ui/table";
-
-import { DepartmentStatusBadge } from "./DepartmentStatusBadge";
+import { DirectoryStatusBadge } from "@/shared/components/directory/DirectoryStatusBadge";
 
 export type DepartmentTableSortField = "code" | "name" | "status";
 
@@ -114,8 +113,8 @@ export function DepartmentListTable({
       <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <CardTitle>Danh sách phòng ban</CardTitle>
         <p className="text-sm text-muted-foreground">
-          Hiển thị {departments.length} / {rowCount} phòng ban, trang {pageIndex + 1}
-          , kích thước {pageSize}.
+          Hiển thị {departments.length} / {rowCount} phòng ban, trang{" "}
+          {pageIndex + 1}, kích thước {pageSize}.
         </p>
       </CardHeader>
       <CardContent className="flex flex-col gap-4 overflow-x-auto">
@@ -160,7 +159,7 @@ export function DepartmentListTable({
                   </div>
                 </TableCell>
                 <TableCell>
-                  <DepartmentStatusBadge status={department.status} />
+                  <DirectoryStatusBadge status={department.status} />
                 </TableCell>
                 <TableCell>
                   {renderRowActions ? renderRowActions(department) : null}
@@ -172,7 +171,8 @@ export function DepartmentListTable({
 
         <div className="flex flex-col gap-3 border-t pt-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
-            Bảng dùng phân trang và sắp xếp backend-shaped trong phạm vi tổ chức.
+            Bảng dùng phân trang và sắp xếp backend-shaped trong phạm vi tổ
+            chức.
           </p>
           <div className="flex flex-wrap gap-2">
             <Button

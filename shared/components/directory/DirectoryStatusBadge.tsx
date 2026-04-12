@@ -1,7 +1,7 @@
 import type { DirectoryStatus } from "@/shared/model/directory-status.model";
 import { Badge } from "@/shared/components/ui/badge";
 
-type DepartmentStatusBadgeProps = {
+type DirectoryStatusBadgeProps = {
   status: DirectoryStatus;
 };
 
@@ -20,8 +20,8 @@ const STATUS_VARIANTS: Record<
   archived: "outline",
 };
 
-export function DepartmentStatusBadge({
-  status,
-}: DepartmentStatusBadgeProps) {
-  return <Badge variant={STATUS_VARIANTS[status]}>{STATUS_LABELS[status]}</Badge>;
+export function DirectoryStatusBadge({ status }: DirectoryStatusBadgeProps) {
+  return (
+    <Badge variant={STATUS_VARIANTS[status]}>{STATUS_LABELS[status]}</Badge>
+  );
 }

@@ -20,10 +20,10 @@ import {
   toDirectoryListQuery,
   type DirectoryListState,
 } from "@/features/directory/shared";
-import { DepartmentListFilters } from "@/features/departments/components/DepartmentListFilters";
-import { DepartmentListTable } from "@/features/departments/components/DepartmentListTable";
-import { DepartmentRowActions } from "@/features/departments/components/DepartmentRowActions";
-import type { DepartmentTableSortField } from "@/features/departments/components/DepartmentListTable";
+import { DepartmentListFilters } from "./_components/DepartmentListFilters";
+import { DepartmentListTable } from "./_components/DepartmentListTable";
+import { DepartmentRowActions } from "./_components/DepartmentRowActions";
+import type { DepartmentTableSortField } from "./_components/DepartmentListTable";
 import { useDepartmentListQuery } from "@/features/departments/department.query-hooks";
 import type { DepartmentListSortField } from "@/features/departments/department.types";
 import { Badge } from "@/shared/components/ui/badge";
@@ -154,13 +154,15 @@ function DepartmentsPageContent() {
                 Quản lý phòng ban của tổ chức {organizationScope.organizationId}
               </CardTitle>
               <CardDescription>
-                Tra cứu, lọc trạng thái, sắp xếp và phân trang danh sách phòng ban
-                bằng URL-state trong phạm vi tổ chức hiện tại.
+                Tra cứu, lọc trạng thái, sắp xếp và phân trang danh sách phòng
+                ban bằng URL-state trong phạm vi tổ chức hiện tại.
               </CardDescription>
             </div>
             <div className="flex flex-wrap gap-2">
               <Button asChild variant="outline">
-                <Link href={`/admin/organizations/${organizationScope.organizationId}`}>
+                <Link
+                  href={`/admin/organizations/${organizationScope.organizationId}`}
+                >
                   Chi tiết tổ chức
                 </Link>
               </Button>
@@ -179,12 +181,14 @@ function DepartmentsPageContent() {
           <span>Tìm kiếm: {normalizedState.search || "Chưa nhập"}</span>
           <span>Trạng thái: {summaryText}</span>
           <span>
-            Sắp xếp: {normalizedState.sort
+            Sắp xếp:{" "}
+            {normalizedState.sort
               .map((item) => `${item.field}:${item.direction}`)
               .join(", ")}
           </span>
           <span>
-            Trang: {tableState.pagination.pageIndex + 1} · Kích thước trang: {tableState.pagination.pageSize}
+            Trang: {tableState.pagination.pageIndex + 1} · Kích thước trang:{" "}
+            {tableState.pagination.pageSize}
           </span>
         </CardContent>
       </Card>

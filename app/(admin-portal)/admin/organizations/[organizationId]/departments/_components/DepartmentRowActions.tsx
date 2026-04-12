@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { DepartmentDeleteDialog } from "@/features/departments/components/DepartmentDeleteDialog";
 import { Button } from "@/shared/components/ui/button";
+
+import { DepartmentDeleteDialog } from "./DepartmentDeleteDialog";
 
 type DepartmentRowActionsProps = {
   organizationId: string;

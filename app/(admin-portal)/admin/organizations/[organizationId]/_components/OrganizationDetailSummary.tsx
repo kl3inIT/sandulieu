@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
-
 import type { OrganizationDetailResponse } from "@/features/organizations/organization.types";
-import { OrganizationStatusBadge } from "@/features/organizations/components/OrganizationStatusBadge";
+import { DirectoryStatusBadge } from "@/shared/components/directory/DirectoryStatusBadge";
+import { SummaryField } from "@/shared/components/directory/SummaryField";
 import {
   Card,
   CardContent,
@@ -9,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
+import { formatDateTime } from "@/shared/lib/format-date";
 
 export type OrganizationDetailSummaryProps = {
   organization: OrganizationDetailResponse;
@@ -31,7 +31,7 @@ export function OrganizationDetailSummary({
         <SummaryField label="Tên tổ chức" value={organization.name} />
         <SummaryField
           label="Trạng thái"
-          value={<OrganizationStatusBadge status={organization.status} />}
+          value={<DirectoryStatusBadge status={organization.status} />}
         />
         <SummaryField
           label="Ngày tạo"
@@ -44,35 +44,4 @@ export function OrganizationDetailSummary({
       </CardContent>
     </Card>
   );
-}
-
-type SummaryFieldProps = {
-  label: string;
-  value: ReactNode;
-};
-
-function SummaryField({ label, value }: SummaryFieldProps) {
-  return (
-    <div className="flex flex-col gap-1 rounded-lg border p-4">
-      <span className="text-sm text-muted-foreground">{label}</span>
-      <div className="text-sm font-medium">{value}</div>
-    </div>
-  );
-}
-
-function formatDateTime(value: string) {
-  if (!value) {
-    return "-";
-  }
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "-";
-  }
-
-  return new Intl.DateTimeFormat("vi-VN", {
-    dateStyle: "short",
-    timeStyle: "short",
-  }).format(date);
 }

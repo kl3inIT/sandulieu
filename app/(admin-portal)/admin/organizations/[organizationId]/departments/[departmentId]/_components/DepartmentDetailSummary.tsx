@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
-
 import type { DepartmentDetailResponse } from "@/features/departments/department.types";
-import { Badge } from "@/shared/components/ui/badge";
+import { DirectoryStatusBadge } from "@/shared/components/directory/DirectoryStatusBadge";
+import { SummaryField } from "@/shared/components/directory/SummaryField";
 import {
   Card,
   CardContent,
@@ -9,25 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
-import type { DirectoryStatus } from "@/shared/model/directory-status.model";
+import { formatDateTime } from "@/shared/lib/format-date";
 
 export type DepartmentDetailSummaryProps = {
   department: DepartmentDetailResponse;
-};
-
-const STATUS_LABELS: Record<DirectoryStatus, string> = {
-  active: "Đang hoạt động",
-  inactive: "Tạm ngưng",
-  archived: "Lưu trữ",
-};
-
-const STATUS_VARIANTS: Record<
-  DirectoryStatus,
-  "default" | "secondary" | "outline"
-> = {
-  active: "default",
-  inactive: "secondary",
-  archived: "outline",
 };
 
 export function DepartmentDetailSummary({
@@ -47,11 +31,7 @@ export function DepartmentDetailSummary({
         <SummaryField label="Tên phòng ban" value={department.name} />
         <SummaryField
           label="Trạng thái"
-          value={
-            <Badge variant={STATUS_VARIANTS[department.status]}>
-              {STATUS_LABELS[department.status]}
-            </Badge>
-          }
+          value={<DirectoryStatusBadge status={department.status} />}
         />
         <SummaryField
           label="Tổ chức cha"
@@ -69,35 +49,4 @@ export function DepartmentDetailSummary({
       </CardContent>
     </Card>
   );
-}
-
-type SummaryFieldProps = {
-  label: string;
-  value: ReactNode;
-};
-
-function SummaryField({ label, value }: SummaryFieldProps) {
-  return (
-    <div className="flex flex-col gap-1 rounded-lg border p-4">
-      <span className="text-sm text-muted-foreground">{label}</span>
-      <div className="text-sm font-medium">{value}</div>
-    </div>
-  );
-}
-
-function formatDateTime(value: string) {
-  if (!value) {
-    return "-";
-  }
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "-";
-  }
-
-  return new Intl.DateTimeFormat("vi-VN", {
-    dateStyle: "short",
-    timeStyle: "short",
-  }).format(date);
 }

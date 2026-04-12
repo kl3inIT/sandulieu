@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, FilePenLine } from "lucide-react";
 
-import { OrganizationForm } from "@/features/organizations/components/OrganizationForm";
+import { OrganizationForm } from "@/shared/components/organizations/OrganizationForm";
 import type { OrganizationFormPayload } from "@/features/organizations/organization.form";
 import {
   useOrganizationDetailQuery,

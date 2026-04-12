@@ -14,11 +14,11 @@ import {
   toDirectoryListQuery,
   type DirectoryListState,
 } from "@/features/directory/shared";
-import { OrganizationListFilters } from "@/features/organizations/components/OrganizationListFilters";
+import { OrganizationListFilters } from "./_components/OrganizationListFilters";
 import {
   OrganizationListTable,
   type OrganizationTableSortField,
-} from "@/features/organizations/components/OrganizationListTable";
+} from "./_components/OrganizationListTable";
 import { useOrganizationListQuery } from "@/features/organizations/organization.query-hooks";
 import type { OrganizationListSortField } from "@/features/organizations/organization.types";
 import { Badge } from "@/shared/components/ui/badge";

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useForm } from "@tanstack/react-form";
-import { LoaderCircle, Save, SquarePen } from "lucide-react";
+import { Building2, LoaderCircle, Save, SquarePen } from "lucide-react";
 
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -14,46 +14,40 @@ import {
   FieldLabel,
 } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
+import { getFieldErrors } from "@/shared/lib/form-errors";
 import {
-  createOrganizationFormOptions,
-  getOrganizationFormDefaults,
-  type OrganizationFormPayload,
-  type OrganizationFormValues,
-} from "../organization.form";
+  createDepartmentFormOptions,
+  getDepartmentFormDefaults,
+  type DepartmentFormPayload,
+  type DepartmentFormValues,
+} from "@/features/departments/department.form";
 
-type OrganizationFormProps = {
+type DepartmentFormProps = {
   mode: "create" | "update";
-  initialValues?: Partial<OrganizationFormValues>;
+  initialValues?: Partial<DepartmentFormValues>;
+  organizationId: string;
   submitLabel?: string;
   isPending?: boolean;
-  onSubmit: (values: OrganizationFormPayload) => Promise<void> | void;
+  onSubmit: (values: DepartmentFormPayload) => Promise<void> | void;
   onReset?: () => void;
 };
 
-function getFieldErrors(errors: unknown[]) {
-  return errors.flatMap((error) => {
-    if (!error) return [];
-    if (typeof error === "string") return [{ message: error }];
-    if (typeof error === "object" && "message" in error) {
-      return [{ message: String(error.message) }];
-    }
-
-    return [{ message: "Giá trị chưa hợp lệ." }];
-  });
-}
-
-export function OrganizationForm({
+export function DepartmentForm({
   mode,
   initialValues,
+  organizationId,
   submitLabel,
   isPending = false,
   onSubmit,
   onReset,
-}: OrganizationFormProps) {
-  const defaults = getOrganizationFormDefaults(initialValues);
+}: DepartmentFormProps) {
+  const defaults = getDepartmentFormDefaults({
+    ...initialValues,
+    organizationId,
+  });
   const form = useForm(
-    createOrganizationFormOptions({
-      initialValues,
+    createDepartmentFormOptions({
+      initialValues: defaults,
       onSubmit: async ({ value }) => {
         await onSubmit(value);
       },
@@ -74,10 +68,10 @@ export function OrganizationForm({
       }}
     >
       <FieldGroup>
-        <form.Field name="id">
+        <form.Field name="organizationId">
           {(field) => (
             <Field data-invalid={!field.state.meta.isValid}>
-              <FieldLabel htmlFor={field.name}>ID tổ chức</FieldLabel>
+              <FieldLabel htmlFor={field.name}>ID tổ chức cha</FieldLabel>
               <FieldContent>
                 <Input
                   id={field.name}
@@ -87,11 +81,36 @@ export function OrganizationForm({
                   onChange={(event) => field.handleChange(event.target.value)}
                   placeholder="org-acme"
                   aria-invalid={!field.state.meta.isValid}
+                  disabled
+                />
+                <FieldDescription>
+                  Phạm vi tổ chức được khóa theo route hiện tại để không mất ngữ
+                  cảnh cha khi tạo hoặc cập nhật phòng ban.
+                </FieldDescription>
+                <FieldError errors={getFieldErrors(field.state.meta.errors)} />
+              </FieldContent>
+            </Field>
+          )}
+        </form.Field>
+
+        <form.Field name="id">
+          {(field) => (
+            <Field data-invalid={!field.state.meta.isValid}>
+              <FieldLabel htmlFor={field.name}>ID phòng ban</FieldLabel>
+              <FieldContent>
+                <Input
+                  id={field.name}
+                  name={field.name}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  onChange={(event) => field.handleChange(event.target.value)}
+                  placeholder="dept-acme-sales"
+                  aria-invalid={!field.state.meta.isValid}
                   disabled={mode === "update"}
                 />
                 <FieldDescription>
                   {mode === "create"
-                    ? "Dùng id ổn định cho route và liên kết dữ liệu cha - con."
+                    ? "Dùng id ổn định cho route chi tiết của phòng ban sau khi tạo mới."
                     : "ID ổn định được giữ theo route hiện tại và không thể sửa ở màn cập nhật."}
                 </FieldDescription>
                 <FieldError errors={getFieldErrors(field.state.meta.errors)} />
@@ -103,7 +122,7 @@ export function OrganizationForm({
         <form.Field name="code">
           {(field) => (
             <Field data-invalid={!field.state.meta.isValid}>
-              <FieldLabel htmlFor={field.name}>Mã tổ chức</FieldLabel>
+              <FieldLabel htmlFor={field.name}>Mã phòng ban</FieldLabel>
               <FieldContent>
                 <Input
                   id={field.name}
@@ -111,11 +130,12 @@ export function OrganizationForm({
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(event) => field.handleChange(event.target.value)}
-                  placeholder="ORG-ACME"
+                  placeholder="SALE"
                   aria-invalid={!field.state.meta.isValid}
                 />
                 <FieldDescription>
-                  Mã nghiệp vụ được giữ riêng, không dùng thay cho route id.
+                  Mã nghiệp vụ hiển thị riêng với ID ổn định để không ảnh hưởng
+                  định danh route.
                 </FieldDescription>
                 <FieldError errors={getFieldErrors(field.state.meta.errors)} />
               </FieldContent>
@@ -126,7 +146,7 @@ export function OrganizationForm({
         <form.Field name="name">
           {(field) => (
             <Field data-invalid={!field.state.meta.isValid}>
-              <FieldLabel htmlFor={field.name}>Tên tổ chức</FieldLabel>
+              <FieldLabel htmlFor={field.name}>Tên phòng ban</FieldLabel>
               <FieldContent>
                 <Input
                   id={field.name}
@@ -134,11 +154,12 @@ export function OrganizationForm({
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(event) => field.handleChange(event.target.value)}
-                  placeholder="Tập đoàn ACME Việt Nam"
+                  placeholder="Kinh doanh doanh nghiệp"
                   aria-invalid={!field.state.meta.isValid}
                 />
                 <FieldDescription>
-                  Tên hiển thị có thể thay đổi, nhưng id phải luôn ổn định.
+                  Tên hiển thị có thể thay đổi, nhưng tổ chức cha và ID ổn định
+                  luôn phải rõ ràng trong cùng contract kiểm tra dữ liệu.
                 </FieldDescription>
                 <FieldError errors={getFieldErrors(field.state.meta.errors)} />
               </FieldContent>
@@ -158,7 +179,7 @@ export function OrganizationForm({
                   onBlur={field.handleBlur}
                   onChange={(event) =>
                     field.handleChange(
-                      event.target.value as OrganizationFormValues["status"]
+                      event.target.value as DepartmentFormValues["status"]
                     )
                   }
                   aria-invalid={!field.state.meta.isValid}
@@ -169,8 +190,8 @@ export function OrganizationForm({
                   <option value="archived">Lưu trữ</option>
                 </select>
                 <FieldDescription>
-                  Form này dùng chung contract kiểm tra dữ liệu cho cả màn tạo
-                  mới và cập nhật.
+                  Form này dùng chung contract kiểm tra dữ liệu cho cả luồng tạo
+                  mới và cập nhật phòng ban.
                 </FieldDescription>
                 <FieldError errors={getFieldErrors(field.state.meta.errors)} />
               </FieldContent>
@@ -195,7 +216,9 @@ export function OrganizationForm({
                     className="animate-spin"
                     data-icon="inline-start"
                   />
-                  Đang lưu tổ chức
+                  {mode === "create"
+                    ? "Đang tạo phòng ban"
+                    : "Đang cập nhật phòng ban"}
                 </>
               ) : (
                 <>
@@ -205,7 +228,7 @@ export function OrganizationForm({
                     <SquarePen data-icon="inline-start" />
                   )}
                   {submitLabel ??
-                    (mode === "create" ? "Lưu tổ chức" : "Cập nhật tổ chức")}
+                    (mode === "create" ? "Tạo phòng ban" : "Lưu thay đổi")}
                 </>
               )}
             </Button>
@@ -218,7 +241,8 @@ export function OrganizationForm({
                 onReset?.();
               }}
             >
-              Làm lại
+              <Building2 data-icon="inline-start" />
+              Khôi phục dữ liệu form
             </Button>
           </div>
         )}

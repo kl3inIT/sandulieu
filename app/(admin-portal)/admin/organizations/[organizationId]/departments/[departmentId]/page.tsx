@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Building2, FilePenLine } from "lucide-react";
 
-import { DepartmentDeleteDialog } from "@/features/departments/components/DepartmentDeleteDialog";
-import { DepartmentDetailSummary } from "@/features/departments/components/DepartmentDetailSummary";
-import { DepartmentMemberSummary } from "@/features/departments/components/DepartmentMemberSummary";
+import { DepartmentDeleteDialog } from "../_components/DepartmentDeleteDialog";
+import { DepartmentDetailSummary } from "./_components/DepartmentDetailSummary";
+import { DepartmentMemberSummary } from "./_components/DepartmentMemberSummary";
 import { useDepartmentDetailQuery } from "@/features/departments/department.query-hooks";
 import {
   Alert,

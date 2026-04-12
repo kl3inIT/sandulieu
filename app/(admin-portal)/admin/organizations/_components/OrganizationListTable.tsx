@@ -15,9 +15,18 @@ import {
   CardTitle,
 } from "@/shared/components/ui/card";
 import { Skeleton } from "@/shared/components/ui/skeleton";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/shared/components/ui/table";
+import { DirectoryStatusBadge } from "@/shared/components/directory/DirectoryStatusBadge";
+import { formatDateTime } from "@/shared/lib/format-date";
 
 import { OrganizationRowActions } from "./OrganizationRowActions";
-import { OrganizationStatusBadge } from "./OrganizationStatusBadge";
 
 export type OrganizationTableSortField =
   | "code"
@@ -112,10 +121,10 @@ export function OrganizationListTable({
         </p>
       </CardHeader>
       <CardContent className="flex flex-col gap-4 overflow-x-auto">
-        <table className="min-w-full border-collapse text-sm">
-          <thead>
-            <tr className="border-b text-left">
-              <th className="px-3 py-3 font-medium">#</th>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-12">#</TableHead>
               <SortableHeader
                 field="code"
                 label="Mã tổ chức"
@@ -150,47 +159,49 @@ export function OrganizationListTable({
                   />
                 </>
               ) : null}
-              <th className="px-3 py-3 text-right font-medium">Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
+              <TableHead className="text-right">Thao tác</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {organizations.map((organization, index) => (
-              <tr key={organization.id} className="border-b align-top">
-                <td className="px-3 py-4 text-muted-foreground">
+              <TableRow key={organization.id}>
+                <TableCell className="text-muted-foreground">
                   {pageIndex * pageSize + index + 1}
-                </td>
-                <td className="px-3 py-4 font-medium">{organization.code}</td>
-                <td className="px-3 py-4">
+                </TableCell>
+                <TableCell className="font-medium">
+                  {organization.code}
+                </TableCell>
+                <TableCell>
                   <div className="flex flex-col gap-1">
                     <span className="font-medium">{organization.name}</span>
                     <span className="text-xs text-muted-foreground">
                       ID ổn định: {organization.id}
                     </span>
                   </div>
-                </td>
-                <td className="px-3 py-4">
-                  <OrganizationStatusBadge status={organization.status} />
-                </td>
+                </TableCell>
+                <TableCell>
+                  <DirectoryStatusBadge status={organization.status} />
+                </TableCell>
                 {hasMetadataColumns ? (
                   <>
-                    <td className="px-3 py-4 text-muted-foreground">
+                    <TableCell className="text-muted-foreground">
                       {formatDateTime(organization.createdAt)}
-                    </td>
-                    <td className="px-3 py-4 text-muted-foreground">
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       {formatDateTime(organization.updatedAt)}
-                    </td>
+                    </TableCell>
                   </>
                 ) : null}
-                <td className="px-3 py-4">
+                <TableCell>
                   <OrganizationRowActions
                     organizationId={organization.id}
                     organizationName={organization.name}
                   />
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
 
         <div className="flex flex-col gap-3 border-t pt-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
@@ -237,7 +248,7 @@ function SortableHeader({
   const activeSort = sort.find((item) => item.field === field);
 
   return (
-    <th className="px-3 py-3 font-medium">
+    <TableHead>
       <Button
         type="button"
         variant="ghost"
@@ -255,23 +266,6 @@ function SortableHeader({
           <ArrowUpDown />
         )}
       </Button>
-    </th>
+    </TableHead>
   );
-}
-
-function formatDateTime(value: string) {
-  if (!value) {
-    return "-";
-  }
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "-";
-  }
-
-  return new Intl.DateTimeFormat("vi-VN", {
-    dateStyle: "short",
-    timeStyle: "short",
-  }).format(date);
 }

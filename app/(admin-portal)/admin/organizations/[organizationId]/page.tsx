@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Building2, FilePenLine } from "lucide-react";
 
-import { OrganizationDeleteDialog } from "@/features/organizations/components/OrganizationDeleteDialog";
-import { OrganizationDepartmentSummary } from "@/features/organizations/components/OrganizationDepartmentSummary";
-import { OrganizationDetailSummary } from "@/features/organizations/components/OrganizationDetailSummary";
+import { OrganizationDeleteDialog } from "../_components/OrganizationDeleteDialog";
+import { OrganizationDepartmentSummary } from "./_components/OrganizationDepartmentSummary";
+import { OrganizationDetailSummary } from "./_components/OrganizationDetailSummary";
 import { useOrganizationDetailQuery } from "@/features/organizations/organization.query-hooks";
 import {
   Alert,

@@ -31,7 +31,7 @@ export type DirectorySearchParamsInput =
   | Record<string, string | string[] | undefined>;
 
 export function createDirectorySearchParams(
-  input: DirectorySearchParamsInput,
+  input: DirectorySearchParamsInput
 ): URLSearchParams {
   if (input instanceof URLSearchParams) {
     return new URLSearchParams(input);
@@ -67,12 +67,12 @@ export function normalizeDirectorySearch(value: string | null | undefined) {
 }
 
 export function normalizeDirectoryStatuses(
-  values: Iterable<string | null | undefined>,
+  values: Iterable<string | null | undefined>
 ): DirectoryStatus[] {
   const statuses = new Set<DirectoryStatus>();
 
   for (const value of values) {
-    if (value === "active" || value === "inactive") {
+    if (value === "active" || value === "inactive" || value === "archived") {
       statuses.add(value);
     }
   }
@@ -102,7 +102,7 @@ export function normalizeDirectoryPageSize(value: string | null | undefined) {
 
 export function normalizeDirectorySortValue<TSortField extends string>(
   value: string | null | undefined,
-  allowedFields: readonly TSortField[],
+  allowedFields: readonly TSortField[]
 ): DirectorySort<TSortField>[] {
   if (!value) {
     return [];
@@ -123,7 +123,12 @@ export function normalizeDirectorySortValue<TSortField extends string>(
     const field = rawField?.trim();
     const direction = normalizeSortDirection(rawDirection);
 
-    if (!field || !direction || !allowedFieldSet.has(field) || seenFields.has(field)) {
+    if (
+      !field ||
+      !direction ||
+      !allowedFieldSet.has(field) ||
+      seenFields.has(field)
+    ) {
       continue;
     }
 
@@ -138,14 +143,14 @@ export function normalizeDirectorySortValue<TSortField extends string>(
 }
 
 export function serializeDirectorySortValue<TSortField extends string>(
-  sort: readonly DirectorySort<TSortField>[],
+  sort: readonly DirectorySort<TSortField>[]
 ) {
   return sort.map(({ field, direction }) => `${field}:${direction}`).join(",");
 }
 
 export function haveDirectoryFiltersChanged<TSortField extends string>(
   currentState: DirectoryListState<TSortField>,
-  nextState: DirectoryListState<TSortField>,
+  nextState: DirectoryListState<TSortField>
 ) {
   return (
     currentState.search !== nextState.search ||
@@ -153,7 +158,9 @@ export function haveDirectoryFiltersChanged<TSortField extends string>(
     serializeDirectorySortValue(currentState.sort) !==
       serializeDirectorySortValue(nextState.sort) ||
     currentState.statuses.length !== nextState.statuses.length ||
-    currentState.statuses.some((status, index) => status !== nextState.statuses[index])
+    currentState.statuses.some(
+      (status, index) => status !== nextState.statuses[index]
+    )
   );
 }
 
@@ -162,7 +169,7 @@ export function applyDirectoryListQueryState<
   TFilters = Record<string, never>,
 >(
   state: DirectoryListState<TSortField>,
-  filters: TFilters,
+  filters: TFilters
 ): DirectoryListQuery<TSortField, TFilters> {
   return {
     search: state.search || undefined,
@@ -176,7 +183,9 @@ export function applyDirectoryListQueryState<
   };
 }
 
-function normalizeSortDirection(value: string | null | undefined): SortDirection | null {
+function normalizeSortDirection(
+  value: string | null | undefined
+): SortDirection | null {
   if (value === "asc" || value === "desc") {
     return value;
   }

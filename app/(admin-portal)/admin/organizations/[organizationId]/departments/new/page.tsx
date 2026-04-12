@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Building2 } from "lucide-react";
 
-import { DepartmentForm } from "@/features/departments/components/DepartmentForm";
+import { DepartmentForm } from "@/shared/components/departments/DepartmentForm";
 import type { DepartmentFormPayload } from "@/features/departments/department.form";
 import { useCreateDepartmentMutation } from "@/features/departments/department.query-hooks";
 import {
