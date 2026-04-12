@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 
 import {
   useDeleteOrganizationMutation,
@@ -29,6 +29,7 @@ import { Button } from "@/shared/components/ui/button";
 export type OrganizationDeleteDialogProps = {
   organizationId: string;
   organizationName: string;
+  trigger?: ReactElement;
   triggerLabel?: string;
   onDeleteSuccess?: () => void;
 };
@@ -36,6 +37,7 @@ export type OrganizationDeleteDialogProps = {
 export function OrganizationDeleteDialog({
   organizationId,
   organizationName,
+  trigger,
   triggerLabel = "Xoá",
   onDeleteSuccess,
 }: OrganizationDeleteDialogProps) {
@@ -56,9 +58,11 @@ export function OrganizationDeleteDialog({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button size="sm" variant="outline">
-          {triggerLabel}
-        </Button>
+        {trigger ?? (
+          <Button size="sm" variant="outline">
+            {triggerLabel}
+          </Button>
+        )}
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

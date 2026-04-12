@@ -3,35 +3,46 @@ import { Search } from "lucide-react";
 import type { DirectoryStatus } from "@/shared/model/directory-status.model";
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select";
 
 type OrganizationListFiltersProps = {
   searchValue: string;
   selectedStatuses: DirectoryStatus[];
   onSearchSubmit: (value: string) => void;
-  onStatusToggle: (status: DirectoryStatus) => void;
+  onStatusChange: (statuses: DirectoryStatus[]) => void;
   onClearFilters: () => void;
 };
-
-const FILTERABLE_STATUSES: Array<{ value: DirectoryStatus; label: string }> = [
-  { value: "active", label: "Đang hoạt động" },
-  { value: "inactive", label: "Tạm ngưng" },
-  { value: "archived", label: "Lưu trữ" },
-];
 
 export function OrganizationListFilters({
   searchValue,
   selectedStatuses,
   onSearchSubmit,
-  onStatusToggle,
+  onStatusChange,
   onClearFilters,
 }: OrganizationListFiltersProps) {
+  const selectedStatus =
+    selectedStatuses.length === 1 ? selectedStatuses[0] : "all";
+
+  const handleStatusChange = (value: string) => {
+    if (value === "all") {
+      onStatusChange([]);
+    } else {
+      onStatusChange([value as DirectoryStatus]);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 rounded-lg border bg-card p-4 text-card-foreground">
       <form
         className="flex flex-col gap-2"
         onSubmit={(event) => {
           event.preventDefault();
-
           const formData = new FormData(event.currentTarget);
           onSearchSubmit(String(formData.get("search") ?? ""));
         }}
@@ -54,21 +65,18 @@ export function OrganizationListFilters({
 
       <div className="flex flex-col gap-2">
         <p className="text-sm font-medium">Trạng thái</p>
-        <div className="flex flex-wrap gap-2">
-          {FILTERABLE_STATUSES.map((status) => {
-            const isSelected = selectedStatuses.includes(status.value);
-
-            return (
-              <Button
-                key={status.value}
-                type="button"
-                variant={isSelected ? "default" : "outline"}
-                onClick={() => onStatusToggle(status.value)}
-              >
-                {status.label}
-              </Button>
-            );
-          })}
+        <div className="flex flex-wrap items-center gap-2">
+          <Select value={selectedStatus} onValueChange={handleStatusChange}>
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Tất cả trạng thái" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Tất cả trạng thái</SelectItem>
+              <SelectItem value="active">Hoạt động</SelectItem>
+              <SelectItem value="inactive">Không hoạt động</SelectItem>
+              <SelectItem value="archived">Đã lưu trữ</SelectItem>
+            </SelectContent>
+          </Select>
           <Button type="button" variant="ghost" onClick={onClearFilters}>
             Xoá bộ lọc
           </Button>

@@ -97,14 +97,9 @@ function OrganizationsPageContent() {
     });
   };
 
-  const handleStatusToggle = (status: DirectoryStatus) => {
-    const hasStatus = normalizedState.statuses.includes(status);
-    const nextStatuses = hasStatus
-      ? normalizedState.statuses.filter((item) => item !== status)
-      : [...normalizedState.statuses, status];
-
+  const handleStatusChange = (statuses: DirectoryStatus[]) => {
     updatePartialState({
-      statuses: nextStatuses,
+      statuses,
       pageIndex: 0,
     });
   };
@@ -173,7 +168,7 @@ function OrganizationsPageContent() {
         searchValue={normalizedState.search}
         selectedStatuses={normalizedState.statuses}
         onSearchSubmit={handleSearchSubmit}
-        onStatusToggle={handleStatusToggle}
+        onStatusChange={handleStatusChange}
         onClearFilters={handleClearFilters}
       />
 

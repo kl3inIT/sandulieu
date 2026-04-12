@@ -1,19 +1,22 @@
 import { Search } from "lucide-react";
 
-import {
-  DIRECTORY_STATUSES,
-  type DirectoryStatus,
-} from "@/shared/model/directory-status.model";
-import { DirectoryStatusBadge } from "@/shared/components/directory/DirectoryStatusBadge";
+import type { DirectoryStatus } from "@/shared/model/directory-status.model";
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select";
 
 type DepartmentListFiltersProps = {
   organizationId: string;
   searchValue: string;
   selectedStatuses: DirectoryStatus[];
   onSearchSubmit: (value: string) => void;
-  onStatusToggle: (status: DirectoryStatus) => void;
+  onStatusChange: (statuses: DirectoryStatus[]) => void;
   onClearFilters: () => void;
 };
 
@@ -22,9 +25,20 @@ export function DepartmentListFilters({
   searchValue,
   selectedStatuses,
   onSearchSubmit,
-  onStatusToggle,
+  onStatusChange,
   onClearFilters,
 }: DepartmentListFiltersProps) {
+  const selectedStatus =
+    selectedStatuses.length === 1 ? selectedStatuses[0] : "all";
+
+  const handleStatusChange = (value: string) => {
+    if (value === "all") {
+      onStatusChange([]);
+    } else {
+      onStatusChange([value as DirectoryStatus]);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 rounded-lg border bg-card p-4 text-card-foreground">
       <div className="flex flex-col gap-1">
@@ -63,21 +77,18 @@ export function DepartmentListFilters({
 
       <div className="flex flex-col gap-2">
         <p className="text-sm font-medium">Trạng thái</p>
-        <div className="flex flex-wrap gap-2">
-          {DIRECTORY_STATUSES.map((status) => {
-            const isSelected = selectedStatuses.includes(status);
-
-            return (
-              <Button
-                key={status}
-                type="button"
-                variant={isSelected ? "default" : "outline"}
-                onClick={() => onStatusToggle(status)}
-              >
-                <DirectoryStatusBadge status={status} />
-              </Button>
-            );
-          })}
+        <div className="flex flex-wrap items-center gap-2">
+          <Select value={selectedStatus} onValueChange={handleStatusChange}>
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Tất cả trạng thái" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Tất cả trạng thái</SelectItem>
+              <SelectItem value="active">Hoạt động</SelectItem>
+              <SelectItem value="inactive">Không hoạt động</SelectItem>
+              <SelectItem value="archived">Đã lưu trữ</SelectItem>
+            </SelectContent>
+          </Select>
           <Button type="button" variant="ghost" onClick={onClearFilters}>
             Xoá bộ lọc
           </Button>

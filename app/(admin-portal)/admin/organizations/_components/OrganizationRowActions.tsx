@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 
 import { Button } from "@/shared/components/ui/button";
 
@@ -17,16 +18,25 @@ export function OrganizationRowActions({
   const editHref = `/admin/organizations/${organizationId}/edit`;
 
   return (
-    <div className="flex flex-wrap justify-end gap-2">
-      <Button asChild size="sm" variant="outline">
-        <Link href={detailHref}>Chi tiết</Link>
+    <div className="flex justify-end gap-1">
+      <Button asChild size="icon" variant="ghost">
+        <Link href={detailHref}>
+          <Eye className="h-4 w-4" />
+        </Link>
       </Button>
-      <Button asChild size="sm" variant="outline">
-        <Link href={editHref}>Chỉnh sửa</Link>
+      <Button asChild size="icon" variant="ghost">
+        <Link href={editHref}>
+          <Pencil className="h-4 w-4" />
+        </Link>
       </Button>
       <OrganizationDeleteDialog
         organizationId={organizationId}
         organizationName={organizationName}
+        trigger={
+          <Button size="icon" variant="ghost">
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        }
       />
     </div>
   );

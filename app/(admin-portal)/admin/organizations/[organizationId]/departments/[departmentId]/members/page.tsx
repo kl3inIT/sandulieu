@@ -111,7 +111,7 @@ function MembersPageContent() {
     });
   };
 
-  const handleSearchChange = (value: string) => {
+  const handleSearchSubmit = (value: string) => {
     updatePartialState({ search: value.trim(), pageIndex: 0 });
   };
 
@@ -183,7 +183,7 @@ function MembersPageContent() {
           <MemberListFilters
             search={normalizedState.search}
             statuses={normalizedState.statuses}
-            onSearchChange={handleSearchChange}
+            onSearchSubmit={handleSearchSubmit}
             onStatusChange={handleStatusChange}
           />
           <MemberBulkActionBar
