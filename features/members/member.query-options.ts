@@ -12,8 +12,8 @@ import type { MemberListParams } from "./member.types";
 export const memberQueryKeys = {
   all: ["directory", "members"] as const,
   lists: () => [...memberQueryKeys.all, "list"] as const,
-  departmentLists: (organizationId: string, departmentId: string) =>
-    [...memberQueryKeys.lists(), { organizationId, departmentId }] as const,
+  departmentLists: (_organizationId: string, _departmentId: string) =>
+    [...memberQueryKeys.lists()] as const,
   list: (
     organizationId: string,
     departmentId: string,
