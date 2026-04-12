@@ -21,16 +21,19 @@ import {
   type DirectoryListState,
 } from "@/features/directory/shared";
 import {
+  useBulkUpdateMemberStatusMutation,
   useDeleteMemberMutation,
   useMemberListQuery,
 } from "@/features/members/member.query-hooks";
 import type {
+  BulkUpdateMemberStatusResult,
   Member,
   MemberListSortField,
 } from "@/features/members/member.types";
 import { Button } from "@/shared/components/ui/button";
 import { Card, CardContent } from "@/shared/components/ui/card";
 
+import { MemberBulkActionBar } from "./_components/MemberBulkActionBar";
 import { MemberDeleteDialog } from "./_components/MemberDeleteDialog";
 import { MemberListFilters } from "./_components/MemberListFilters";
 import { MemberListTable } from "./_components/MemberListTable";
@@ -55,6 +58,9 @@ function MembersPageContent() {
   const searchParams = useSearchParams();
 
   const [deletingMember, setDeletingMember] = useState<Member | null>(null);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [bulkFeedback, setBulkFeedback] =
+    useState<BulkUpdateMemberStatusResult | null>(null);
 
   const departmentScope = createDepartmentScope(
     params.organizationId,
@@ -79,6 +85,11 @@ function MembersPageContent() {
   );
 
   const deleteMemberMutation = useDeleteMemberMutation(
+    params.organizationId,
+    params.departmentId
+  );
+
+  const bulkMutation = useBulkUpdateMemberStatusMutation(
     params.organizationId,
     params.departmentId
   );
@@ -135,6 +146,25 @@ function MembersPageContent() {
     }
   };
 
+  function handleSelectionChange(ids: string[]) {
+    setSelectedIds(ids);
+    if (ids.length === 0) setBulkFeedback(null);
+  }
+
+  async function handleBulkApply(targetStatus: DirectoryStatus) {
+    setBulkFeedback(null);
+    const result = await bulkMutation.mutateAsync({
+      memberIds: selectedIds,
+      targetStatus,
+    });
+    setBulkFeedback(result);
+  }
+
+  function handleDeselectAll() {
+    setSelectedIds([]);
+    setBulkFeedback(null);
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -156,6 +186,13 @@ function MembersPageContent() {
             onSearchChange={handleSearchChange}
             onStatusChange={handleStatusChange}
           />
+          <MemberBulkActionBar
+            selectedCount={selectedIds.length}
+            isApplying={bulkMutation.isPending}
+            feedback={bulkFeedback}
+            onApply={handleBulkApply}
+            onDeselectAll={handleDeselectAll}
+          />
           <MemberListTable
             organizationId={params.organizationId}
             departmentId={params.departmentId}
@@ -168,6 +205,7 @@ function MembersPageContent() {
             pageSize={tableState.pagination.pageSize}
             pageCount={memberQuery.data?.pageCount ?? 1}
             rowCount={memberQuery.data?.rowCount ?? 0}
+            selectedIds={selectedIds}
             renderRowActions={(member) => (
               <MemberRowActions
                 organizationId={params.organizationId}
@@ -178,6 +216,7 @@ function MembersPageContent() {
             )}
             onSortChange={handleSortChange}
             onPageChange={handlePageChange}
+            onSelectionChange={handleSelectionChange}
           />
         </CardContent>
       </Card>
