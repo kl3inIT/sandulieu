@@ -2,7 +2,7 @@
 
 ## Overview
 
-This roadmap turns the existing brownfield Next.js admin shell into a hierarchy-aware enterprise directory for Organization → Department → Member while preserving the repo’s current layered frontend architecture. The delivery sequence follows the domain’s real dependency chain: first establish stable shared contracts and admin foundations, then ship organizations, then departments within organization scope, then members within the full parent hierarchy, then harden cross-entity admin UX, and finally add auth-ready seams for later Keycloak integration without pulling real auth into v1.
+This roadmap turns the existing brownfield Next.js admin shell into a hierarchy-aware enterprise directory for Organization → Department → Member while preserving the repo's current layered frontend architecture. The delivery sequence follows the domain's real dependency chain: first establish stable shared contracts and admin foundations, then ship organizations, then departments within organization scope, then members within the full parent hierarchy, then harden cross-entity admin UX, and finally add auth-ready seams for later Keycloak integration without pulling real auth into v1.
 
 ## Phases
 
@@ -84,8 +84,17 @@ Plans:
 3. User can open a member detail page that clearly shows the full parent hierarchy and current status.
 4. User can delete a member through a guarded confirmation flow and receive clear success or failure feedback for destructive actions.
 5. User can select multiple members and run supported bulk actions with per-operation feedback.
-   **Plans**: TBD
-   **UI hint**: yes
+
+**Plans:** 5 plans
+Plans:
+
+- [ ] 04-01-PLAN.md — Member API mutations, service functions, types, and query hooks with parent-qualified cache invalidation (Wave 1)
+- [ ] 04-02-PLAN.md — Member enterprise list table, filters, row actions, delete dialog, and evolved list page (Wave 2)
+- [ ] 04-03-PLAN.md — Shared MemberForm component and create/edit route pages (Wave 2)
+- [ ] 04-04-PLAN.md — Member detail page with parent hierarchy summary and delete flow (Wave 2)
+- [ ] 04-05-PLAN.md — Bulk selection column, MemberBulkActionBar with status picker and per-operation feedback (Wave 3)
+
+**UI hint**: yes
 
 ### Phase 5: Cross-Entity Admin UX Consistency
 
@@ -123,6 +132,6 @@ Phases execute in numeric order: 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 | 1. Directory Foundations & Contracts           | 6/6            | Complete    | 2026-04-10 |
 | 2. Organization Management                     | 0/TBD          | Not started | -          |
 | 3. Department Management in Organization Scope | 0/TBD          | Not started | -          |
-| 4. Member Management & Bulk Operations         | 0/TBD          | Not started | -          |
+| 4. Member Management & Bulk Operations         | 0/5            | Planned     | -          |
 | 5. Cross-Entity Admin UX Consistency           | 0/TBD          | Not started | -          |
 | 6. Auth-Ready Boundary                         | 0/TBD          | Not started | -          |
