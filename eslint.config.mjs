@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // shadcn base components — generated, do not lint
+    "shared/components/ui/**",
   ]),
   eslintConfigPrettier,
 ]);

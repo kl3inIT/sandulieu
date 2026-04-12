@@ -14,3 +14,5 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 *.log
+# shadcn base components — generated, do not format
+shared/components/ui
