@@ -40,7 +40,7 @@
 - [x] **MEM-03**: User can filter members by parent organization, parent department, and status
 - [x] **MEM-04**: User can sort members by defined table columns
 - [x] **MEM-05**: User can create a member under a specific department with required validation
-- [ ] **MEM-06**: User can view a member detail page with parent hierarchy context
+- [x] **MEM-06**: User can view a member detail page with parent hierarchy context
 - [x] **MEM-07**: User can edit a member and persist updated values
 - [x] **MEM-08**: User can soft-delete a member through a guarded confirmation flow
 - [x] **MEM-09**: Member belongs to exactly one department and one organization through the parent hierarchy
@@ -126,7 +126,7 @@
 | MEM-03      | Phase 4 | Complete |
 | MEM-04      | Phase 4 | Complete |
 | MEM-05      | Phase 4 | Complete |
-| MEM-06      | Phase 4 | Pending  |
+| MEM-06      | Phase 4 | Complete |
 | MEM-07      | Phase 4 | Complete |
 | MEM-08      | Phase 4 | Complete |
 | MEM-09      | Phase 4 | Complete |
