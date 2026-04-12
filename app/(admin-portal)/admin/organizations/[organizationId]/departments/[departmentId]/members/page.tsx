@@ -1,30 +1,41 @@
 "use client";
 
-import { Suspense } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
+import Link from "next/link";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
+import type { DirectorySort } from "@/shared/api/directory.contracts";
+import type { DirectoryStatus } from "@/shared/model/directory-status.model";
 import {
   buildDirectoryTableState,
   createDepartmentScope,
   getDefaultDirectoryListState,
   parseDirectoryListState,
+  serializeDirectoryListState,
   toDirectoryListQuery,
+  type DirectoryListState,
 } from "@/features/directory/shared";
-import { useMemberListQuery } from "@/features/members/member.query-hooks";
-import type { MemberListSortField } from "@/features/members/member.types";
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/shared/components/ui/alert";
-import { Badge } from "@/shared/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/shared/components/ui/card";
+  useDeleteMemberMutation,
+  useMemberListQuery,
+} from "@/features/members/member.query-hooks";
+import type {
+  Member,
+  MemberListSortField,
+} from "@/features/members/member.types";
+import { Button } from "@/shared/components/ui/button";
+import { Card, CardContent } from "@/shared/components/ui/card";
+
+import { MemberDeleteDialog } from "./_components/MemberDeleteDialog";
+import { MemberListFilters } from "./_components/MemberListFilters";
+import { MemberListTable } from "./_components/MemberListTable";
+import type { MemberTableSortField } from "./_components/MemberListTable";
+import { MemberRowActions } from "./_components/MemberRowActions";
 
 const MEMBER_SORT_FIELDS = [
   "memberCode",
@@ -39,16 +50,25 @@ const defaultMemberListState = getDefaultDirectoryListState({
 
 function MembersPageContent() {
   const params = useParams<{ organizationId: string; departmentId: string }>();
+  const pathname = usePathname();
+  const router = useRouter();
   const searchParams = useSearchParams();
+
+  const [deletingMember, setDeletingMember] = useState<Member | null>(null);
+
   const departmentScope = createDepartmentScope(
     params.organizationId,
     params.departmentId
   );
+
   const normalizedState = parseDirectoryListState(searchParams, {
     allowedSortFields: MEMBER_SORT_FIELDS,
     defaultSort: defaultMemberListState.sort,
     defaultPageSize: defaultMemberListState.pageSize,
   });
+
+  const tableState = buildDirectoryTableState(normalizedState);
+
   const memberQuery = useMemberListQuery(
     departmentScope.organizationId,
     departmentScope.departmentId,
@@ -57,75 +77,118 @@ function MembersPageContent() {
       departmentId: departmentScope.departmentId,
     })
   );
-  const tableState = buildDirectoryTableState(normalizedState);
 
-  if (memberQuery.isError) {
-    return (
-      <Alert variant="destructive">
-        <AlertTitle>Chưa tải được danh sách thành viên</AlertTitle>
-        <AlertDescription>
-          {(memberQuery.error as Error).message ||
-            "Đã có lỗi xảy ra khi lấy dữ liệu thành viên."}
-        </AlertDescription>
-      </Alert>
-    );
-  }
+  const deleteMemberMutation = useDeleteMemberMutation(
+    params.organizationId,
+    params.departmentId
+  );
+
+  const updateListState = (
+    nextState: DirectoryListState<MemberListSortField>
+  ) => {
+    const nextSearchParams = serializeDirectoryListState(nextState);
+    const nextQuery = nextSearchParams.toString();
+    router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname);
+  };
+
+  const updatePartialState = (
+    partialState: Partial<DirectoryListState<MemberListSortField>>
+  ) => {
+    updateListState({
+      ...normalizedState,
+      ...partialState,
+    });
+  };
+
+  const handleSearchChange = (value: string) => {
+    updatePartialState({ search: value.trim(), pageIndex: 0 });
+  };
+
+  const handleStatusChange = (statuses: DirectoryStatus[]) => {
+    updatePartialState({ statuses, pageIndex: 0 });
+  };
+
+  const handleSortChange = (field: MemberTableSortField) => {
+    const currentSort = normalizedState.sort[0];
+    let nextSort: DirectorySort<MemberListSortField>[];
+
+    if (!currentSort || currentSort.field !== field) {
+      nextSort = [{ field, direction: "asc" }];
+    } else if (currentSort.direction === "asc") {
+      nextSort = [{ field, direction: "desc" }];
+    } else {
+      nextSort = [...defaultMemberListState.sort];
+    }
+
+    updatePartialState({ sort: nextSort, pageIndex: 0 });
+  };
+
+  const handlePageChange = (pageIndex: number) => {
+    updatePartialState({ pageIndex });
+  };
+
+  const handleDeleteConfirm = () => {
+    if (deletingMember) {
+      deleteMemberMutation.mutate(deletingMember.id, {
+        onSuccess: () => setDeletingMember(null),
+      });
+    }
+  };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-xl font-semibold">Danh sách thành viên</h1>
+        <Button asChild>
+          <Link
+            href={`/admin/organizations/${params.organizationId}/departments/${params.departmentId}/members/new`}
+          >
+            Thêm thành viên
+          </Link>
+        </Button>
+      </div>
+
       <Card>
-        <CardHeader>
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex flex-col gap-1">
-              <Badge variant="outline">Department scope proof</Badge>
-              <CardTitle>
-                Thành viên của phòng ban {departmentScope.departmentId}
-              </CardTitle>
-              <CardDescription>
-                Cả organizationId và departmentId đã được chuẩn hóa qua createDepartmentScope trước khi query.
-              </CardDescription>
-            </div>
-            <Badge variant="secondary">
-              Trang {tableState.pagination.pageIndex + 1} / kích thước{" "}
-              {tableState.pagination.pageSize}
-            </Badge>
-          </div>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
-            <span>Tổ chức: {departmentScope.organizationId}</span>
-            <span>Phòng ban: {departmentScope.departmentId}</span>
-            <span>Tìm kiếm: {normalizedState.search || "Không có"}</span>
-            <span>
-              Trạng thái: {normalizedState.statuses.join(", ") || "Tất cả"}
-            </span>
-          </div>
-
-          {memberQuery.isLoading ? (
-            <p className="text-sm text-muted-foreground">
-              Đang tải dữ liệu thành viên...
-            </p>
-          ) : null}
-
-          <div className="flex flex-col gap-3">
-            {(memberQuery.data?.items ?? []).map((member) => (
-              <Card key={member.id} size="sm">
-                <CardHeader>
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                      <CardTitle>{member.fullName}</CardTitle>
-                      <CardDescription>
-                        {member.memberCode} · {member.id}
-                      </CardDescription>
-                    </div>
-                    <Badge variant="outline">{member.status}</Badge>
-                  </div>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
+        <CardContent className="flex flex-col gap-4 pt-4">
+          <MemberListFilters
+            search={normalizedState.search}
+            statuses={normalizedState.statuses}
+            onSearchChange={handleSearchChange}
+            onStatusChange={handleStatusChange}
+          />
+          <MemberListTable
+            organizationId={params.organizationId}
+            departmentId={params.departmentId}
+            members={memberQuery.data?.items ?? []}
+            isLoading={memberQuery.isLoading}
+            isError={memberQuery.isError}
+            errorMessage={(memberQuery.error as Error)?.message}
+            sort={normalizedState.sort}
+            pageIndex={tableState.pagination.pageIndex}
+            pageSize={tableState.pagination.pageSize}
+            pageCount={memberQuery.data?.pageCount ?? 1}
+            rowCount={memberQuery.data?.rowCount ?? 0}
+            renderRowActions={(member) => (
+              <MemberRowActions
+                organizationId={params.organizationId}
+                departmentId={params.departmentId}
+                member={member}
+                onDeleteClick={setDeletingMember}
+              />
+            )}
+            onSortChange={handleSortChange}
+            onPageChange={handlePageChange}
+          />
         </CardContent>
       </Card>
+
+      <MemberDeleteDialog
+        member={deletingMember}
+        isOpen={deletingMember !== null}
+        isDeleting={deleteMemberMutation.isPending}
+        onConfirm={handleDeleteConfirm}
+        onCancel={() => setDeletingMember(null)}
+      />
     </div>
   );
 }
@@ -133,7 +196,11 @@ function MembersPageContent() {
 export default function AdminDepartmentMembersPage() {
   return (
     <Suspense
-      fallback={<p className="text-sm text-muted-foreground">Đang chuẩn hóa phạm vi phòng ban...</p>}
+      fallback={
+        <p className="text-sm text-muted-foreground">
+          Đang chuẩn hóa phạm vi phòng ban...
+        </p>
+      }
     >
       <MembersPageContent />
     </Suspense>
