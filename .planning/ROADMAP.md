@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Directory Foundations & Contracts** - Establish shared feature boundaries, backend-shaped mock contracts, and reusable URL/form/table foundations. (completed 2026-04-10)
 - [ ] **Phase 2: Organization Management** - Deliver the first complete vertical slice for organization CRUD and guarded lifecycle behavior.
 - [ ] **Phase 3: Department Management in Organization Scope** - Add nested department CRUD with organization-qualified navigation, queries, and delete rules.
-- [ ] **Phase 4: Member Management & Bulk Operations** - Deliver the deepest hierarchy slice for members, including bulk actions and parent-aware assignment flows.
+- [x] **Phase 4: Member Management & Bulk Operations** - Deliver the deepest hierarchy slice for members, including bulk actions and parent-aware assignment flows. (completed 2026-04-12)
 - [ ] **Phase 5: Cross-Entity Admin UX Consistency** - Make list, detail, badge, breadcrumb, and delete experiences consistent across all directory surfaces.
 - [ ] **Phase 6: Auth-Ready Boundary** - Add future-facing auth seams so Keycloak can attach later without rewriting CRUD modules.
 
@@ -85,14 +85,14 @@ Plans:
 4. User can delete a member through a guarded confirmation flow and receive clear success or failure feedback for destructive actions.
 5. User can select multiple members and run supported bulk actions with per-operation feedback.
 
-**Plans:** 4/5 plans executed
+**Plans:** 5/5 plans complete
 Plans:
 
 - [x] 04-01-PLAN.md — Member API mutations, service functions, types, and query hooks with parent-qualified cache invalidation (Wave 1)
 - [x] 04-02-PLAN.md — Member enterprise list table, filters, row actions, delete dialog, and evolved list page (Wave 2)
 - [x] 04-03-PLAN.md — Shared MemberForm component and create/edit route pages (Wave 2)
 - [x] 04-04-PLAN.md — Member detail page with parent hierarchy summary and delete flow (Wave 2)
-- [ ] 04-05-PLAN.md — Bulk selection column, MemberBulkActionBar with status picker and per-operation feedback (Wave 3)
+- [x] 04-05-PLAN.md — Bulk selection column, MemberBulkActionBar with status picker and per-operation feedback (Wave 3)
 
 **UI hint**: yes
 
@@ -132,6 +132,6 @@ Phases execute in numeric order: 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 | 1. Directory Foundations & Contracts           | 6/6            | Complete    | 2026-04-10 |
 | 2. Organization Management                     | 0/TBD          | Not started | -          |
 | 3. Department Management in Organization Scope | 0/TBD          | Not started | -          |
-| 4. Member Management & Bulk Operations         | 4/5            | In Progress |            |
+| 4. Member Management & Bulk Operations         | 5/5            | Complete    | 2026-04-12 |
 | 5. Cross-Entity Admin UX Consistency           | 0/TBD          | Not started | -          |
 | 6. Auth-Ready Boundary                         | 0/TBD          | Not started | -          |
