@@ -1,10 +1,17 @@
 import type { DepartmentScope } from "@/shared/api/directory.contracts";
 import type {
+  BulkUpdateMemberStatusApiResponse,
+  DeleteMemberApiResponse,
+  MemberCreateApiInput,
+  MemberDetailApiResponse,
   MemberFilters,
   MemberListQuery,
   MemberSortField,
 } from "@/shared/api/member.api";
-import type { MemberModel } from "@/shared/model/member.model";
+import type {
+  MemberModel,
+  MemberParentContextModel,
+} from "@/shared/model/member.model";
 
 export type Member = MemberModel;
 export type MemberListParams = MemberListQuery;
@@ -18,4 +25,10 @@ export type MembersListResponse = {
   rowCount: number;
   pageCount: number;
 };
-export type MemberDetailResponse = Member;
+export type MemberDetailResponse = MemberModel & {
+  parentContext: MemberParentContextModel;
+};
+export type MemberMutationPayload = MemberCreateApiInput;
+export type MemberDeleteResult = DeleteMemberApiResponse;
+export type BulkUpdateMemberStatusResult = BulkUpdateMemberStatusApiResponse;
+export type MemberDetailApiContract = MemberDetailApiResponse;
